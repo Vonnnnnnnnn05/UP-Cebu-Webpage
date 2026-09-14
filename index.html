@@ -134,11 +134,144 @@
         .mobile-nav-link.active svg {
             color: #C99A24;
         }
+
+        /* Reading Scroll Progress Bar */
+        #scroll-progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3.5px;
+            background: linear-gradient(90deg, #C99A24, #F4E7C0, #C99A24);
+            background-size: 200% 100%;
+            z-index: 9999;
+            transition: width 0.12s cubic-bezier(0.2, 0.8, 0.4, 1);
+            pointer-events: none;
+            box-shadow: 0 1px 6px rgba(201, 154, 36, 0.5);
+        }
+
+        /* Smooth Scroll-Triggered Reveal Classes */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+
+        .reveal-on-scroll.is-revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Slide variations */
+        .reveal-slide-left {
+            opacity: 0;
+            transform: translateX(-32px);
+            transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+
+        .reveal-slide-left.is-revealed {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-slide-right {
+            opacity: 0;
+            transform: translateX(32px);
+            transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+
+        .reveal-slide-right.is-revealed {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Stagger delays for items */
+        .stagger-1 { transition-delay: 0.08s; }
+        .stagger-2 { transition-delay: 0.16s; }
+        .stagger-3 { transition-delay: 0.24s; }
+        .stagger-4 { transition-delay: 0.32s; }
+        .stagger-5 { transition-delay: 0.40s; }
+        .stagger-6 { transition-delay: 0.48s; }
+
+        /* Sticky Header Elevation on Scroll */
+        header {
+            transition: box-shadow 0.3s ease, background-color 0.3s ease;
+        }
+
+        header.is-scrolled {
+            box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.28);
+        }
+
+        /* Floating Back to Top Button */
+        #back-to-top-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 2.85rem;
+            height: 2.85rem;
+            border-radius: 9999px;
+            background-color: #5A0A0D;
+            color: #C99A24;
+            border: 1.5px solid #C99A24;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(16px) scale(0.9);
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease, background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+            z-index: 90;
+        }
+
+        #back-to-top-btn.is-visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+        #back-to-top-btn:hover {
+            background-color: #C99A24;
+            color: #5A0A0D;
+            border-color: #F4E7C0;
+            transform: translateY(-3px) scale(1.06);
+            box-shadow: 0 6px 20px rgba(201, 154, 36, 0.4);
+        }
+
+        #back-to-top-btn:active {
+            transform: translateY(0) scale(0.95);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto !important;
+            }
+            .reveal-on-scroll,
+            .reveal-slide-left,
+            .reveal-slide-right {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+            }
+            #back-to-top-btn {
+                transition: none !important;
+            }
+        }
     </style>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="bg-cream-bg text-ink-base antialiased selection:bg-maroon-base selection:text-white">
+
+    <!-- Reading Scroll Progress Bar -->
+    <div id="scroll-progress-bar" aria-hidden="true"></div>
 
     <!-- =========================================================
          HEADER (Dark Maroon Primary #7B1113 with subtle Green border)
@@ -285,7 +418,7 @@
 
             <!-- Hero Content with clean hierarchy -->
             <div
-                class="relative z-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-24 sm:pt-14 sm:pb-16 md:py-18 w-full">
+                class="relative z-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-24 sm:pt-14 sm:pb-16 md:py-18 w-full reveal-on-scroll">
                 <!-- Academic Green UP Cebu TTBDO badge -->
                 <div class="mb-3.5">
                     <span
@@ -341,7 +474,7 @@
              ABOUT (Warm White #F7F3E8 Background)
         ====================================================== -->
         <section id="about" class="bg-cream-bg py-12 sm:py-16 border-b border-border-card">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 reveal-on-scroll">
                 <div
                     class="flex items-center gap-2.5 text-[11px] font-bold tracking-[1.5px] uppercase text-green-base mb-2">
                     <span class="inline-block w-6 sm:w-7 h-0.5 bg-green-base rounded-full"></span>
@@ -367,27 +500,29 @@
         ====================================================== -->
         <section id="programs" class="py-14 sm:py-18 bg-white border-b border-border-card">
             <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div
-                    class="flex items-center gap-2.5 text-[11px] font-bold tracking-[1.5px] uppercase text-green-base mb-2">
-                    <span class="inline-block w-6 sm:w-7 h-0.5 bg-green-base rounded-full"></span>
-                    OUR PROGRAMS
+                <div class="reveal-on-scroll">
+                    <div
+                        class="flex items-center gap-2.5 text-[11px] font-bold tracking-[1.5px] uppercase text-green-base mb-2">
+                        <span class="inline-block w-6 sm:w-7 h-0.5 bg-green-base rounded-full"></span>
+                        OUR PROGRAMS
+                    </div>
+
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-maroon-base tracking-tight mb-2">
+                        Turning Innovation into Impact
+                    </h2>
+
+                    <p class="max-w-xl text-xs sm:text-[13px] leading-relaxed text-ink-muted mb-8">
+                        We provide support and opportunities for the UP Cebu community to transform ideas into
+                        real-world solutions through strategic partnerships, capacity building, and technology transfer.
+                    </p>
                 </div>
-
-                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-maroon-base tracking-tight mb-2">
-                    Turning Innovation into Impact
-                </h2>
-
-                <p class="max-w-xl text-xs sm:text-[13px] leading-relaxed text-ink-muted mb-8">
-                    We provide support and opportunities for the UP Cebu community to transform ideas into
-                    real-world solutions through strategic partnerships, capacity building, and technology transfer.
-                </p>
 
                 <!-- Program cards grid: Clean white cards with exactly one brand accent -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
 
                     <!-- Card 1: Incubation Program (Accent: Maroon Icon) -->
                     <article
-                        class="bg-white border border-border-card rounded-xl p-6 shadow-xs hover:-translate-y-1 hover:shadow-md hover:border-maroon-base/40 transition-all duration-200 flex flex-col justify-between">
+                        class="bg-white border border-border-card rounded-xl p-6 shadow-xs hover:-translate-y-1 hover:shadow-md hover:border-maroon-base/40 transition-all duration-200 flex flex-col justify-between reveal-on-scroll stagger-1">
                         <div>
                             <div
                                 class="w-12 h-12 rounded-full bg-maroon-base flex items-center justify-center text-white mb-4 shadow-xs">
@@ -418,7 +553,7 @@
 
                     <!-- Card 2: IP Protection (Accent: Gold Top Border) -->
                     <article
-                        class="bg-white border border-border-card border-t-[3px] border-t-gold-base rounded-xl p-6 shadow-xs hover:-translate-y-1 hover:shadow-md hover:border-maroon-base/40 transition-all duration-200 flex flex-col justify-between">
+                        class="bg-white border border-border-card border-t-[3px] border-t-gold-base rounded-xl p-6 shadow-xs hover:-translate-y-1 hover:shadow-md hover:border-maroon-base/40 transition-all duration-200 flex flex-col justify-between reveal-on-scroll stagger-2">
                         <div>
                             <div
                                 class="w-12 h-12 rounded-full bg-maroon-base/10 flex items-center justify-center text-maroon-base mb-4">
@@ -449,7 +584,7 @@
 
                     <!-- Card 3: Student Innovation Mentorship (Accent: Academic Green Icon) -->
                     <article
-                        class="bg-white border border-border-card rounded-xl p-6 shadow-xs hover:-translate-y-1 hover:shadow-md hover:border-green-base/40 transition-all duration-200 flex flex-col justify-between">
+                        class="bg-white border border-border-card rounded-xl p-6 shadow-xs hover:-translate-y-1 hover:shadow-md hover:border-green-base/40 transition-all duration-200 flex flex-col justify-between reveal-on-scroll stagger-3">
                         <div>
                             <div
                                 class="w-12 h-12 rounded-full bg-green-base flex items-center justify-center text-white mb-4 shadow-xs">
@@ -480,7 +615,7 @@
 
                     <!-- Card 4: Internship Programs (Accent: Maroon Icon) -->
                     <article
-                        class="bg-white border border-border-card rounded-xl p-6 shadow-xs hover:-translate-y-1 hover:shadow-md hover:border-maroon-base/40 transition-all duration-200 flex flex-col justify-between">
+                        class="bg-white border border-border-card rounded-xl p-6 shadow-xs hover:-translate-y-1 hover:shadow-md hover:border-maroon-base/40 transition-all duration-200 flex flex-col justify-between reveal-on-scroll stagger-4">
                         <div>
                             <div
                                 class="w-12 h-12 rounded-full bg-maroon-base flex items-center justify-center text-white mb-4 shadow-xs">
@@ -511,7 +646,7 @@
 
                     <!-- Card 5: Empowerment and Mentorship (Accent: Gold Top Border) -->
                     <article
-                        class="bg-white border border-border-card border-t-[3px] border-t-gold-base rounded-xl p-6 shadow-xs hover:-translate-y-1 hover:shadow-md hover:border-maroon-base/40 transition-all duration-200 flex flex-col justify-between">
+                        class="bg-white border border-border-card border-t-[3px] border-t-gold-base rounded-xl p-6 shadow-xs hover:-translate-y-1 hover:shadow-md hover:border-maroon-base/40 transition-all duration-200 flex flex-col justify-between reveal-on-scroll stagger-5">
                         <div>
                             <div
                                 class="w-12 h-12 rounded-full bg-maroon-base/10 flex items-center justify-center text-maroon-base mb-4">
@@ -542,7 +677,7 @@
 
                     <!-- Card 6: Certification Initiative (Accent: Academic Green Icon) -->
                     <article
-                        class="bg-white border border-border-card rounded-xl p-6 shadow-xs hover:-translate-y-1 hover:shadow-md hover:border-green-base/40 transition-all duration-200 flex flex-col justify-between">
+                        class="bg-white border border-border-card rounded-xl p-6 shadow-xs hover:-translate-y-1 hover:shadow-md hover:border-green-base/40 transition-all duration-200 flex flex-col justify-between reveal-on-scroll stagger-6">
                         <div>
                             <div
                                 class="w-12 h-12 rounded-full bg-green-base flex items-center justify-center text-white mb-4 shadow-xs">
@@ -586,7 +721,7 @@
 
                     <!-- Resources Panel (Clean White Card with Subtle Green Accent) -->
                     <div id="resources"
-                        class="bg-white border border-border-card rounded-xl p-6 sm:p-8 shadow-xs flex flex-col justify-between">
+                        class="bg-white border border-border-card rounded-xl p-6 sm:p-8 shadow-xs flex flex-col justify-between reveal-on-scroll stagger-1">
                         <div>
                             <div
                                 class="flex items-center gap-2 text-[10.5px] font-bold tracking-[1.5px] uppercase text-green-base mb-2">
@@ -674,7 +809,7 @@
 
                     <!-- News Panel (Clean White Card) -->
                     <div id="news"
-                        class="bg-white border border-border-card rounded-xl p-6 sm:p-8 shadow-xs flex flex-col justify-between">
+                        class="bg-white border border-border-card rounded-xl p-6 sm:p-8 shadow-xs flex flex-col justify-between reveal-on-scroll stagger-2">
                         <div>
                             <div
                                 class="flex items-center gap-2 text-[10.5px] font-bold tracking-[1.5px] uppercase text-maroon-base mb-2">
@@ -796,7 +931,7 @@
          FOOTER (Dark Maroon Primary #7B1113 Anchor with Gold Top Border)
     ========================================================== -->
     <footer id="contact" class="bg-maroon-base text-white pt-10 pb-6 border-t-2 border-gold-base">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 reveal-on-scroll">
 
             <!-- Footer Top -->
             <div
@@ -894,6 +1029,13 @@
     </footer>
 
 
+
+    <!-- Floating Back to Top Button with Smooth Scroll -->
+    <button id="back-to-top-btn" type="button" aria-label="Scroll back to top" class="group">
+        <svg class="w-5 h-5 transition-transform group-hover:-translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+        </svg>
+    </button>
 
     <!-- JavaScript -->
     <script src="script.js"></script>
