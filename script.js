@@ -1,179 +1,139 @@
 /* ============================================================
-   MOBILE NAVIGATION
+   MOBILE DROPDOWN NAVIGATION
 ============================================================ */
 
-const menuToggle =
-    document.querySelector(".menu-toggle");
+const menuToggle = document.getElementById("menu-toggle");
+const mobileMenu = document.getElementById("mobile-menu");
+const menuIconOpen = document.getElementById("menu-icon-open");
+const menuIconClose = document.getElementById("menu-icon-close");
 
-const nav =
-    document.querySelector(".nav");
+function toggleMobileMenu() {
+    if (!mobileMenu || !menuToggle) return;
 
+    const isClosed = mobileMenu.classList.contains("hidden");
 
-if (menuToggle && nav) {
-
-    menuToggle.addEventListener("click", () => {
-
-        const isOpen =
-            nav.classList.toggle("open");
-
-
-        menuToggle.setAttribute(
-            "aria-expanded",
-            isOpen
-        );
-
-
-        if (isOpen) {
-
-            nav.style.display = "flex";
-
-            nav.style.position = "absolute";
-
-            nav.style.top = "82px";
-
-            nav.style.left = "0";
-
-            nav.style.right = "0";
-
-            nav.style.height = "auto";
-
-            nav.style.padding = "20px";
-
-            nav.style.background =
-                "#003f31";
-
-            nav.style.flexDirection =
-                "column";
-
-            nav.style.alignItems =
-                "stretch";
-
-            nav.style.gap = "18px";
-
-            nav.style.zIndex = "20";
-
-
-            nav.querySelectorAll("a")
-                .forEach(link => {
-
-                    link.style.height =
-                        "auto";
-
-                });
-
-        } else {
-
-            closeMenu();
-
-        }
-
-    });
-
+    if (isClosed) {
+        mobileMenu.classList.remove("hidden");
+        mobileMenu.classList.add("flex");
+        menuToggle.setAttribute("aria-expanded", "true");
+        if (menuIconOpen) menuIconOpen.classList.add("hidden");
+        if (menuIconClose) menuIconClose.classList.remove("hidden");
+    } else {
+        closeMobileMenu();
+    }
 }
 
+function closeMobileMenu() {
+    if (!mobileMenu || !menuToggle) return;
+
+    mobileMenu.classList.add("hidden");
+    mobileMenu.classList.remove("flex");
+    menuToggle.setAttribute("aria-expanded", "false");
+    if (menuIconOpen) menuIconOpen.classList.remove("hidden");
+    if (menuIconClose) menuIconClose.classList.add("hidden");
+}
+
+if (menuToggle && mobileMenu) {
+    menuToggle.addEventListener("click", toggleMobileMenu);
+}
+
+// Reset mobile menu on resize to desktop
+window.addEventListener("resize", () => {
+    if (window.innerWidth >= 1024) {
+        closeMobileMenu();
+    }
+});
 
 /* ============================================================
-   CLOSE MOBILE MENU
+   ACTIVE LINK SYNCHRONIZATION & SCROLL SPY
 ============================================================ */
 
-function closeMenu() {
+const desktopLinks = document.querySelectorAll(".nav-link");
+const mobileLinks = document.querySelectorAll(".mobile-nav-link");
 
-    if (!nav || !menuToggle) {
+function setActiveNav(targetHref) {
+    if (!targetHref) return;
+
+    // Normalize href (e.g. "#home")
+    const cleanHref = targetHref.startsWith("#") ? targetHref : `#${targetHref}`;
+
+    // Update desktop nav links
+    desktopLinks.forEach(link => {
+        if (link.getAttribute("href") === cleanHref) {
+            link.classList.add("active");
+        } else {
+            link.classList.remove("active");
+        }
+    });
+
+    // Update mobile dropdown links
+    mobileLinks.forEach(link => {
+        if (link.getAttribute("href") === cleanHref) {
+            link.classList.add("active");
+        } else {
+            link.classList.remove("active");
+        }
+    });
+}
+
+// Handle click on all navigation links with sticky header offset
+[...desktopLinks, ...mobileLinks].forEach(link => {
+    link.addEventListener("click", (e) => {
+        const href = link.getAttribute("href");
+        if (href && href.startsWith("#")) {
+            e.preventDefault();
+            setActiveNav(href);
+            closeMobileMenu();
+
+            if (href === "#home") {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+                // Also update URL hash cleanly
+                history.pushState(null, null, "#home");
+            } else {
+                const targetEl = document.querySelector(href);
+                if (targetEl) {
+                    const header = document.querySelector("header");
+                    const headerHeight = header ? header.offsetHeight : 76;
+                    const targetY = targetEl.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                    window.scrollTo({ top: targetY, behavior: "smooth" });
+                    history.pushState(null, null, href);
+                }
+            }
+        }
+    });
+});
+
+// Real-time ScrollSpy: Dynamically update active link on scroll
+function updateScrollSpy() {
+    const scrollPos = window.scrollY + 200;
+
+    // If reached bottom of page, highlight contact
+    if ((window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 60)) {
+        setActiveNav("#contact");
         return;
     }
 
+    const sectionIds = ["contact", "news", "resources", "programs", "about", "home"];
 
-    nav.classList.remove("open");
-
-    nav.removeAttribute("style");
-
-    menuToggle.setAttribute(
-        "aria-expanded",
-        "false"
-    );
-
-}
-
-
-/* ============================================================
-   CLOSE MENU AFTER CLICKING A LINK
-============================================================ */
-
-if (nav) {
-
-    nav.querySelectorAll("a")
-        .forEach(link => {
-
-            link.addEventListener(
-                "click",
-                () => {
-
-                    if (
-                        window.innerWidth <= 900
-                    ) {
-
-                        closeMenu();
-
-                    }
-
-                }
-            );
-
-        });
-
-}
-
-
-/* ============================================================
-   RESET NAVIGATION WHEN RESIZING
-============================================================ */
-
-window.addEventListener(
-    "resize",
-    () => {
-
-        if (
-            window.innerWidth > 900
-        ) {
-
-            closeMenu();
-
+    for (const id of sectionIds) {
+        const el = document.getElementById(id);
+        if (el) {
+            const top = el.offsetTop;
+            if (scrollPos >= top) {
+                setActiveNav(`#${id}`);
+                break;
+            }
         }
-
     }
-);
+}
 
+window.addEventListener("scroll", updateScrollSpy, { passive: true });
 
-/* ============================================================
-   ACTIVE NAVIGATION LINK
-============================================================ */
-
-const navLinks =
-    document.querySelectorAll(
-        ".nav a"
-    );
-
-
-navLinks.forEach(link => {
-
-    link.addEventListener(
-        "click",
-        () => {
-
-            navLinks.forEach(
-                item => {
-                    item.classList.remove(
-                        "active"
-                    );
-                }
-            );
-
-
-            link.classList.add(
-                "active"
-            );
-
-        }
-    );
-
+// Initialize active link on load based on hash or position
+window.addEventListener("DOMContentLoaded", () => {
+    if (window.location.hash) {
+        setActiveNav(window.location.hash);
+    } else {
+        updateScrollSpy();
+    }
 });

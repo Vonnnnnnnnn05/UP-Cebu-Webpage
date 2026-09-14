@@ -1,613 +1,791 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <meta
-        name="description"
-        content="Technology Transfer and Business Development Office - University of the Philippines Cebu"
-    >
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Technology Transfer and Business Development Office - University of the Philippines Cebu">
     <title>UP Cebu TTBDO</title>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
     <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
-        rel="stylesheet"
-    >
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
 
-    <!-- CSS -->
+    <!-- Tailwind CSS v4 Play CDN -->
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+        @theme {
+            /* Dominant Neutral Background (~70% visual space) */
+            --color-cream-bg: #F3EBDD;
+            --color-cream-soft: #FBF8F2;
+
+            /* Primary Brand (~20%): Dark Maroon */
+            --color-maroon-dark: #3E0709;
+            --color-maroon-base: #5A0A0D;
+            --color-maroon-hover: #701115;
+            --color-maroon-light: #8C1A1F;
+            --color-red-base: #5A0A0D;
+            --color-red-card: #5A0A0D;
+
+            /* Secondary Brand (~7%): Academic Green */
+            --color-green-dark: #07351C;
+            --color-green-base: #0D4D29;
+            --color-green-hover: #146238;
+            --color-green-light: #1E7C47;
+
+            /* Accent Brand (~3%): University Gold */
+            --color-gold-base: #C99A24;
+            --color-gold-hover: #B58418;
+            --color-gold-deep: #8E5E0B;
+            --color-gold-light: #F4E7C0;
+
+            /* Neutrals & Text */
+            --color-ink-base: #26231F;
+            --color-ink-muted: #5A554D;
+            --color-ink-subtle: #4B4640;
+            --color-border-card: #DDD2C2;
+
+            --font-serif: "Playfair Display", Georgia, serif;
+            --font-sans: "DM Sans", Arial, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 5rem;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--color-cream-bg);
+            color: var(--color-ink-base);
+        }
+
+        .brand-mark-ring::after {
+            content: "";
+            position: absolute;
+            inset: 5px;
+            border: 1px solid rgba(201, 154, 36, 0.6);
+            border-radius: 9999px;
+        }
+
+        /* Desktop Navigation Links */
+        .nav-link {
+            color: rgba(255, 255, 255, 0.9);
+            position: relative;
+            display: flex;
+            align-items: center;
+            height: 100%;
+            padding-left: 0.25rem;
+            padding-right: 0.25rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: #C99A24;
+        }
+
+        .nav-link.active {
+            color: #C99A24 !important;
+            font-weight: 700;
+        }
+
+        .nav-link.active::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2.5px;
+            background-color: #C99A24;
+        }
+
+        /* Mobile Dropdown Navigation Links */
+        .mobile-nav-link {
+            color: rgba(255, 255, 255, 0.9);
+            background-color: transparent;
+            border-left: 3px solid transparent;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .mobile-nav-link:hover {
+            color: #C99A24;
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .mobile-nav-link.active {
+            color: #C99A24 !important;
+            background-color: rgba(201, 154, 36, 0.12);
+            border-left: 3px solid #C99A24;
+            font-weight: 700;
+        }
+
+        .mobile-nav-link svg {
+            color: rgba(255, 255, 255, 0.5);
+            transition: color 0.2s ease;
+        }
+
+        .mobile-nav-link:hover svg,
+        .mobile-nav-link.active svg {
+            color: #C99A24;
+        }
+    </style>
     <link rel="stylesheet" href="styles.css">
 </head>
 
-<body>
+<body class="bg-cream-bg text-ink-base antialiased selection:bg-maroon-base selection:text-white">
 
     <!-- =========================================================
-         HEADER
+         HEADER (Dark Maroon Primary #7B1113 with subtle Green border)
     ========================================================== -->
-
-    <header class="site-header">
-
-        <div class="container nav-wrap">
+    <header class="bg-maroon-base text-white border-b-2 border-green-base sticky top-0 z-50 shadow-md">
+        <div
+            class="max-w-6xl mx-auto px-3 sm:px-6 lg:px-8 h-18 sm:h-20 lg:h-[100px] flex items-center justify-between gap-2 sm:gap-4 lg:gap-6">
 
             <!-- Logo / Brand -->
-            <a href="#home" class="brand">
-
-                <div class="brand-mark">
-                    <span>✚</span>
+            <a href="#home" class="flex items-center gap-2.5 sm:gap-3.5 group min-w-0">
+                <div
+                    class="bg-white rounded-md px-1.5 py-1 shadow-xs border border-white/40 flex items-center justify-center shrink-0 transition-transform group-hover:scale-105">
+                    <img src="assets/ttbdo-full-logo.png" alt="UP Cebu TTBDO Logo"
+                        class="h-7 sm:h-8 lg:h-9 w-auto object-contain" />
                 </div>
 
-                <div class="brand-text">
-
-                    <small>
-                        UNIVERSITY OF THE PHILIPPINES CEBU
-                    </small>
-
-                    <strong>
-                        Technology Transfer and<br>
-                        Business Development Office
+                <div class="leading-tight min-w-0">
+                    <span
+                        class="block text-[9px] sm:text-[10px] lg:text-[11px] tracking-wider uppercase text-gold-base font-bold truncate">
+                        UP CEBU • UNIVERSITY OF THE PHILIPPINES
+                    </span>
+                    <strong
+                        class="block font-serif text-[12px] sm:text-sm lg:text-[17px] text-white font-bold leading-tight mt-0.5">
+                        Technology Transfer and<br class="hidden xs:inline"> Business Development Office
                     </strong>
-
-                    <em>(TTBDO)</em>
-
                 </div>
-
             </a>
 
-
-            <!-- Mobile menu button -->
-            <button
-                class="menu-toggle"
-                aria-label="Open navigation"
-                aria-expanded="false"
-            >
-                ☰
+            <!-- Mobile Hamburger Button (toggles dropdown) -->
+            <button id="menu-toggle"
+                class="lg:hidden text-white p-2.5 rounded-md hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-gold-base flex items-center justify-center shrink-0 min-w-[42px] min-h-[42px]"
+                aria-label="Toggle navigation menu" aria-expanded="false" type="button">
+                <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+                <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                </svg>
             </button>
 
-
-            <!-- Navigation -->
-            <nav class="nav" aria-label="Main navigation">
-
-                <a class="active" href="#home">
+            <!-- Desktop Navigation -->
+            <nav class="hidden lg:flex items-center gap-7 h-full text-[13.5px]" aria-label="Main navigation">
+                <a class="nav-link active" href="#home">
                     Home
                 </a>
-
-                <a href="#about">
+                <a class="nav-link" href="#about">
                     About
                 </a>
-
-                <a href="#programs">
+                <a class="nav-link" href="#programs">
                     Programs
                 </a>
-
-                <a href="#resources">
+                <a class="nav-link" href="#resources">
                     Resources
                 </a>
-
-                <a href="#news">
+                <a class="nav-link" href="#news">
                     News &amp; Updates
                 </a>
-
-                <a href="#contact">
+                <a class="nav-link" href="#contact">
                     Contact
                 </a>
 
+                <!-- Search Icon Button -->
                 <button
-                    class="search-btn"
-                    aria-label="Search"
-                    type="button"
-                >
-                    ⌕
+                    class="text-white/80 hover:text-gold-base transition-colors p-1.5 flex items-center justify-center rounded-full hover:bg-white/10"
+                    aria-label="Search" type="button">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                    </svg>
                 </button>
-
             </nav>
-
         </div>
 
+        <!-- Mobile Navigation Menu Dropdown -->
+        <nav id="mobile-menu"
+            class="hidden lg:hidden flex-col bg-maroon-dark border-t border-green-base/40 px-4 sm:px-6 py-4 space-y-1 shadow-2xl transition-all max-h-[calc(100vh-4.5rem)] overflow-y-auto"
+            aria-label="Mobile navigation">
+            <a class="mobile-nav-link active flex items-center justify-between py-2.5 px-3 rounded-md text-sm"
+                href="#home">
+                <span>Home</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                </svg>
+            </a>
+            <a class="mobile-nav-link flex items-center justify-between py-2.5 px-3 rounded-md text-sm" href="#about">
+                <span>About</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                </svg>
+            </a>
+            <a class="mobile-nav-link flex items-center justify-between py-2.5 px-3 rounded-md text-sm"
+                href="#programs">
+                <span>Programs</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                </svg>
+            </a>
+            <a class="mobile-nav-link flex items-center justify-between py-2.5 px-3 rounded-md text-sm"
+                href="#resources">
+                <span>Resources</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                </svg>
+            </a>
+            <a class="mobile-nav-link flex items-center justify-between py-2.5 px-3 rounded-md text-sm" href="#news">
+                <span>News &amp; Updates</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                </svg>
+            </a>
+            <a class="mobile-nav-link flex items-center justify-between py-2.5 px-3 rounded-md text-sm" href="#contact">
+                <span>Contact</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                </svg>
+            </a>
+        </nav>
     </header>
 
 
     <!-- =========================================================
          MAIN
     ========================================================== -->
-
     <main>
 
-
         <!-- =====================================================
-             HERO
+             HERO (Natural Campus Photo with Localized Left Gradient)
         ====================================================== -->
+        <section id="home"
+            class="relative min-h-[440px] sm:min-h-[460px] md:min-h-[480px] lg:min-h-[500px] overflow-hidden bg-maroon-dark text-white flex items-center scroll-mt-20">
 
-        <section id="home" class="hero">
+            <!-- Background photograph with natural colors, zero red tint on center & right -->
+            <div class="absolute inset-0 bg-cover bg-center sm:bg-[center_right_10%] z-0"
+                style="background-image: url('assets/hero-campus.jpg');" role="img"
+                aria-label="UP Cebu campus landscape"></div>
 
-            <!-- Background photograph -->
-            <div class="hero-image"></div>
-
-            <!-- Dark gradient -->
-            <div class="hero-overlay"></div>
-
-
-            <div class="container hero-content">
-
-                <div class="eyebrow">
-                    <span></span>
-                    UP CEBU TTBDO
-                </div>
-
-
-                <h1>
-                    Your Idea,<br>
-                    <span>Our Dedication.</span>
-                </h1>
-
-
-                <p>
-                    The Technology Transfer and Business Development
-                    Office (TTBDO) connects the University’s research
-                    and innovation with industry, community, and society
-                    for a more sustainable and inclusive future.
-                </p>
-
-
-                <a
-                    class="btn"
-                    href="#programs"
-                >
-                    Explore Our Programs
-
-                    <span>→</span>
-                </a>
-
+            <!-- Localized Left Gradient: Dark Maroon over text smoothly fading into transparent -->
+            <div
+                class="absolute inset-0 z-10 bg-gradient-to-b sm:bg-gradient-to-r from-[#7B1113] via-[#7B1113]/90 sm:via-[#7B1113]/85 via-55% sm:via-40% to-transparent sm:w-[62%] w-full pointer-events-none">
             </div>
 
-
-            <!-- Decorative red/gold diagonal -->
+            <!-- Hero Content with clean hierarchy -->
             <div
-                class="diagonal-accent"
-                aria-hidden="true"
-            ></div>
+                class="relative z-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-24 sm:pt-14 sm:pb-16 md:py-18 w-full">
+                <!-- Academic Green UP Cebu TTBDO badge -->
+                <div class="mb-3.5">
+                    <span
+                        class="inline-flex items-center gap-1.5 bg-green-base text-white border border-green-light/40 px-3 py-1 rounded-full text-[10.5px] sm:text-[11px] font-bold uppercase tracking-wider shadow-xs">
+                        UP Cebu TTBDO
+                    </span>
+                </div>
 
+                <!-- Headline: White + Gold #D4A017 -->
+                <h1
+                    class="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-bold leading-[1.06] tracking-tight my-2.5 sm:my-3 text-white">
+                    Your Idea,<br>
+                    <span class="text-gold-base">Our Dedication.</span>
+                </h1>
+
+                <p class="max-w-md sm:max-w-lg text-xs sm:text-[13px] leading-relaxed text-white/90 mb-6">
+                    The Technology Transfer and Business Development Office (TTBDO) connects the University’s
+                    research and innovation with industry, community, and society for a more sustainable and inclusive
+                    future.
+                </p>
+
+                <!-- CTA Button: Gold #D4A017 background + Dark Maroon text. On hover: Dark Maroon bg + White text + thin Gold border -->
+                <a class="inline-flex items-center justify-center sm:justify-start gap-3 bg-gold-base text-maroon-base border border-gold-base font-bold text-xs sm:text-[13px] px-6 py-3 rounded-md shadow-md hover:bg-maroon-base hover:text-white hover:border-gold-base active:scale-95 transition-all duration-200 group w-full sm:w-auto"
+                    href="#programs">
+                    <span>Explore Our Programs</span>
+                    <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none"
+                        stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                    </svg>
+                </a>
+            </div>
+
+            <!-- Decorative multi-band diagonal accent (Maroon, Gold, and Green — 70-20-10 palette) -->
+            <svg class="absolute z-20 bottom-0 right-0 w-44 sm:w-64 md:w-80 lg:w-[460px] h-auto pointer-events-none drop-shadow-lg"
+                viewBox="0 0 460 140" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <!-- Top Gold Stripe -->
+                <polygon points="120,140 460,21 460,28 140,140" fill="#D4A017" />
+
+                <!-- Maroon Main Band -->
+                <polygon points="140,140 460,28 460,63 240,140" fill="#7B1113" />
+
+                <!-- Middle Gold Stripe -->
+                <polygon points="240,140 460,63 460,70 260,140" fill="#D4A017" />
+
+                <!-- Bottom-Right Green Corner -->
+                <polygon points="260,140 460,70 460,140" fill="#146B3A" />
+            </svg>
         </section>
 
 
 
         <!-- =====================================================
-             ABOUT
+             ABOUT (Warm White #F7F3E8 Background)
         ====================================================== -->
-
-        <section id="about" class="about section">
-
-            <div class="container">
-
-                <div class="eyebrow dark">
-                    <span></span>
+        <section id="about" class="bg-cream-bg py-12 sm:py-16 border-b border-border-card">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div
+                    class="flex items-center gap-2.5 text-[11px] font-bold tracking-[1.5px] uppercase text-green-base mb-2">
+                    <span class="inline-block w-6 sm:w-7 h-0.5 bg-green-base rounded-full"></span>
                     ABOUT TTBDO
                 </div>
 
-                <h2>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-maroon-base leading-tight mb-3">
                     Connecting Research,<br>
                     Innovation, and Impact
                 </h2>
 
-                <p class="about-text">
-                    The Technology Transfer and Business Development
-                    Office supports the UP Cebu community in turning
-                    research, ideas, and innovations into meaningful
-                    solutions for industry and society.
+                <p class="max-w-2xl text-xs sm:text-[13px] leading-relaxed text-ink-muted">
+                    The Technology Transfer and Business Development Office supports the UP Cebu community in
+                    turning research, ideas, and innovations into meaningful solutions for industry and society.
                 </p>
-
             </div>
-
         </section>
 
 
 
         <!-- =====================================================
-             PROGRAMS
+             PROGRAMS (White #FFFFFF with Single Accent Cards)
         ====================================================== -->
-
-        <section id="programs" class="programs section">
-
-            <div class="container">
-
-                <div class="eyebrow dark">
-                    <span></span>
+        <section id="programs" class="py-14 sm:py-18 bg-white border-b border-border-card">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div
+                    class="flex items-center gap-2.5 text-[11px] font-bold tracking-[1.5px] uppercase text-green-base mb-2">
+                    <span class="inline-block w-6 sm:w-7 h-0.5 bg-green-base rounded-full"></span>
                     OUR PROGRAMS
                 </div>
 
-
-                <h2>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-maroon-base tracking-tight mb-2">
                     Turning Innovation into Impact
                 </h2>
 
-
-                <p class="section-intro">
-                    We provide support and opportunities for the
-                    UP Cebu community to transform ideas into
-                    real-world solutions through strategic
-                    partnerships, capacity building, and
-                    technology transfer.
+                <p class="max-w-xl text-xs sm:text-[13px] leading-relaxed text-ink-muted mb-8">
+                    We provide support and opportunities for the UP Cebu community to transform ideas into
+                    real-world solutions through strategic partnerships, capacity building, and technology transfer.
                 </p>
 
+                <!-- Program cards grid: Clean white cards with exactly one brand accent -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
 
-                <!-- Program cards -->
-                <div class="program-grid">
-
-
-                    <!-- Card 1 -->
-                    <article class="program-card">
-
-                        <div class="icon green">
-                            💡
+                    <!-- Card 1: Incubation Program (Accent: Maroon Icon) -->
+                    <article
+                        class="bg-white border border-border-card rounded-xl p-6 shadow-xs hover:-translate-y-1 hover:shadow-md hover:border-maroon-base/40 transition-all duration-200 flex flex-col justify-between">
+                        <div>
+                            <div
+                                class="w-12 h-12 rounded-full bg-maroon-base flex items-center justify-center text-white mb-4 shadow-xs">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                    stroke-width="1.8">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M12 18v-2m-3 2h6m-7-6a5 5 0 1 1 8 0c-.8 1.1-1.3 2.1-1.5 3h-5c-.2-.9-.7-1.9-1.5-3Z" />
+                                </svg>
+                            </div>
+                            <h3 class="font-serif text-[17px] font-bold text-maroon-base leading-tight mb-2">
+                                Incubation Program
+                            </h3>
+                            <p class="text-[12px] leading-relaxed text-ink-muted mb-5">
+                                Supports promising start-ups and innovative ideas through resources, mentorship, and
+                                access to networks.
+                            </p>
                         </div>
-
-                        <h3>
-                            Incubation Program
-                        </h3>
-
-                        <p>
-                            Supports promising start-ups and
-                            innovative ideas through resources,
-                            mentorship, and access to networks.
-                        </p>
-
-                        <a href="#">
-                            Learn More
-                            <span>→</span>
+                        <a href="#"
+                            class="inline-flex items-center text-[11.5px] font-bold text-maroon-base hover:text-green-base transition-colors group w-fit">
+                            <span>Learn More</span>
+                            <svg class="w-3.5 h-3.5 ml-1.5 text-gold-base transition-transform group-hover:translate-x-1"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                            </svg>
                         </a>
-
                     </article>
 
-
-                    <!-- Card 2 -->
-                    <article class="program-card">
-
-                        <div class="icon red">
-                            🛡
+                    <!-- Card 2: IP Protection (Accent: Gold Top Border) -->
+                    <article
+                        class="bg-white border border-border-card border-t-[3px] border-t-gold-base rounded-xl p-6 shadow-xs hover:-translate-y-1 hover:shadow-md hover:border-maroon-base/40 transition-all duration-200 flex flex-col justify-between">
+                        <div>
+                            <div
+                                class="w-12 h-12 rounded-full bg-maroon-base/10 flex items-center justify-center text-maroon-base mb-4">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                    stroke-width="1.8">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
+                                </svg>
+                            </div>
+                            <h3 class="font-serif text-[17px] font-bold text-maroon-base leading-tight mb-2">
+                                Intellectual Property<br>Rights Protection
+                            </h3>
+                            <p class="text-[12px] leading-relaxed text-ink-muted mb-5">
+                                Assists in the protection and management of intellectual property (IP) generated by
+                                the University.
+                            </p>
                         </div>
-
-                        <h3>
-                            Intellectual Property<br>
-                            Rights Protection
-                        </h3>
-
-                        <p>
-                            Assists in the protection and management
-                            of intellectual property (IP) generated
-                            by the University.
-                        </p>
-
-                        <a href="#">
-                            Learn More
-                            <span>→</span>
+                        <a href="#"
+                            class="inline-flex items-center text-[11.5px] font-bold text-maroon-base hover:text-green-base transition-colors group w-fit">
+                            <span>Learn More</span>
+                            <svg class="w-3.5 h-3.5 ml-1.5 text-gold-base transition-transform group-hover:translate-x-1"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                            </svg>
                         </a>
-
                     </article>
 
-
-                    <!-- Card 3 -->
-                    <article class="program-card">
-
-                        <div class="icon gold">
-                            👥
+                    <!-- Card 3: Student Innovation Mentorship (Accent: Academic Green Icon) -->
+                    <article
+                        class="bg-white border border-border-card rounded-xl p-6 shadow-xs hover:-translate-y-1 hover:shadow-md hover:border-green-base/40 transition-all duration-200 flex flex-col justify-between">
+                        <div>
+                            <div
+                                class="w-12 h-12 rounded-full bg-green-base flex items-center justify-center text-white mb-4 shadow-xs">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                    stroke-width="1.8">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.999-3.199a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
+                                </svg>
+                            </div>
+                            <h3 class="font-serif text-[17px] font-bold text-maroon-base leading-tight mb-2">
+                                Student Innovation<br>Mentorship Program
+                            </h3>
+                            <p class="text-[12px] leading-relaxed text-ink-muted mb-5">
+                                Guides student innovators through mentorship, training, and industry linkages to
+                                bring their ideas to life.
+                            </p>
                         </div>
-
-                        <h3>
-                            Student Innovation<br>
-                            Mentorship Program
-                        </h3>
-
-                        <p>
-                            Guides student innovators through
-                            mentorship, training, and industry
-                            linkages to bring their ideas to life.
-                        </p>
-
-                        <a href="#">
-                            Learn More
-                            <span>→</span>
+                        <a href="#"
+                            class="inline-flex items-center text-[11.5px] font-bold text-maroon-base hover:text-green-base transition-colors group w-fit">
+                            <span>Learn More</span>
+                            <svg class="w-3.5 h-3.5 ml-1.5 text-gold-base transition-transform group-hover:translate-x-1"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                            </svg>
                         </a>
-
                     </article>
 
-
-                    <!-- Card 4 -->
-                    <article class="program-card">
-
-                        <div class="icon red">
-                            💼
+                    <!-- Card 4: Internship Programs (Accent: Maroon Icon) -->
+                    <article
+                        class="bg-white border border-border-card rounded-xl p-6 shadow-xs hover:-translate-y-1 hover:shadow-md hover:border-maroon-base/40 transition-all duration-200 flex flex-col justify-between">
+                        <div>
+                            <div
+                                class="w-12 h-12 rounded-full bg-maroon-base flex items-center justify-center text-white mb-4 shadow-xs">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                    stroke-width="1.8">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 0 0 .75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 0 0-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0 1 12 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 0 1-.673-.38m0 0A2.18 2.18 0 0 1 3 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 0 1 3.413-.387m7.5 0V5.25A2.25 2.25 0 0 0 13.5 3h-3a2.25 2.25 0 0 0-2.25 2.25v1.069m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                                </svg>
+                            </div>
+                            <h3 class="font-serif text-[17px] font-bold text-maroon-base leading-tight mb-2">
+                                Internship Programs
+                            </h3>
+                            <p class="text-[12px] leading-relaxed text-ink-muted mb-5">
+                                Provides students with real-world experience through industry and institutional
+                                partnerships.
+                            </p>
                         </div>
-
-                        <h3>
-                            Internship Programs
-                        </h3>
-
-                        <p>
-                            Provides students with real-world
-                            experience through industry and
-                            institutional partnerships.
-                        </p>
-
-                        <a href="#">
-                            Learn More
-                            <span>→</span>
+                        <a href="#"
+                            class="inline-flex items-center text-[11.5px] font-bold text-maroon-base hover:text-green-base transition-colors group w-fit">
+                            <span>Learn More</span>
+                            <svg class="w-3.5 h-3.5 ml-1.5 text-gold-base transition-transform group-hover:translate-x-1"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                            </svg>
                         </a>
-
                     </article>
 
-
-                    <!-- Card 5 -->
-                    <article class="program-card">
-
-                        <div class="icon gold">
-                            🌱
+                    <!-- Card 5: Empowerment and Mentorship (Accent: Gold Top Border) -->
+                    <article
+                        class="bg-white border border-border-card border-t-[3px] border-t-gold-base rounded-xl p-6 shadow-xs hover:-translate-y-1 hover:shadow-md hover:border-maroon-base/40 transition-all duration-200 flex flex-col justify-between">
+                        <div>
+                            <div
+                                class="w-12 h-12 rounded-full bg-maroon-base/10 flex items-center justify-center text-maroon-base mb-4">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                    stroke-width="1.8">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M12 21v-8.25m0 0c0-4.5 3-7.5 7.5-7.5-1.5 4.5-4.5 7.5-7.5 7.5Zm0 0c0-3.5-2.5-6-6-6 1.2 3.6 3.6 6 6 6Z" />
+                                </svg>
+                            </div>
+                            <h3 class="font-serif text-[17px] font-bold text-maroon-base leading-tight mb-2">
+                                Empowerment and Mentorship<br>for Local Enterprises
+                            </h3>
+                            <p class="text-[12px] leading-relaxed text-ink-muted mb-5">
+                                Supports local businesses and community enterprises through mentoring, training, and
+                                market linkages.
+                            </p>
                         </div>
-
-                        <h3>
-                            Empowerment and Mentorship<br>
-                            for Local Enterprises
-                        </h3>
-
-                        <p>
-                            Supports local businesses and community
-                            enterprises through mentoring, training,
-                            and market linkages.
-                        </p>
-
-                        <a href="#">
-                            Learn More
-                            <span>→</span>
+                        <a href="#"
+                            class="inline-flex items-center text-[11.5px] font-bold text-maroon-base hover:text-green-base transition-colors group w-fit">
+                            <span>Learn More</span>
+                            <svg class="w-3.5 h-3.5 ml-1.5 text-gold-base transition-transform group-hover:translate-x-1"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                            </svg>
                         </a>
-
                     </article>
 
-
-                    <!-- Card 6 -->
-                    <article class="program-card">
-
-                        <div class="icon green">
-                            📋
+                    <!-- Card 6: Certification Initiative (Accent: Academic Green Icon) -->
+                    <article
+                        class="bg-white border border-border-card rounded-xl p-6 shadow-xs hover:-translate-y-1 hover:shadow-md hover:border-green-base/40 transition-all duration-200 flex flex-col justify-between">
+                        <div>
+                            <div
+                                class="w-12 h-12 rounded-full bg-green-base flex items-center justify-center text-white mb-4 shadow-xs">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                    stroke-width="1.8">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
+                                </svg>
+                            </div>
+                            <h3 class="font-serif text-[17px] font-bold text-maroon-base leading-tight mb-2">
+                                Innovation and Skills<br>Certification Initiative
+                            </h3>
+                            <p class="text-[12px] leading-relaxed text-ink-muted mb-5">
+                                Offers certification programs to enhance skills and validate competencies for
+                                greater employability.
+                            </p>
                         </div>
-
-                        <h3>
-                            Innovation and Skills<br>
-                            Certification Initiative
-                        </h3>
-
-                        <p>
-                            Offers certification programs to enhance
-                            skills and validate competencies for
-                            greater employability and competitiveness.
-                        </p>
-
-                        <a href="#">
-                            Learn More
-                            <span>→</span>
+                        <a href="#"
+                            class="inline-flex items-center text-[11.5px] font-bold text-maroon-base hover:text-green-base transition-colors group w-fit">
+                            <span>Learn More</span>
+                            <svg class="w-3.5 h-3.5 ml-1.5 text-gold-base transition-transform group-hover:translate-x-1"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                            </svg>
                         </a>
-
                     </article>
 
                 </div>
-
             </div>
-
         </section>
 
 
 
         <!-- =====================================================
-             RESOURCES + NEWS
+             RESOURCES & NEWS (Warm White #F7F3E8 Section — Light Content)
         ====================================================== -->
+        <section class="bg-cream-bg py-12 sm:py-16 border-b border-border-card">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
 
-        <section class="resource-news">
+                    <!-- Resources Panel (Clean White Card with Subtle Green Accent) -->
+                    <div id="resources"
+                        class="bg-white border border-border-card rounded-xl p-6 sm:p-8 shadow-xs flex flex-col justify-between">
+                        <div>
+                            <div
+                                class="flex items-center gap-2 text-[10.5px] font-bold tracking-[1.5px] uppercase text-green-base mb-2">
+                                <span class="w-6 h-0.5 bg-green-base rounded-full"></span>
+                                RESOURCES &amp; GUIDELINES
+                            </div>
 
+                            <h2 class="font-serif text-2xl sm:text-[28px] font-bold text-maroon-base mb-3">
+                                Innovation Resources
+                            </h2>
 
-            <!-- Resources -->
-            <div
-                id="resources"
-                class="resource-panel"
-            >
+                            <p class="text-xs sm:text-[13px] leading-relaxed text-ink-muted mb-6">
+                                Access important forms, policies, toolkits, and guidelines to support your innovation,
+                                intellectual property protection, and commercialization journey.
+                            </p>
 
-                <div class="resource-bg"></div>
+                            <!-- Quick Resource Items -->
+                            <div class="space-y-3 mb-6">
+                                <a href="#"
+                                    class="group flex items-center justify-between p-3 rounded-lg border border-border-card hover:border-green-base/50 hover:bg-cream-bg/60 transition-all">
+                                    <div class="flex items-center gap-3">
+                                        <div
+                                            class="w-8 h-8 rounded-md bg-green-base/10 text-green-base flex items-center justify-center shrink-0">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                                stroke-width="2">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <h4
+                                                class="text-xs font-semibold text-ink-base group-hover:text-maroon-base transition-colors">
+                                                Technology Disclosure Form (TDF)
+                                            </h4>
+                                            <span class="text-[10.5px] text-ink-muted">PDF Download • 240 KB</span>
+                                        </div>
+                                    </div>
+                                    <svg class="w-4 h-4 text-gold-base transition-transform group-hover:translate-x-1"
+                                        fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                    </svg>
+                                </a>
 
-                <div class="resource-overlay"></div>
+                                <a href="#"
+                                    class="group flex items-center justify-between p-3 rounded-lg border border-border-card hover:border-green-base/50 hover:bg-cream-bg/60 transition-all">
+                                    <div class="flex items-center gap-3">
+                                        <div
+                                            class="w-8 h-8 rounded-md bg-green-base/10 text-green-base flex items-center justify-center shrink-0">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                                stroke-width="2">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <h4
+                                                class="text-xs font-semibold text-ink-base group-hover:text-maroon-base transition-colors">
+                                                UP Cebu Intellectual Property Policy
+                                            </h4>
+                                            <span class="text-[10.5px] text-ink-muted">Guidelines &amp;
+                                                Regulations</span>
+                                        </div>
+                                    </div>
+                                    <svg class="w-4 h-4 text-gold-base transition-transform group-hover:translate-x-1"
+                                        fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
 
-
-                <div class="resource-content">
-
-                    <div class="eyebrow">
-                        <span></span>
-                        EXPLORE OUR
+                        <a class="inline-flex items-center justify-center gap-2.5 bg-maroon-base hover:bg-maroon-hover text-white text-xs font-bold px-5 py-3 rounded-md shadow-xs hover:-translate-y-0.5 active:scale-95 transition-all group w-fit"
+                            href="#">
+                            <span>Browse All Resources</span>
+                            <svg class="w-4 h-4 text-gold-base group-hover:translate-x-1 transition-transform"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                            </svg>
+                        </a>
                     </div>
 
 
-                    <h2>
-                        Resources
-                    </h2>
+                    <!-- News Panel (Clean White Card) -->
+                    <div id="news"
+                        class="bg-white border border-border-card rounded-xl p-6 sm:p-8 shadow-xs flex flex-col justify-between">
+                        <div>
+                            <div
+                                class="flex items-center gap-2 text-[10.5px] font-bold tracking-[1.5px] uppercase text-maroon-base mb-2">
+                                <span class="w-6 h-0.5 bg-gold-base rounded-full"></span>
+                                LATEST ANNOUNCEMENTS
+                            </div>
 
+                            <h2 class="font-serif text-2xl sm:text-[28px] font-bold text-maroon-base mb-4">
+                                News &amp; Updates
+                            </h2>
 
-                    <div class="short-line"></div>
+                            <!-- News items with Maroon Date Badges -->
+                            <div class="divide-y divide-border-card">
 
+                                <!-- News item 1 -->
+                                <a class="group grid grid-cols-[52px_1fr_16px] gap-3.5 py-3 items-center hover:bg-cream-bg/50 -mx-2 px-2 rounded-md transition-colors"
+                                    href="#">
+                                    <div
+                                        class="rounded-lg h-12 flex flex-col items-center justify-center border border-border-card overflow-hidden bg-white shadow-xs shrink-0 group-hover:border-maroon-base transition-colors">
+                                        <span
+                                            class="w-full text-center bg-maroon-base text-white text-[8px] font-bold tracking-wider uppercase py-0.5">APR</span>
+                                        <strong
+                                            class="font-serif text-[15px] font-bold text-maroon-base leading-none py-1">15</strong>
+                                    </div>
+                                    <div class="min-w-0">
+                                        <h3
+                                            class="font-serif text-[13px] font-bold text-ink-base leading-snug group-hover:text-maroon-base transition-colors">
+                                            UP Cebu and DOST Partner for Innovation Forum
+                                        </h3>
+                                        <p class="text-[10.5px] text-ink-muted leading-relaxed mt-0.5 line-clamp-2">
+                                            The University of the Philippines Cebu, through the TTBDO, collaborates with
+                                            DOST to host the Regional Innovation Forum 2025.
+                                        </p>
+                                    </div>
+                                    <svg class="w-4 h-4 text-gold-base transition-transform group-hover:translate-x-1 shrink-0"
+                                        fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                                    </svg>
+                                </a>
 
-                    <p>
-                        Access important forms, guidelines,
-                        policies, and other resources to support
-                        your innovation and partnership journey.
-                    </p>
+                                <!-- News item 2 -->
+                                <a class="group grid grid-cols-[52px_1fr_16px] gap-3.5 py-3 items-center hover:bg-cream-bg/50 -mx-2 px-2 rounded-md transition-colors"
+                                    href="#">
+                                    <div
+                                        class="rounded-lg h-12 flex flex-col items-center justify-center border border-border-card overflow-hidden bg-white shadow-xs shrink-0 group-hover:border-maroon-base transition-colors">
+                                        <span
+                                            class="w-full text-center bg-maroon-base text-white text-[8px] font-bold tracking-wider uppercase py-0.5">APR</span>
+                                        <strong
+                                            class="font-serif text-[15px] font-bold text-maroon-base leading-none py-1">08</strong>
+                                    </div>
+                                    <div class="min-w-0">
+                                        <h3
+                                            class="font-serif text-[13px] font-bold text-ink-base leading-snug group-hover:text-maroon-base transition-colors">
+                                            Call for Proposals: Research &amp; Innovation Grants
+                                        </h3>
+                                        <p class="text-[10.5px] text-ink-muted leading-relaxed mt-0.5 line-clamp-2">
+                                            The TTBDO is now accepting proposals for the 2025 Research and Innovation
+                                            Grant Program.
+                                        </p>
+                                    </div>
+                                    <svg class="w-4 h-4 text-gold-base transition-transform group-hover:translate-x-1 shrink-0"
+                                        fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                                    </svg>
+                                </a>
 
+                                <!-- News item 3 -->
+                                <a class="group grid grid-cols-[52px_1fr_16px] gap-3.5 py-3 items-center hover:bg-cream-bg/50 -mx-2 px-2 rounded-md transition-colors"
+                                    href="#">
+                                    <div
+                                        class="rounded-lg h-12 flex flex-col items-center justify-center border border-border-card overflow-hidden bg-white shadow-xs shrink-0 group-hover:border-maroon-base transition-colors">
+                                        <span
+                                            class="w-full text-center bg-maroon-base text-white text-[8px] font-bold tracking-wider uppercase py-0.5">MAR</span>
+                                        <strong
+                                            class="font-serif text-[15px] font-bold text-maroon-base leading-none py-1">25</strong>
+                                    </div>
+                                    <div class="min-w-0">
+                                        <h3
+                                            class="font-serif text-[13px] font-bold text-ink-base leading-snug group-hover:text-maroon-base transition-colors">
+                                            UP Cebu Hosts Tech Commercialization Workshop
+                                        </h3>
+                                        <p class="text-[10.5px] text-ink-muted leading-relaxed mt-0.5 line-clamp-2">
+                                            Faculty and researchers attended a workshop on IP management and technology
+                                            commercialization.
+                                        </p>
+                                    </div>
+                                    <svg class="w-4 h-4 text-gold-base transition-transform group-hover:translate-x-1 shrink-0"
+                                        fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                                    </svg>
+                                </a>
 
-                    <a
-                        class="btn"
-                        href="#"
-                    >
-                        View Resources
-                        <span>→</span>
-                    </a>
+                            </div>
+                        </div>
+
+                        <a class="self-end mt-4 inline-flex items-center text-xs font-bold text-maroon-base hover:text-green-base transition-colors group py-1"
+                            href="#">
+                            <span>View All Announcements</span>
+                            <svg class="w-3.5 h-3.5 ml-1.5 text-gold-base transition-transform group-hover:translate-x-1"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                            </svg>
+                        </a>
+                    </div>
 
                 </div>
-
             </div>
-
-
-
-            <!-- News -->
-            <div
-                id="news"
-                class="news-panel"
-            >
-
-                <div class="eyebrow dark">
-                    <span></span>
-                    LATEST NEWS &amp; UPDATES
-                </div>
-
-
-                <h2>
-                    Announcements
-                </h2>
-
-
-                <!-- News item -->
-                <a
-                    class="news-item"
-                    href="#"
-                >
-
-                    <div class="date">
-
-                        <strong>
-                            15
-                        </strong>
-
-                        <span>
-                            APR
-                        </span>
-
-                    </div>
-
-
-                    <div class="news-copy">
-
-                        <h3>
-                            UP Cebu and DOST Partner for Innovation Forum
-                        </h3>
-
-                        <p>
-                            The University of the Philippines Cebu,
-                            through the TTBDO, collaborates with DOST
-                            to host the Regional Innovation Forum 2025.
-                        </p>
-
-                    </div>
-
-
-                    <span class="arrow">
-                        →
-                    </span>
-
-                </a>
-
-
-
-                <!-- News item -->
-                <a
-                    class="news-item"
-                    href="#"
-                >
-
-                    <div class="date">
-
-                        <strong>
-                            08
-                        </strong>
-
-                        <span>
-                            APR
-                        </span>
-
-                    </div>
-
-
-                    <div class="news-copy">
-
-                        <h3>
-                            Call for Proposals: Research and Innovation Grants
-                        </h3>
-
-                        <p>
-                            The TTBDO is now accepting proposals for
-                            the 2025 Research and Innovation Grant Program.
-                        </p>
-
-                    </div>
-
-
-                    <span class="arrow">
-                        →
-                    </span>
-
-                </a>
-
-
-
-                <!-- News item -->
-                <a
-                    class="news-item"
-                    href="#"
-                >
-
-                    <div class="date">
-
-                        <strong>
-                            25
-                        </strong>
-
-                        <span>
-                            MAR
-                        </span>
-
-                    </div>
-
-
-                    <div class="news-copy">
-
-                        <h3>
-                            UP Cebu Hosts Technology Commercialization Workshop
-                        </h3>
-
-                        <p>
-                            Faculty and researchers attended a workshop
-                            on IP management and technology commercialization.
-                        </p>
-
-                    </div>
-
-
-                    <span class="arrow">
-                        →
-                    </span>
-
-                </a>
-
-
-                <a
-                    class="all-news"
-                    href="#"
-                >
-                    View All News
-                    <span>→</span>
-                </a>
-
-            </div>
-
         </section>
 
     </main>
@@ -615,128 +793,104 @@
 
 
     <!-- =========================================================
-         FOOTER
+         FOOTER (Dark Maroon Primary #7B1113 Anchor with Gold Top Border)
     ========================================================== -->
+    <footer id="contact" class="bg-maroon-base text-white pt-10 pb-6 border-t-2 border-gold-base">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
-    <footer
-        id="contact"
-        class="footer"
-    >
+            <!-- Footer Top -->
+            <div
+                class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_auto] gap-6 sm:gap-8 pb-8 items-start sm:items-center">
 
-        <div class="container footer-top">
-
-
-            <!-- Footer brand -->
-            <div class="footer-brand">
-
-                <div class="brand-mark small">
-                    ✚
+                <!-- Footer Brand -->
+                <div class="flex items-center gap-3 sm:gap-3.5">
+                    <div
+                        class="bg-white rounded-md px-1.5 py-1 shadow-xs border border-gold-base/50 flex items-center justify-center shrink-0">
+                        <img src="assets/ttbdo-full-logo.png" alt="UP Cebu TTBDO Logo"
+                            class="h-7 sm:h-8 lg:h-9 w-auto object-contain" />
+                    </div>
+                    <div class="min-w-0">
+                        <span
+                            class="block text-[7.5px] sm:text-[8px] tracking-wider uppercase text-cream-bg/80 font-medium truncate">
+                            UNIVERSITY OF THE PHILIPPINES CEBU
+                        </span>
+                        <strong
+                            class="block font-serif text-[13px] sm:text-sm font-bold leading-tight mt-0.5 text-white">
+                            Technology Transfer and<br>Business Development Office
+                        </strong>
+                    </div>
                 </div>
 
-                <div>
-
-                    <small>
-                        UNIVERSITY OF THE PHILIPPINES CEBU
-                    </small>
-
-                    <strong>
-                        Technology Transfer and<br>
-                        Business Development Office
-                    </strong>
-
+                <!-- Address -->
+                <div
+                    class="flex items-start gap-3 border-t sm:border-t-0 sm:border-l border-white/15 pt-4 sm:pt-0 sm:pl-6 text-[11px] leading-relaxed text-cream-bg/85">
+                    <svg class="w-5 h-5 text-gold-base shrink-0 mt-0.5" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24" stroke-width="1.8" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                    </svg>
+                    <div>
+                        <strong class="text-white block font-semibold mb-0.5">UP Cebu Campus</strong>
+                        Door 4, University Avenue<br>
+                        6000 Cebu City, Philippines
+                    </div>
                 </div>
 
-            </div>
-
-
-
-            <!-- Address -->
-            <div class="footer-detail">
-
-                <span class="detail-icon">
-                    ⌖
-                </span>
-
-                <div>
-
-                    <strong>
-                        UP Cebu Campus
-                    </strong>
-
-                    <br>
-
-                    Door 4, University Avenue
-                    <br>
-
-                    6000 Cebu City, Philippines
-
+                <!-- Contact -->
+                <div
+                    class="flex items-start gap-3 border-t lg:border-t-0 lg:border-l border-white/15 pt-4 lg:pt-0 lg:pl-6 text-[11px] leading-relaxed text-cream-bg/85">
+                    <svg class="w-5 h-5 text-gold-base shrink-0 mt-0.5" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24" stroke-width="1.8" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                    </svg>
+                    <div>
+                        <a href="mailto:ttbdo@upcebu.edu.ph"
+                            class="hover:text-gold-base transition-colors block py-0.5">
+                            ttbdo@upcebu.edu.ph
+                        </a>
+                        <a href="tel:+63322326001" class="hover:text-gold-base transition-colors block py-0.5">
+                            (032) 232-6001 loc. 301
+                        </a>
+                    </div>
                 </div>
 
-            </div>
-
-
-
-            <!-- Contact -->
-            <div class="footer-detail">
-
-                <span class="detail-icon">
-                    ✉
-                </span>
-
-                <div>
-
-                    <a href="mailto:ttbdo@upcebu.edu.ph">
-                        ttbdo@upcebu.edu.ph
+                <!-- Socials (Small Academic Green Accents) -->
+                <div
+                    class="flex items-center gap-3 pt-3 sm:pt-0 border-t sm:border-t-0 border-white/15 sm:border-transparent">
+                    <a href="#" aria-label="Facebook"
+                        class="w-8 h-8 rounded-full bg-green-base text-white flex items-center justify-center hover:scale-110 active:scale-95 hover:bg-gold-base hover:text-maroon-base transition-all shadow-xs border border-green-light/40">
+                        <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                            <path
+                                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                        </svg>
                     </a>
-
-                    <br>
-
-                    <a href="tel:+63322326001">
-                        (032) 232-6001 loc. 301
+                    <a href="mailto:ttbdo@upcebu.edu.ph" aria-label="Email"
+                        class="w-8 h-8 rounded-full bg-green-base text-white flex items-center justify-center hover:scale-110 active:scale-95 hover:bg-gold-base hover:text-maroon-base transition-all shadow-xs border border-green-light/40">
+                        <svg class="w-3.5 h-3.5 fill-none stroke-current" viewBox="0 0 24 24" stroke-width="2"
+                            aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                        </svg>
                     </a>
-
                 </div>
 
             </div>
 
-
-
-            <!-- Social -->
-            <div class="socials">
-
-                <a
-                    href="#"
-                    aria-label="Facebook"
-                >
-                    f
-                </a>
-
-                <a
-                    href="mailto:ttbdo@upcebu.edu.ph"
-                    aria-label="Email"
-                >
-                    ✉
-                </a>
-
+            <!-- Footer Bottom with Official Motto -->
+            <div
+                class="border-t border-white/15 pt-5 mt-2 flex flex-col sm:flex-row items-center justify-between gap-2.5 text-[9.5px] sm:text-[10px] text-cream-bg/75 text-center sm:text-left">
+                <span>
+                    © 2025 University of the Philippines Cebu. All rights reserved.
+                </span>
+                <span class="italic text-gold-base font-medium">
+                    Nurtured to Create • Inspired to Innovate • Destined to Serve
+                </span>
             </div>
 
         </div>
-
-
-
-        <div class="container footer-bottom">
-
-            <span>
-                © 2025 University of the Philippines Cebu.
-                All rights reserved.
-            </span>
-
-            <span>
-                Higher Education for a Better Tomorrow
-            </span>
-
-        </div>
-
     </footer>
 
 
@@ -745,4 +899,5 @@
     <script src="script.js"></script>
 
 </body>
+
 </html>
