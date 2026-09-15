@@ -388,11 +388,11 @@ const defaultSearchData = [
     },
     {
         id: "office-location",
-        title: "Office Location: 168 Gorordo Ave, Cebu City",
+        title: "Office Location: Technology Innovation Center",
         category: "Contact",
-        description: "TTBDO Office of the Chancellor, University of the Philippines Cebu, 168 Gorordo Ave, Cebu City, 6000 Cebu, Philippines.",
+        description: "Technology Transfer and Business Development Office, 3rd Floor, Technology Innovation Center, University of the Philippines Cebu.",
         url: "#contact",
-        keywords: ["location", "address", "gorordo", "cebu city", "office", "door 4", "contact", "map", "phone", "email"]
+        keywords: ["location", "address", "technology innovation center", "tic", "3rd floor", "cebu", "office", "contact", "map", "phone", "email"]
     },
     {
         id: "tdf-form",
@@ -523,7 +523,7 @@ function renderSearchResults() {
                 </div>
                 <h4 class="font-serif text-base font-bold text-maroon-base">No results found for "${query}"</h4>
                 <p class="text-xs text-ink-muted mt-1 max-w-sm mx-auto">
-                    Try searching for <span class="font-semibold text-gold-deep">"patents"</span>, <span class="font-semibold text-gold-deep">"incubation"</span>, <span class="font-semibold text-gold-deep">"grants"</span>, or <span class="font-semibold text-gold-deep">"168 Gorordo"</span>.
+                    Try searching for <span class="font-semibold text-gold-deep">"patents"</span>, <span class="font-semibold text-gold-deep">"incubation"</span>, <span class="font-semibold text-gold-deep">"grants"</span>, or <span class="font-semibold text-gold-deep">"innovation center"</span>.
                 </p>
             </div>
         `;

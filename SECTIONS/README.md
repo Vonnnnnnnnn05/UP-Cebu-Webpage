@@ -13,8 +13,8 @@ This directory contains individual, standalone HTML section components extracted
 | **`news.html`** | News grid, featured DOST partnership article, announcement pills, download links | `#news` |
 | **`programs.html`** | Innovation portfolio (IP Rights, Incubation, SIMP, Licensing, MSME, Internship) + 3-step pathway + custom slot | `#programs` |
 | **`events.html`** | Calendar, featured Innovation Summit 2025 at SRP campus, and legal clinic schedule | `#events` |
-| **`about.html`** | Institutional mandate, Vision & Mission, 4 Strategic Pillars, impact metrics, office card (`168 Gorordo Ave`), custom slot | `#about` |
-| **`footer.html`** | Footer brand mark, official campus address (`168 Gorordo Ave, Cebu City, 6000`), phone, email, socials, UP motto | `#contact` |
+| **`about.html`** | Institutional mandate, Vision & Mission, 4 Strategic Pillars, impact metrics, office card (`3rd Flr, Technology Innovation Center`), custom slot | `#about` |
+| **`footer.html`** | Footer brand mark, official office address (`3rd Floor, Technology Innovation Center, UP Cebu`), phone, email, socials, UP motto | `#contact` |
 | **`contact.html`** | Direct alias of `footer.html` containing the contact and location information | `#contact` |
 | **`search-modal.html`** | Animated search modal dialog card, filter chips, input, and keyboard navigation controls | `#search-modal` |
 | **`back-to-top.html`** | Floating smooth back-to-top button | `#back-to-top-btn` |

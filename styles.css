@@ -380,3 +380,23 @@ mark.search-highlight {
   padding: 0 2px;
 }
 
+/* Office Location Info (Interactive hover effect without map link) */
+.office-location-info {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: default;
+}
+
+.office-location-info:hover .office-location-title {
+  color: var(--color-gold-base) !important;
+}
+
+.office-location-info:hover .office-location-text {
+  color: var(--color-gold-light) !important;
+}
+
+.office-location-info:hover .office-location-icon {
+  transform: scale(1.12);
+  color: var(--color-gold-light) !important;
+}
+
+
