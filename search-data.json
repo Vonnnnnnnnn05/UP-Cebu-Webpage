@@ -1,0 +1,130 @@
+[
+  {
+    "id": "ip-protection",
+    "title": "Intellectual Property Rights Protection",
+    "category": "Programs",
+    "description": "Comprehensive institutional assistance for patents, copyright deposits, trademark registrations, and IPOPHL filings.",
+    "url": "#program-ip",
+    "keywords": ["patent", "copyright", "trademark", "ipophl", "prior art", "invention", "claims", "protection", "legal"]
+  },
+  {
+    "id": "business-incubation",
+    "title": "Technology Business Incubation (TBI)",
+    "category": "Programs",
+    "description": "Co-working space, venture networking, SEC registration assistance, and seed funding access for student and faculty startups.",
+    "url": "#program-incubation",
+    "keywords": ["incubation", "startup", "founder", "spin-off", "co-working", "venture", "seed funding", "accelerator"]
+  },
+  {
+    "id": "simp-mentorship",
+    "title": "Student Innovation Mentorship Program (SIMP)",
+    "category": "Programs",
+    "description": "Prototype validation grants, pitch competition training, and industry mentoring for undergraduate and capstone projects.",
+    "url": "#program-simp",
+    "keywords": ["student", "simp", "capstone", "mentorship", "grant", "prototype", "thesis", "pitch"]
+  },
+  {
+    "id": "tech-licensing",
+    "title": "Technology Licensing & Commercialization",
+    "category": "Programs",
+    "description": "Commercial licensing negotiation, valuation, and royalty sharing for UP-developed technologies and inventions.",
+    "url": "#program-licensing",
+    "keywords": ["licensing", "commercialization", "royalty", "industry", "contract", "tech transfer", "market"]
+  },
+  {
+    "id": "msme-extension",
+    "title": "Regional MSME Mentorship & Extension",
+    "category": "Programs",
+    "description": "Appropriate technology transfer, branding advisory, and DOST SETUP linkages for Central Visayas small enterprises.",
+    "url": "#program-msme",
+    "keywords": ["msme", "extension", "community", "enterprise", "dost setup", "cooperative", "regional"]
+  },
+  {
+    "id": "internship-cert",
+    "title": "Internship & IP Skills Certification",
+    "category": "Programs",
+    "description": "Hands-on casework on real-world patent dockets and mentorship by licensed patent agents and IP lawyers.",
+    "url": "#program-internship",
+    "keywords": ["internship", "certification", "training", "skills", "patent agent", "law", "experience"]
+  },
+  {
+    "id": "dost-partnership",
+    "title": "UP Cebu and DOST-VII Regional Innovation Hub",
+    "category": "News",
+    "description": "Formalized partnership with DOST-VII establishing ₱5.2M prototyping fund and acceleration tracks for Central Visayas spin-offs.",
+    "url": "#news",
+    "keywords": ["dost", "dost-vii", "partnership", "prototyping fund", "innovation hub", "regional", "grant"]
+  },
+  {
+    "id": "ip-filings-news",
+    "title": "Five UP Cebu Innovations Secure IPOPHL Certificates",
+    "category": "News",
+    "description": "Utility models and copyright registrations officially granted across computer science and industrial design laboratories.",
+    "url": "#news",
+    "keywords": ["utility models", "certificates", "awards", "granted", "computer science", "industrial design"]
+  },
+  {
+    "id": "patent-search-workshop",
+    "title": "TTBDO Hands-On Prior Art Patent Search Workshop",
+    "category": "News",
+    "description": "Over 45 faculty researchers trained on IPOPHL databases, Espacenet, and Google Patents navigation.",
+    "url": "#news",
+    "keywords": ["workshop", "prior art", "espacenet", "training", "search", "faculty"]
+  },
+  {
+    "id": "innovation-summit-2025",
+    "title": "Central Visayas Innovation Summit & Startup Demo Day 2025",
+    "category": "Events",
+    "description": "Annual flagship gathering of angel investors, researchers, and student founders at UP Cebu SRP Campus on April 15, 2025.",
+    "url": "#events",
+    "keywords": ["summit", "demo day", "april 15", "investors", "srp campus", "conference"]
+  },
+  {
+    "id": "ai-ip-clinic",
+    "title": "Clinic: Navigating Generative AI and Copyright Law",
+    "category": "Events",
+    "description": "Interactive legal clinic examining copyright boundaries in algorithmic creations and synthetic datasets on March 28, 2025.",
+    "url": "#events",
+    "keywords": ["ai", "generative ai", "copyright", "clinic", "workshop", "march 28", "machine learning"]
+  },
+  {
+    "id": "vision-mission",
+    "title": "Vision & Mission of UP Cebu TTBDO",
+    "category": "About Us",
+    "description": "Pioneering knowledge translation, protecting creators' rights, and driving regional economic development in Central Visayas.",
+    "url": "#about-vision",
+    "keywords": ["vision", "mission", "mandate", "chancellor", "goals", "public service"]
+  },
+  {
+    "id": "four-pillars",
+    "title": "Four Strategic Pillars of TTBDO",
+    "category": "About Us",
+    "description": "IP Governance, Commercial Licensing, Startup Acceleration, and Regional Extension pathways.",
+    "url": "#about-pillars",
+    "keywords": ["pillars", "governance", "commercialization", "acceleration", "extension", "framework"]
+  },
+  {
+    "id": "impact-metrics",
+    "title": "Impact & Statistics (45+ Filings, 18+ Startups)",
+    "category": "About Us",
+    "description": "Track record of assisted intellectual property disclosures, incubated ventures, and partner enterprises.",
+    "url": "#about-impact",
+    "keywords": ["metrics", "statistics", "45 filings", "18 startups", "30 partners", "500 innovators", "impact"]
+  },
+  {
+    "id": "office-location",
+    "title": "Office Location: 168 Gorordo Ave, Cebu City",
+    "category": "Contact",
+    "description": "TTBDO Office of the Chancellor, University of the Philippines Cebu, 168 Gorordo Ave, Cebu City, 6000 Cebu, Philippines.",
+    "url": "#contact",
+    "keywords": ["location", "address", "gorordo", "cebu city", "office", "door 4", "contact", "map", "phone", "email"]
+  },
+  {
+    "id": "tdf-form",
+    "title": "Technology Disclosure Form (TDF) Download",
+    "category": "Forms",
+    "description": "Official initial disclosure document required to begin IP evaluation and patent search assistance.",
+    "url": "assets/downloads/sample-form.pdf",
+    "keywords": ["tdf", "technology disclosure form", "form", "download", "pdf", "file invention"]
+  }
+]

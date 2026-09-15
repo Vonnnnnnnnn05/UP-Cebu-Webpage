@@ -5,40 +5,42 @@
   --color-cream-bg: #F3EBDD;
   --color-cream-soft: #FBF8F2;
 
-  /* Primary Brand (~20%): Dark Maroon */
-  --color-maroon-dark: #3E0709;
-  --color-maroon-base: #5A0A0D;
-  --color-maroon-hover: #701115;
-  --color-maroon-light: #8C1A1F;
-  --color-red-base: #5A0A0D;
-  --color-red-card: #5A0A0D;
+  /* Primary Brand (UP Maroon - PANTONE 1955C #7B1113) */
+  --color-maroon-dark: #4D0A0C;
+  --color-maroon-base: #7B1113;
+  --color-maroon-hover: #911618;
+  --color-maroon-light: #A81B1F;
+  --color-red-base: #7B1113;
+  --color-red-card: #7B1113;
 
-  /* Secondary Brand (~7%): Academic Green */
-  --color-green-dark: #07351C;
-  --color-green-base: #0D4D29;
-  --color-green-hover: #146238;
-  --color-green-light: #1E7C47;
+  /* Secondary Brand (Forest Green - PANTONE 7484C #014421) */
+  --color-green-dark: #002B15;
+  --color-green-base: #014421;
+  --color-green-hover: #0D5D30;
+  --color-green-light: #1B733F;
 
-  /* Accent Brand (~3%): University Gold */
-  --color-gold-base: #C99A24;
-  --color-gold-hover: #B58418;
+  /* Accent Brand (University Gold - PANTONE 1235C #D4A017 / #F2A900) */
+  --color-gold-base: #D4A017;
+  --color-gold-hover: #BF8E0F;
   --color-gold-deep: #8E5E0B;
   --color-gold-light: #F4E7C0;
 
-  /* Neutrals & Text */
+  /* Neutrals & Text (Spot Black & Warm Grays) */
   --color-ink-base: #26231F;
   --color-ink-muted: #5A554D;
   --color-ink-subtle: #4B4640;
   --color-border-card: #DDD2C2;
 
-  --font-serif: "Playfair Display", Georgia, serif;
-  --font-sans: "DM Sans", Arial, sans-serif;
+  /* Official Typography: Optima for Headings, Palatino for Official, Helvetica/Avenir for Digital */
+  --font-serif: "Optima", "Palatino Linotype", "Palatino", "Book Antiqua", Georgia, serif;
+  --font-sans: "Helvetica Neue", Helvetica, "Avenir Next", Avenir, "DM Sans", Arial, sans-serif;
 }
 
 /* Base resets & utilities */
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 5rem;
+  scroll-padding-top: 7rem;
+  overflow-x: hidden;
 }
 
 /* ============================================================
@@ -181,6 +183,7 @@ body {
   background-color: var(--color-cream-bg);
   color: var(--color-ink-base);
   margin: 0;
+  overflow-x: hidden;
 }
 
 /* Custom brand insignia rings */
@@ -208,7 +211,9 @@ body {
   height: 100%;
   padding-left: 0.25rem;
   padding-right: 0.25rem;
-  font-weight: 500;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
   transition: color 0.2s ease;
 }
 
@@ -218,7 +223,8 @@ body {
 
 .nav-link.active {
   color: #C99A24 !important;
-  font-weight: 700;
+  font-weight: 600;
+  white-space: nowrap;
 }
 
 .nav-link.active::after {
@@ -237,6 +243,7 @@ body {
   background-color: transparent;
   border-left: 3px solid transparent;
   font-weight: 500;
+  white-space: nowrap;
   transition: all 0.2s ease;
 }
 
@@ -261,3 +268,49 @@ body {
 .mobile-nav-link.active svg {
   color: #C99A24;
 }
+
+/* =========================================================
+   ANIMATED SEARCH MODAL STYLES
+========================================================= */
+#search-modal {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#search-modal.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+#search-modal .search-dialog-card {
+  transform: translateY(-20px) scale(0.96);
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.28s ease;
+}
+
+#search-modal.is-open .search-dialog-card {
+  transform: translateY(0) scale(1);
+}
+
+.search-result-item {
+  transition: background-color 0.15s ease, transform 0.15s ease, border-color 0.15s ease;
+}
+
+.search-result-item:hover,
+.search-result-item.is-selected {
+  background-color: #F8F3EA;
+  border-color: #C99A24;
+}
+
+mark.search-highlight {
+  background-color: rgba(212, 160, 23, 0.25);
+  color: #7B1113;
+  font-weight: 700;
+  border-radius: 2px;
+  padding: 0 2px;
+}
+
