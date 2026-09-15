@@ -466,7 +466,7 @@ function openSearchModal() {
             searchModalInput.select();
         }
         renderSearchResults();
-    }, 60);
+    }, 120);
 }
 
 // Close Search Modal with Animation

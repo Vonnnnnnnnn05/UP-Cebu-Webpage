@@ -1,0 +1,345 @@
+<div id="scroll-progress-bar" aria-hidden="true"></div>
+
+    <!-- =========================================================
+         HEADER (Dark Maroon Primary #7B1113 with subtle Green border)
+    ========================================================== -->
+    <header class="bg-maroon-base text-white border-b-2 border-green-base sticky top-0 z-50 shadow-md">
+        <div
+            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 sm:h-20 lg:h-[100px] flex items-center gap-3 sm:gap-4 lg:gap-6">
+
+            <!-- Logo / Brand -->
+            <a href="#home" class="flex items-center gap-2.5 sm:gap-3.5 group shrink-0">
+                <div
+                    class="bg-white rounded-md px-2 py-1 shadow-xs border border-white/40 flex items-center justify-center shrink-0 transition-transform group-hover:scale-105">
+                    <img src="assets/ttbdo-full-logo.png" alt="UP Cebu TTBDO Logo"
+                        class="h-8 sm:h-9 lg:h-10 w-auto object-contain shrink-0" />
+                </div>
+
+                <div class="leading-tight shrink-0 whitespace-nowrap">
+                    <span
+                        class="block font-serif text-[12px] xs:text-[13px] sm:text-[15px] md:text-[16.5px] lg:text-[18px] xl:text-[19.5px] font-bold text-white leading-[1.15] tracking-tight group-hover:text-gold-base transition-colors">
+                        <span class="block">University of the</span>
+                        <span class="block">Philippines Cebu</span>
+                    </span>
+                </div>
+            </a>
+
+            <!-- Right-aligned Header Group: Desktop Navigation Sections + Search -->
+            <div class="hidden lg:flex items-center gap-3 xl:gap-5 2xl:gap-6 h-full ml-auto shrink-0">
+                <nav class="flex items-center gap-4 xl:gap-6 2xl:gap-7 h-full text-[13.5px] xl:text-[14.5px] font-semibold whitespace-nowrap" aria-label="Main navigation">
+                    <a class="nav-link active whitespace-nowrap shrink-0" href="#home">
+                        Home
+                    </a>
+                    <a class="nav-link whitespace-nowrap shrink-0" href="#news">
+                        News
+                    </a>
+
+                    <!-- Programs Dropdown Box -->
+                    <div class="relative group/dropdown h-full flex items-center">
+                        <a class="nav-link whitespace-nowrap shrink-0 flex items-center gap-1.5" href="#programs">
+                            <span>Programs</span>
+                            <svg class="w-3.5 h-3.5 text-white/75 group-hover/dropdown:text-gold-base transition-transform duration-200 group-hover/dropdown:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </a>
+                        <!-- Dropdown Box Panel (Centered under Programs) -->
+                        <div class="absolute top-full left-1/2 -translate-x-1/2 pt-2 opacity-0 invisible group-hover/dropdown:opacity-100 group-hover/dropdown:visible transition-all duration-200 pointer-events-none group-hover/dropdown:pointer-events-auto z-50">
+                            <div class="dropdown-panel-box bg-maroon-dark border border-gold-base/40 hover:border-gold-base/70 rounded-xl shadow-2xl p-2.5 w-[295px] max-w-[calc(100vw-2rem)] backdrop-blur-md transition-colors">
+                                <div class="px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-gold-base border-b border-white/10 mb-1 flex items-center justify-between">
+                                    <span>Programs &amp; Services</span>
+                                    <span class="text-[9px] text-cream-bg/60 font-normal">Containers</span>
+                                </div>
+                                <a href="#program-ip" class="dropdown-link-item flex items-center justify-between px-3 py-2 rounded-lg text-white group/item">
+                                    <div class="flex flex-col">
+                                        <span class="dropdown-item-title text-xs font-semibold text-white transition-colors">IP Rights Protection</span>
+                                        <span class="dropdown-item-desc text-[10px] text-cream-bg/70 transition-colors">Patents, Trademarks &amp; Copyrights</span>
+                                    </div>
+                                    <svg class="dropdown-item-arrow w-3.5 h-3.5 opacity-0 -translate-x-1 transition-all duration-200 text-gold-base shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                    </svg>
+                                </a>
+                                <a href="#program-incubation" class="dropdown-link-item flex items-center justify-between px-3 py-2 rounded-lg text-white group/item">
+                                    <div class="flex flex-col">
+                                        <span class="dropdown-item-title text-xs font-semibold text-white transition-colors">Business Incubation</span>
+                                        <span class="dropdown-item-desc text-[10px] text-cream-bg/70 transition-colors">Co-working &amp; Startup Mentorship</span>
+                                    </div>
+                                    <svg class="dropdown-item-arrow w-3.5 h-3.5 opacity-0 -translate-x-1 transition-all duration-200 text-gold-base shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                    </svg>
+                                </a>
+                                <a href="#program-simp" class="dropdown-link-item flex items-center justify-between px-3 py-2 rounded-lg text-white group/item">
+                                    <div class="flex flex-col">
+                                        <span class="dropdown-item-title text-xs font-semibold text-white transition-colors">Student Mentorship (SIMP)</span>
+                                        <span class="dropdown-item-desc text-[10px] text-cream-bg/70 transition-colors">Capstone &amp; Prototype Grants</span>
+                                    </div>
+                                    <svg class="dropdown-item-arrow w-3.5 h-3.5 opacity-0 -translate-x-1 transition-all duration-200 text-gold-base shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                    </svg>
+                                </a>
+                                <a href="#program-licensing" class="dropdown-link-item flex items-center justify-between px-3 py-2 rounded-lg text-white group/item">
+                                    <div class="flex flex-col">
+                                        <span class="dropdown-item-title text-xs font-semibold text-white transition-colors">Tech Licensing</span>
+                                        <span class="dropdown-item-desc text-[10px] text-cream-bg/70 transition-colors">Commercialization &amp; Royalties</span>
+                                    </div>
+                                    <svg class="dropdown-item-arrow w-3.5 h-3.5 opacity-0 -translate-x-1 transition-all duration-200 text-gold-base shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                    </svg>
+                                </a>
+                                <a href="#program-msme" class="dropdown-link-item flex items-center justify-between px-3 py-2 rounded-lg text-white group/item">
+                                    <div class="flex flex-col">
+                                        <span class="dropdown-item-title text-xs font-semibold text-white transition-colors">MSME Extension</span>
+                                        <span class="dropdown-item-desc text-[10px] text-cream-bg/70 transition-colors">Community Enterprise Assistance</span>
+                                    </div>
+                                    <svg class="dropdown-item-arrow w-3.5 h-3.5 opacity-0 -translate-x-1 transition-all duration-200 text-gold-base shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                    </svg>
+                                </a>
+                                <a href="#program-internship" class="dropdown-link-item flex items-center justify-between px-3 py-2 rounded-lg text-white group/item">
+                                    <div class="flex flex-col">
+                                        <span class="dropdown-item-title text-xs font-semibold text-white transition-colors">Internship &amp; Certification</span>
+                                        <span class="dropdown-item-desc text-[10px] text-cream-bg/70 transition-colors">Experiential Tech Transfer</span>
+                                    </div>
+                                    <svg class="dropdown-item-arrow w-3.5 h-3.5 opacity-0 -translate-x-1 transition-all duration-200 text-gold-base shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                    </svg>
+                                </a>
+                                <!-- Future Container Slot -->
+                                <div class="mt-1 pt-1.5 border-t border-white/10">
+                                    <a href="#program-custom" class="flex items-center gap-2 px-3 py-2 rounded-lg border border-dashed border-gold-base/50 bg-gold-base/10 text-gold-base hover:bg-gold-base/20 hover:border-gold-base hover:shadow-xs transition-all text-[11px] font-semibold group/slot">
+                                        <svg class="w-3.5 h-3.5 transition-transform group-hover/slot:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+                                        <span>+ New Program Container (Slot)</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a class="nav-link whitespace-nowrap shrink-0" href="#events">
+                        Events
+                    </a>
+
+                    <!-- About Us Dropdown Box -->
+                    <div class="relative group/dropdown h-full flex items-center">
+                        <a class="nav-link whitespace-nowrap shrink-0 flex items-center gap-1.5" href="#about">
+                            <span>About&nbsp;Us</span>
+                            <svg class="w-3.5 h-3.5 text-white/75 group-hover/dropdown:text-gold-base transition-transform duration-200 group-hover/dropdown:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </a>
+                        <!-- Dropdown Box Panel (Anchored to the right so it never overflows screen edge) -->
+                        <div class="absolute top-full right-0 pt-2 opacity-0 invisible group-hover/dropdown:opacity-100 group-hover/dropdown:visible transition-all duration-200 pointer-events-none group-hover/dropdown:pointer-events-auto z-50">
+                            <div class="dropdown-panel-box bg-maroon-dark border border-gold-base/40 hover:border-gold-base/70 rounded-xl shadow-2xl p-2.5 w-[295px] max-w-[calc(100vw-2rem)] backdrop-blur-md transition-colors">
+                                <div class="px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-gold-base border-b border-white/10 mb-1 flex items-center justify-between">
+                                    <span>About UP Cebu TTBDO</span>
+                                    <span class="text-[9px] text-cream-bg/60 font-normal">Containers</span>
+                                </div>
+                                <a href="#about-overview" class="dropdown-link-item flex items-center justify-between px-3 py-2 rounded-lg text-white group/item">
+                                    <div class="flex flex-col">
+                                        <span class="dropdown-item-title text-xs font-semibold text-white transition-colors">Overview &amp; Mandate</span>
+                                        <span class="dropdown-item-desc text-[10px] text-cream-bg/70 transition-colors">Institutional Role &amp; History</span>
+                                    </div>
+                                    <svg class="dropdown-item-arrow w-3.5 h-3.5 opacity-0 -translate-x-1 transition-all duration-200 text-gold-base shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                    </svg>
+                                </a>
+                                <a href="#about-vision" class="dropdown-link-item flex items-center justify-between px-3 py-2 rounded-lg text-white group/item">
+                                    <div class="flex flex-col">
+                                        <span class="dropdown-item-title text-xs font-semibold text-white transition-colors">Vision &amp; Mission</span>
+                                        <span class="dropdown-item-desc text-[10px] text-cream-bg/70 transition-colors">Core Purpose &amp; Aspirations</span>
+                                    </div>
+                                    <svg class="dropdown-item-arrow w-3.5 h-3.5 opacity-0 -translate-x-1 transition-all duration-200 text-gold-base shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                    </svg>
+                                </a>
+                                <a href="#about-pillars" class="dropdown-link-item flex items-center justify-between px-3 py-2 rounded-lg text-white group/item">
+                                    <div class="flex flex-col">
+                                        <span class="dropdown-item-title text-xs font-semibold text-white transition-colors">Four Strategic Pillars</span>
+                                        <span class="dropdown-item-desc text-[10px] text-cream-bg/70 transition-colors">Governance, Licensing &amp; Incubation</span>
+                                    </div>
+                                    <svg class="dropdown-item-arrow w-3.5 h-3.5 opacity-0 -translate-x-1 transition-all duration-200 text-gold-base shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                    </svg>
+                                </a>
+                                <a href="#about-impact" class="dropdown-link-item flex items-center justify-between px-3 py-2 rounded-lg text-white group/item">
+                                    <div class="flex flex-col">
+                                        <span class="dropdown-item-title text-xs font-semibold text-white transition-colors">Impact &amp; Statistics</span>
+                                        <span class="dropdown-item-desc text-[10px] text-cream-bg/70 transition-colors">Filings, Startups &amp; Metrics</span>
+                                    </div>
+                                    <svg class="dropdown-item-arrow w-3.5 h-3.5 opacity-0 -translate-x-1 transition-all duration-200 text-gold-base shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                    </svg>
+                                </a>
+                                <a href="#about-office" class="dropdown-link-item flex items-center justify-between px-3 py-2 rounded-lg text-white group/item">
+                                    <div class="flex flex-col">
+                                        <span class="dropdown-item-title text-xs font-semibold text-white transition-colors">Office &amp; Directory</span>
+                                        <span class="dropdown-item-desc text-[10px] text-cream-bg/70 transition-colors">168 Gorordo Ave, Cebu City</span>
+                                    </div>
+                                    <svg class="dropdown-item-arrow w-3.5 h-3.5 opacity-0 -translate-x-1 transition-all duration-200 text-gold-base shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                    </svg>
+                                </a>
+                                <!-- Future Container Slot -->
+                                <div class="mt-1 pt-1.5 border-t border-white/10">
+                                    <a href="#about-custom" class="flex items-center gap-2 px-3 py-2 rounded-lg border border-dashed border-gold-base/50 bg-gold-base/10 text-gold-base hover:bg-gold-base/20 hover:border-gold-base hover:shadow-xs transition-all text-[11px] font-semibold group/slot">
+                                        <svg class="w-3.5 h-3.5 transition-transform group-hover/slot:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+                                        <span>+ New About Container (Slot)</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a class="nav-link whitespace-nowrap shrink-0" href="#contact">
+                        Contact
+                    </a>
+                </nav>
+
+                <!-- Search Icon Button (Desktop) -->
+                <button
+                    id="search-toggle-btn"
+                    class="text-white/80 hover:text-gold-base transition-colors p-2 flex items-center justify-center rounded-full hover:bg-white/10 shrink-0 cursor-pointer"
+                    aria-label="Search website" type="button">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Search Icon Button -->
+            <button
+                id="mobile-search-toggle-btn"
+                class="lg:hidden text-white/80 hover:text-gold-base transition-colors p-2 flex items-center justify-center rounded-full hover:bg-white/10 shrink-0 ml-auto mr-1 cursor-pointer"
+                aria-label="Search website" type="button">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                </svg>
+            </button>
+
+            <!-- Mobile Hamburger Button (toggles dropdown) -->
+            <button id="menu-toggle"
+                class="lg:hidden text-white p-2 sm:p-2.5 rounded-md hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-gold-base flex items-center justify-center shrink-0 min-w-[40px] min-h-[40px]"
+                aria-label="Toggle navigation menu" aria-expanded="false" type="button">
+                <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+                <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Menu Dropdown -->
+        <nav id="mobile-menu"
+            class="hidden lg:hidden flex-col bg-maroon-dark border-t border-green-base/40 px-4 sm:px-6 py-4 space-y-1 shadow-2xl transition-all max-h-[calc(100vh-4.5rem)] overflow-y-auto"
+            aria-label="Mobile navigation">
+            <a class="mobile-nav-link active flex items-center justify-between py-2.5 px-3 rounded-md text-sm whitespace-nowrap"
+                href="#home">
+                <span>Home</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                </svg>
+            </a>
+            <a class="mobile-nav-link flex items-center justify-between py-2.5 px-3 rounded-md text-sm whitespace-nowrap" href="#news">
+                <span>News</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                </svg>
+            </a>
+
+            <!-- Mobile Programs Accordion Dropdown -->
+            <div class="flex flex-col">
+                <div class="flex items-center justify-between mobile-nav-link py-2.5 px-3 rounded-md text-sm whitespace-nowrap">
+                    <a href="#programs" class="flex-1">Programs</a>
+                    <button type="button" class="p-1 text-white/70 hover:text-gold-base focus:outline-none" aria-label="Toggle Programs sub-menu" onclick="document.getElementById('mobile-programs-sub').classList.toggle('hidden')">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/></svg>
+                    </button>
+                </div>
+                <div id="mobile-programs-sub" class="hidden pl-3 pr-1 py-1 space-y-1 border-l-2 border-gold-base/40 ml-3 my-1">
+                    <a href="#program-ip" class="flex items-center justify-between py-1.5 px-2.5 rounded-md text-xs text-cream-bg/85 hover:text-gold-base hover:bg-white/10 hover:translate-x-1 transition-all group/mobitem">
+                        <span>IP Rights Protection</span>
+                        <svg class="w-3 h-3 text-gold-base opacity-0 group-hover/mobitem:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>
+                    </a>
+                    <a href="#program-incubation" class="flex items-center justify-between py-1.5 px-2.5 rounded-md text-xs text-cream-bg/85 hover:text-gold-base hover:bg-white/10 hover:translate-x-1 transition-all group/mobitem">
+                        <span>Business Incubation</span>
+                        <svg class="w-3 h-3 text-gold-base opacity-0 group-hover/mobitem:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>
+                    </a>
+                    <a href="#program-simp" class="flex items-center justify-between py-1.5 px-2.5 rounded-md text-xs text-cream-bg/85 hover:text-gold-base hover:bg-white/10 hover:translate-x-1 transition-all group/mobitem">
+                        <span>Student Mentorship (SIMP)</span>
+                        <svg class="w-3 h-3 text-gold-base opacity-0 group-hover/mobitem:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>
+                    </a>
+                    <a href="#program-licensing" class="flex items-center justify-between py-1.5 px-2.5 rounded-md text-xs text-cream-bg/85 hover:text-gold-base hover:bg-white/10 hover:translate-x-1 transition-all group/mobitem">
+                        <span>Tech Licensing</span>
+                        <svg class="w-3 h-3 text-gold-base opacity-0 group-hover/mobitem:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>
+                    </a>
+                    <a href="#program-msme" class="flex items-center justify-between py-1.5 px-2.5 rounded-md text-xs text-cream-bg/85 hover:text-gold-base hover:bg-white/10 hover:translate-x-1 transition-all group/mobitem">
+                        <span>MSME Extension</span>
+                        <svg class="w-3 h-3 text-gold-base opacity-0 group-hover/mobitem:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>
+                    </a>
+                    <a href="#program-internship" class="flex items-center justify-between py-1.5 px-2.5 rounded-md text-xs text-cream-bg/85 hover:text-gold-base hover:bg-white/10 hover:translate-x-1 transition-all group/mobitem">
+                        <span>Internship &amp; Certification</span>
+                        <svg class="w-3 h-3 text-gold-base opacity-0 group-hover/mobitem:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>
+                    </a>
+                    <a href="#program-custom" class="flex items-center gap-2 py-1.5 px-2.5 rounded-md text-xs text-gold-base hover:bg-gold-base/20 border border-dashed border-gold-base/50 font-semibold transition-all">
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+                        <span>+ New Program Container</span>
+                    </a>
+                </div>
+            </div>
+
+            <a class="mobile-nav-link flex items-center justify-between py-2.5 px-3 rounded-md text-sm whitespace-nowrap"
+                href="#events">
+                <span>Events</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                </svg>
+            </a>
+
+            <!-- Mobile About Us Accordion Dropdown -->
+            <div class="flex flex-col">
+                <div class="flex items-center justify-between mobile-nav-link py-2.5 px-3 rounded-md text-sm whitespace-nowrap">
+                    <a href="#about" class="flex-1">About Us</a>
+                    <button type="button" class="p-1 text-white/70 hover:text-gold-base focus:outline-none" aria-label="Toggle About Us sub-menu" onclick="document.getElementById('mobile-about-sub').classList.toggle('hidden')">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/></svg>
+                    </button>
+                </div>
+                <div id="mobile-about-sub" class="hidden pl-3 pr-1 py-1 space-y-1 border-l-2 border-gold-base/40 ml-3 my-1">
+                    <a href="#about-overview" class="flex items-center justify-between py-1.5 px-2.5 rounded-md text-xs text-cream-bg/85 hover:text-gold-base hover:bg-white/10 hover:translate-x-1 transition-all group/mobitem">
+                        <span>Overview &amp; Mandate</span>
+                        <svg class="w-3 h-3 text-gold-base opacity-0 group-hover/mobitem:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>
+                    </a>
+                    <a href="#about-vision" class="flex items-center justify-between py-1.5 px-2.5 rounded-md text-xs text-cream-bg/85 hover:text-gold-base hover:bg-white/10 hover:translate-x-1 transition-all group/mobitem">
+                        <span>Vision &amp; Mission</span>
+                        <svg class="w-3 h-3 text-gold-base opacity-0 group-hover/mobitem:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>
+                    </a>
+                    <a href="#about-pillars" class="flex items-center justify-between py-1.5 px-2.5 rounded-md text-xs text-cream-bg/85 hover:text-gold-base hover:bg-white/10 hover:translate-x-1 transition-all group/mobitem">
+                        <span>Four Strategic Pillars</span>
+                        <svg class="w-3 h-3 text-gold-base opacity-0 group-hover/mobitem:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>
+                    </a>
+                    <a href="#about-impact" class="flex items-center justify-between py-1.5 px-2.5 rounded-md text-xs text-cream-bg/85 hover:text-gold-base hover:bg-white/10 hover:translate-x-1 transition-all group/mobitem">
+                        <span>Impact &amp; Statistics</span>
+                        <svg class="w-3 h-3 text-gold-base opacity-0 group-hover/mobitem:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>
+                    </a>
+                    <a href="#about-office" class="flex items-center justify-between py-1.5 px-2.5 rounded-md text-xs text-cream-bg/85 hover:text-gold-base hover:bg-white/10 hover:translate-x-1 transition-all group/mobitem">
+                        <span>Office &amp; Directory</span>
+                        <svg class="w-3 h-3 text-gold-base opacity-0 group-hover/mobitem:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>
+                    </a>
+                    <a href="#about-custom" class="flex items-center gap-2 py-1.5 px-2.5 rounded-md text-xs text-gold-base hover:bg-gold-base/20 border border-dashed border-gold-base/50 font-semibold transition-all">
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+                        <span>+ New About Container</span>
+                    </a>
+                </div>
+            </div>
+
+            <a class="mobile-nav-link flex items-center justify-between py-2.5 px-3 rounded-md text-sm whitespace-nowrap" href="#contact">
+                <span>Contact</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                </svg>
+            </a>
+        </nav>
+    </header>

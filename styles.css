@@ -40,7 +40,7 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 7rem;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 /* ============================================================
@@ -57,17 +57,17 @@ html {
   background: linear-gradient(90deg, #C99A24, #F4E7C0, #C99A24);
   background-size: 200% 100%;
   z-index: 9999;
-  transition: width 0.12s cubic-bezier(0.2, 0.8, 0.4, 1);
+  transition: width 0.25s cubic-bezier(0.2, 0.8, 0.4, 1);
   pointer-events: none;
   box-shadow: 0 1px 6px rgba(201, 154, 36, 0.5);
 }
 
-/* Smooth Scroll-Triggered Reveal Classes */
+/* Smooth Scroll-Triggered Reveal Classes (Gentle, Slower & Silky Smooth) */
 .reveal-on-scroll {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(32px);
+  transition: opacity 1.15s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1.15s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
@@ -79,9 +79,9 @@ html {
 /* Slide in from left/right variants */
 .reveal-slide-left {
   opacity: 0;
-  transform: translateX(-32px);
-  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateX(-36px);
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
@@ -92,9 +92,9 @@ html {
 
 .reveal-slide-right {
   opacity: 0;
-  transform: translateX(32px);
-  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateX(36px);
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
@@ -103,17 +103,20 @@ html {
   transform: translateX(0);
 }
 
-/* Stagger delays for grid items (smooth cascaded reveal) */
-.stagger-1 { transition-delay: 0.08s; }
-.stagger-2 { transition-delay: 0.16s; }
-.stagger-3 { transition-delay: 0.24s; }
-.stagger-4 { transition-delay: 0.32s; }
-.stagger-5 { transition-delay: 0.40s; }
-.stagger-6 { transition-delay: 0.48s; }
+/* Stagger delays for grid items (smooth, relaxed cascaded reveal) */
+.stagger-1 { transition-delay: 0.12s; }
+.stagger-2 { transition-delay: 0.22s; }
+.stagger-3 { transition-delay: 0.32s; }
+.stagger-4 { transition-delay: 0.42s; }
+.stagger-5 { transition-delay: 0.52s; }
+.stagger-6 { transition-delay: 0.62s; }
 
 /* Sticky Header Scroll Enhancement */
 header {
-  transition: box-shadow 0.3s ease, background-color 0.3s ease;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 50 !important;
+  transition: box-shadow 0.4s ease, background-color 0.4s ease;
 }
 
 header.is-scrolled {
@@ -139,7 +142,12 @@ header.is-scrolled {
   opacity: 0;
   visibility: hidden;
   transform: translateY(16px) scale(0.9);
-  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease, background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.25s ease,
+              color 0.25s ease,
+              box-shadow 0.25s ease;
   z-index: 90;
 }
 
@@ -183,7 +191,7 @@ body {
   background-color: var(--color-cream-bg);
   color: var(--color-ink-base);
   margin: 0;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 /* Custom brand insignia rings */
@@ -214,7 +222,7 @@ body {
   font-weight: 600;
   white-space: nowrap;
   flex-shrink: 0;
-  transition: color 0.2s ease;
+  transition: color 0.25s ease;
 }
 
 .nav-link:hover {
@@ -244,7 +252,7 @@ body {
   border-left: 3px solid transparent;
   font-weight: 500;
   white-space: nowrap;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
 }
 
 .mobile-nav-link:hover {
@@ -261,7 +269,7 @@ body {
 
 .mobile-nav-link svg {
   color: rgba(255, 255, 255, 0.5);
-  transition: color 0.2s ease;
+  transition: color 0.25s ease;
 }
 
 .mobile-nav-link:hover svg,
@@ -269,15 +277,68 @@ body {
   color: #C99A24;
 }
 
+/* ============================================================
+   DROPDOWN BOX & ITEM HOVER ENHANCEMENTS
+============================================================ */
+
+/* Maintain parent nav-link gold hover state while hovering inside its dropdown box */
+.group\/dropdown:hover > .nav-link {
+  color: #C99A24 !important;
+}
+
+.group\/dropdown:hover > .nav-link svg {
+  color: #C99A24 !important;
+}
+
+/* Dropdown Menu Panel Box Entrance & Hover */
+.dropdown-panel-box {
+  transform: translateY(6px);
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.group\/dropdown:hover .dropdown-panel-box {
+  transform: translateY(0);
+}
+
+.dropdown-link-item {
+  position: relative;
+  border-left: 2.5px solid transparent;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dropdown-link-item:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+  border-left-color: #C99A24;
+  padding-left: 0.85rem !important;
+  transform: translateX(3px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-link-item:hover .dropdown-item-title {
+  color: #C99A24;
+}
+
+.dropdown-link-item:hover .dropdown-item-desc {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.dropdown-link-item:hover .dropdown-item-arrow {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
+  color: #C99A24;
+}
+
 /* =========================================================
-   ANIMATED SEARCH MODAL STYLES
+   ANIMATED SEARCH MODAL STYLES (Smooth & Gentle Transitions)
 ========================================================= */
 #search-modal {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-              visibility 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 #search-modal.is-open {
@@ -287,23 +348,28 @@ body {
 }
 
 #search-modal .search-dialog-card {
-  transform: translateY(-20px) scale(0.96);
-  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.28s ease;
+  opacity: 0;
+  transform: translateY(-26px) scale(0.95);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.5s ease;
+  will-change: transform, opacity;
 }
 
 #search-modal.is-open .search-dialog-card {
+  opacity: 1;
   transform: translateY(0) scale(1);
 }
 
 .search-result-item {
-  transition: background-color 0.15s ease, transform 0.15s ease, border-color 0.15s ease;
+  transition: background-color 0.22s ease, transform 0.22s ease, border-color 0.22s ease;
 }
 
 .search-result-item:hover,
 .search-result-item.is-selected {
   background-color: #F8F3EA;
   border-color: #C99A24;
+  transform: translateX(4px);
 }
 
 mark.search-highlight {

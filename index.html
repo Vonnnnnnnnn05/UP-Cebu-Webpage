@@ -57,12 +57,14 @@
         html {
             scroll-behavior: smooth;
             scroll-padding-top: 5rem;
+            overflow-x: clip;
         }
 
         body {
             font-family: var(--font-sans);
             background-color: var(--color-cream-bg);
             color: var(--color-ink-base);
+            overflow-x: clip;
         }
 
         .brand-mark-ring::after {
@@ -85,7 +87,7 @@
             font-weight: 600;
             white-space: nowrap;
             flex-shrink: 0;
-            transition: color 0.2s ease;
+            transition: color 0.25s ease;
         }
 
         .nav-link:hover {
@@ -115,7 +117,7 @@
             border-left: 3px solid transparent;
             font-weight: 500;
             white-space: nowrap;
-            transition: all 0.2s ease;
+            transition: all 0.25s ease;
         }
 
         .mobile-nav-link:hover {
@@ -132,11 +134,59 @@
 
         .mobile-nav-link svg {
             color: rgba(255, 255, 255, 0.5);
-            transition: color 0.2s ease;
+            transition: color 0.25s ease;
         }
 
         .mobile-nav-link:hover svg,
         .mobile-nav-link.active svg {
+            color: #C99A24;
+        }
+
+        /* Dropdown Box & Item Hover Enhancements */
+        .group\/dropdown:hover > .nav-link {
+            color: #C99A24 !important;
+        }
+
+        .group\/dropdown:hover > .nav-link svg {
+            color: #C99A24 !important;
+        }
+
+        .dropdown-panel-box {
+            transform: translateY(6px);
+            transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+                        opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+                        visibility 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .group\/dropdown:hover .dropdown-panel-box {
+            transform: translateY(0);
+        }
+
+        .dropdown-link-item {
+            position: relative;
+            border-left: 2.5px solid transparent;
+            transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .dropdown-link-item:hover {
+            background-color: rgba(255, 255, 255, 0.12);
+            border-left-color: #C99A24;
+            padding-left: 0.85rem !important;
+            transform: translateX(3px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .dropdown-link-item:hover .dropdown-item-title {
+            color: #C99A24;
+        }
+
+        .dropdown-link-item:hover .dropdown-item-desc {
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        .dropdown-link-item:hover .dropdown-item-arrow {
+            opacity: 1 !important;
+            transform: translateX(0) !important;
             color: #C99A24;
         }
 
@@ -150,17 +200,17 @@
             background: linear-gradient(90deg, #C99A24, #F4E7C0, #C99A24);
             background-size: 200% 100%;
             z-index: 9999;
-            transition: width 0.12s cubic-bezier(0.2, 0.8, 0.4, 1);
+            transition: width 0.25s cubic-bezier(0.2, 0.8, 0.4, 1);
             pointer-events: none;
             box-shadow: 0 1px 6px rgba(201, 154, 36, 0.5);
         }
 
-        /* Smooth Scroll-Triggered Reveal Classes */
+        /* Smooth Scroll-Triggered Reveal Classes (Gentle, Slower & Silky Smooth) */
         .reveal-on-scroll {
             opacity: 0;
-            transform: translateY(28px);
-            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-                        transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(32px);
+            transition: opacity 1.15s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 1.15s cubic-bezier(0.16, 1, 0.3, 1);
             will-change: opacity, transform;
         }
 
@@ -172,9 +222,9 @@
         /* Slide variations */
         .reveal-slide-left {
             opacity: 0;
-            transform: translateX(-32px);
-            transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
-                        transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateX(-36px);
+            transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
             will-change: opacity, transform;
         }
 
@@ -185,9 +235,9 @@
 
         .reveal-slide-right {
             opacity: 0;
-            transform: translateX(32px);
-            transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
-                        transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateX(36px);
+            transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
             will-change: opacity, transform;
         }
 
@@ -197,16 +247,19 @@
         }
 
         /* Stagger delays for items */
-        .stagger-1 { transition-delay: 0.08s; }
-        .stagger-2 { transition-delay: 0.16s; }
-        .stagger-3 { transition-delay: 0.24s; }
-        .stagger-4 { transition-delay: 0.32s; }
-        .stagger-5 { transition-delay: 0.40s; }
-        .stagger-6 { transition-delay: 0.48s; }
+        .stagger-1 { transition-delay: 0.12s; }
+        .stagger-2 { transition-delay: 0.22s; }
+        .stagger-3 { transition-delay: 0.32s; }
+        .stagger-4 { transition-delay: 0.42s; }
+        .stagger-5 { transition-delay: 0.52s; }
+        .stagger-6 { transition-delay: 0.62s; }
 
         /* Sticky Header Elevation on Scroll */
         header {
-            transition: box-shadow 0.3s ease, background-color 0.3s ease;
+            position: sticky !important;
+            top: 0 !important;
+            z-index: 50 !important;
+            transition: box-shadow 0.4s ease, background-color 0.4s ease;
         }
 
         header.is-scrolled {
@@ -232,7 +285,12 @@
             opacity: 0;
             visibility: hidden;
             transform: translateY(16px) scale(0.9);
-            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease, background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+            transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                        visibility 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                        background-color 0.25s ease,
+                        color 0.25s ease,
+                        box-shadow 0.25s ease;
             z-index: 90;
         }
 
@@ -254,6 +312,54 @@
             transform: translateY(0) scale(0.95);
         }
 
+        /* Animated Search Modal Styles */
+        #search-modal {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                        visibility 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        #search-modal.is-open {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        #search-modal .search-dialog-card {
+            opacity: 0;
+            transform: translateY(-26px) scale(0.95);
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                        opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                        box-shadow 0.5s ease;
+            will-change: transform, opacity;
+        }
+
+        #search-modal.is-open .search-dialog-card {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .search-result-item {
+            transition: background-color 0.22s ease, transform 0.22s ease, border-color 0.22s ease;
+        }
+
+        .search-result-item:hover,
+        .search-result-item.is-selected {
+            background-color: #F8F3EA;
+            border-color: #C99A24;
+            transform: translateX(4px);
+        }
+
+        mark.search-highlight {
+            background-color: rgba(212, 160, 23, 0.25);
+            color: #7B1113;
+            font-weight: 700;
+            border-radius: 2px;
+            padding: 0 2px;
+        }
+
         @media (prefers-reduced-motion: reduce) {
             html {
                 scroll-behavior: auto !important;
@@ -273,7 +379,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="bg-cream-bg text-ink-base antialiased selection:bg-maroon-base selection:text-white overflow-x-hidden">
+<body class="bg-cream-bg text-ink-base antialiased selection:bg-maroon-base selection:text-white overflow-x-clip">
 
     <!-- Reading Scroll Progress Bar -->
     <div id="scroll-progress-bar" aria-hidden="true"></div>
@@ -322,39 +428,69 @@
                         </a>
                         <!-- Dropdown Box Panel (Centered under Programs) -->
                         <div class="absolute top-full left-1/2 -translate-x-1/2 pt-2 opacity-0 invisible group-hover/dropdown:opacity-100 group-hover/dropdown:visible transition-all duration-200 pointer-events-none group-hover/dropdown:pointer-events-auto z-50">
-                            <div class="bg-maroon-dark border border-gold-base/35 rounded-xl shadow-2xl p-2.5 w-[290px] max-w-[calc(100vw-2rem)] backdrop-blur-md">
+                            <div class="dropdown-panel-box bg-maroon-dark border border-gold-base/40 hover:border-gold-base/70 rounded-xl shadow-2xl p-2.5 w-[295px] max-w-[calc(100vw-2rem)] backdrop-blur-md transition-colors">
                                 <div class="px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-gold-base border-b border-white/10 mb-1 flex items-center justify-between">
                                     <span>Programs &amp; Services</span>
                                     <span class="text-[9px] text-cream-bg/60 font-normal">Containers</span>
                                 </div>
-                                <a href="#program-ip" class="flex flex-col px-3 py-2 rounded-lg hover:bg-white/10 transition-colors text-white group/item">
-                                    <span class="text-xs font-semibold group-hover/item:text-gold-base transition-colors">IP Rights Protection</span>
-                                    <span class="text-[10px] text-cream-bg/70">Patents, Trademarks &amp; Copyrights</span>
+                                <a href="#program-ip" class="dropdown-link-item flex items-center justify-between px-3 py-2 rounded-lg text-white group/item">
+                                    <div class="flex flex-col">
+                                        <span class="dropdown-item-title text-xs font-semibold text-white transition-colors">IP Rights Protection</span>
+                                        <span class="dropdown-item-desc text-[10px] text-cream-bg/70 transition-colors">Patents, Trademarks &amp; Copyrights</span>
+                                    </div>
+                                    <svg class="dropdown-item-arrow w-3.5 h-3.5 opacity-0 -translate-x-1 transition-all duration-200 text-gold-base shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                    </svg>
                                 </a>
-                                <a href="#program-incubation" class="flex flex-col px-3 py-2 rounded-lg hover:bg-white/10 transition-colors text-white group/item">
-                                    <span class="text-xs font-semibold group-hover/item:text-gold-base transition-colors">Business Incubation</span>
-                                    <span class="text-[10px] text-cream-bg/70">Co-working &amp; Startup Mentorship</span>
+                                <a href="#program-incubation" class="dropdown-link-item flex items-center justify-between px-3 py-2 rounded-lg text-white group/item">
+                                    <div class="flex flex-col">
+                                        <span class="dropdown-item-title text-xs font-semibold text-white transition-colors">Business Incubation</span>
+                                        <span class="dropdown-item-desc text-[10px] text-cream-bg/70 transition-colors">Co-working &amp; Startup Mentorship</span>
+                                    </div>
+                                    <svg class="dropdown-item-arrow w-3.5 h-3.5 opacity-0 -translate-x-1 transition-all duration-200 text-gold-base shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                    </svg>
                                 </a>
-                                <a href="#program-simp" class="flex flex-col px-3 py-2 rounded-lg hover:bg-white/10 transition-colors text-white group/item">
-                                    <span class="text-xs font-semibold group-hover/item:text-gold-base transition-colors">Student Mentorship (SIMP)</span>
-                                    <span class="text-[10px] text-cream-bg/70">Capstone &amp; Prototype Grants</span>
+                                <a href="#program-simp" class="dropdown-link-item flex items-center justify-between px-3 py-2 rounded-lg text-white group/item">
+                                    <div class="flex flex-col">
+                                        <span class="dropdown-item-title text-xs font-semibold text-white transition-colors">Student Mentorship (SIMP)</span>
+                                        <span class="dropdown-item-desc text-[10px] text-cream-bg/70 transition-colors">Capstone &amp; Prototype Grants</span>
+                                    </div>
+                                    <svg class="dropdown-item-arrow w-3.5 h-3.5 opacity-0 -translate-x-1 transition-all duration-200 text-gold-base shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                    </svg>
                                 </a>
-                                <a href="#program-licensing" class="flex flex-col px-3 py-2 rounded-lg hover:bg-white/10 transition-colors text-white group/item">
-                                    <span class="text-xs font-semibold group-hover/item:text-gold-base transition-colors">Tech Licensing</span>
-                                    <span class="text-[10px] text-cream-bg/70">Commercialization &amp; Royalties</span>
+                                <a href="#program-licensing" class="dropdown-link-item flex items-center justify-between px-3 py-2 rounded-lg text-white group/item">
+                                    <div class="flex flex-col">
+                                        <span class="dropdown-item-title text-xs font-semibold text-white transition-colors">Tech Licensing</span>
+                                        <span class="dropdown-item-desc text-[10px] text-cream-bg/70 transition-colors">Commercialization &amp; Royalties</span>
+                                    </div>
+                                    <svg class="dropdown-item-arrow w-3.5 h-3.5 opacity-0 -translate-x-1 transition-all duration-200 text-gold-base shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                    </svg>
                                 </a>
-                                <a href="#program-msme" class="flex flex-col px-3 py-2 rounded-lg hover:bg-white/10 transition-colors text-white group/item">
-                                    <span class="text-xs font-semibold group-hover/item:text-gold-base transition-colors">MSME Extension</span>
-                                    <span class="text-[10px] text-cream-bg/70">Community Enterprise Assistance</span>
+                                <a href="#program-msme" class="dropdown-link-item flex items-center justify-between px-3 py-2 rounded-lg text-white group/item">
+                                    <div class="flex flex-col">
+                                        <span class="dropdown-item-title text-xs font-semibold text-white transition-colors">MSME Extension</span>
+                                        <span class="dropdown-item-desc text-[10px] text-cream-bg/70 transition-colors">Community Enterprise Assistance</span>
+                                    </div>
+                                    <svg class="dropdown-item-arrow w-3.5 h-3.5 opacity-0 -translate-x-1 transition-all duration-200 text-gold-base shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                    </svg>
                                 </a>
-                                <a href="#program-internship" class="flex flex-col px-3 py-2 rounded-lg hover:bg-white/10 transition-colors text-white group/item">
-                                    <span class="text-xs font-semibold group-hover/item:text-gold-base transition-colors">Internship &amp; Certification</span>
-                                    <span class="text-[10px] text-cream-bg/70">Experiential Tech Transfer</span>
+                                <a href="#program-internship" class="dropdown-link-item flex items-center justify-between px-3 py-2 rounded-lg text-white group/item">
+                                    <div class="flex flex-col">
+                                        <span class="dropdown-item-title text-xs font-semibold text-white transition-colors">Internship &amp; Certification</span>
+                                        <span class="dropdown-item-desc text-[10px] text-cream-bg/70 transition-colors">Experiential Tech Transfer</span>
+                                    </div>
+                                    <svg class="dropdown-item-arrow w-3.5 h-3.5 opacity-0 -translate-x-1 transition-all duration-200 text-gold-base shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                    </svg>
                                 </a>
                                 <!-- Future Container Slot -->
                                 <div class="mt-1 pt-1.5 border-t border-white/10">
-                                    <a href="#program-custom" class="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-dashed border-gold-base/50 bg-gold-base/10 text-gold-base hover:bg-gold-base/20 transition-colors text-[11px] font-semibold">
-                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+                                    <a href="#program-custom" class="flex items-center gap-2 px-3 py-2 rounded-lg border border-dashed border-gold-base/50 bg-gold-base/10 text-gold-base hover:bg-gold-base/20 hover:border-gold-base hover:shadow-xs transition-all text-[11px] font-semibold group/slot">
+                                        <svg class="w-3.5 h-3.5 transition-transform group-hover/slot:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
                                         <span>+ New Program Container (Slot)</span>
                                     </a>
                                 </div>
@@ -376,35 +512,60 @@
                         </a>
                         <!-- Dropdown Box Panel (Anchored to the right so it never overflows screen edge) -->
                         <div class="absolute top-full right-0 pt-2 opacity-0 invisible group-hover/dropdown:opacity-100 group-hover/dropdown:visible transition-all duration-200 pointer-events-none group-hover/dropdown:pointer-events-auto z-50">
-                            <div class="bg-maroon-dark border border-gold-base/35 rounded-xl shadow-2xl p-2.5 w-[290px] max-w-[calc(100vw-2rem)] backdrop-blur-md">
+                            <div class="dropdown-panel-box bg-maroon-dark border border-gold-base/40 hover:border-gold-base/70 rounded-xl shadow-2xl p-2.5 w-[295px] max-w-[calc(100vw-2rem)] backdrop-blur-md transition-colors">
                                 <div class="px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-gold-base border-b border-white/10 mb-1 flex items-center justify-between">
                                     <span>About UP Cebu TTBDO</span>
                                     <span class="text-[9px] text-cream-bg/60 font-normal">Containers</span>
                                 </div>
-                                <a href="#about-overview" class="flex flex-col px-3 py-2 rounded-lg hover:bg-white/10 transition-colors text-white group/item">
-                                    <span class="text-xs font-semibold group-hover/item:text-gold-base transition-colors">Overview &amp; Mandate</span>
-                                    <span class="text-[10px] text-cream-bg/70">Institutional Role &amp; History</span>
+                                <a href="#about-overview" class="dropdown-link-item flex items-center justify-between px-3 py-2 rounded-lg text-white group/item">
+                                    <div class="flex flex-col">
+                                        <span class="dropdown-item-title text-xs font-semibold text-white transition-colors">Overview &amp; Mandate</span>
+                                        <span class="dropdown-item-desc text-[10px] text-cream-bg/70 transition-colors">Institutional Role &amp; History</span>
+                                    </div>
+                                    <svg class="dropdown-item-arrow w-3.5 h-3.5 opacity-0 -translate-x-1 transition-all duration-200 text-gold-base shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                    </svg>
                                 </a>
-                                <a href="#about-vision" class="flex flex-col px-3 py-2 rounded-lg hover:bg-white/10 transition-colors text-white group/item">
-                                    <span class="text-xs font-semibold group-hover/item:text-gold-base transition-colors">Vision &amp; Mission</span>
-                                    <span class="text-[10px] text-cream-bg/70">Core Purpose &amp; Aspirations</span>
+                                <a href="#about-vision" class="dropdown-link-item flex items-center justify-between px-3 py-2 rounded-lg text-white group/item">
+                                    <div class="flex flex-col">
+                                        <span class="dropdown-item-title text-xs font-semibold text-white transition-colors">Vision &amp; Mission</span>
+                                        <span class="dropdown-item-desc text-[10px] text-cream-bg/70 transition-colors">Core Purpose &amp; Aspirations</span>
+                                    </div>
+                                    <svg class="dropdown-item-arrow w-3.5 h-3.5 opacity-0 -translate-x-1 transition-all duration-200 text-gold-base shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                    </svg>
                                 </a>
-                                <a href="#about-pillars" class="flex flex-col px-3 py-2 rounded-lg hover:bg-white/10 transition-colors text-white group/item">
-                                    <span class="text-xs font-semibold group-hover/item:text-gold-base transition-colors">Four Strategic Pillars</span>
-                                    <span class="text-[10px] text-cream-bg/70">Governance, Licensing &amp; Incubation</span>
+                                <a href="#about-pillars" class="dropdown-link-item flex items-center justify-between px-3 py-2 rounded-lg text-white group/item">
+                                    <div class="flex flex-col">
+                                        <span class="dropdown-item-title text-xs font-semibold text-white transition-colors">Four Strategic Pillars</span>
+                                        <span class="dropdown-item-desc text-[10px] text-cream-bg/70 transition-colors">Governance, Licensing &amp; Incubation</span>
+                                    </div>
+                                    <svg class="dropdown-item-arrow w-3.5 h-3.5 opacity-0 -translate-x-1 transition-all duration-200 text-gold-base shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                    </svg>
                                 </a>
-                                <a href="#about-impact" class="flex flex-col px-3 py-2 rounded-lg hover:bg-white/10 transition-colors text-white group/item">
-                                    <span class="text-xs font-semibold group-hover/item:text-gold-base transition-colors">Impact &amp; Statistics</span>
-                                    <span class="text-[10px] text-cream-bg/70">Filings, Startups &amp; Metrics</span>
+                                <a href="#about-impact" class="dropdown-link-item flex items-center justify-between px-3 py-2 rounded-lg text-white group/item">
+                                    <div class="flex flex-col">
+                                        <span class="dropdown-item-title text-xs font-semibold text-white transition-colors">Impact &amp; Statistics</span>
+                                        <span class="dropdown-item-desc text-[10px] text-cream-bg/70 transition-colors">Filings, Startups &amp; Metrics</span>
+                                    </div>
+                                    <svg class="dropdown-item-arrow w-3.5 h-3.5 opacity-0 -translate-x-1 transition-all duration-200 text-gold-base shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                    </svg>
                                 </a>
-                                <a href="#about-office" class="flex flex-col px-3 py-2 rounded-lg hover:bg-white/10 transition-colors text-white group/item">
-                                    <span class="text-xs font-semibold group-hover/item:text-gold-base transition-colors">Office &amp; Directory</span>
-                                    <span class="text-[10px] text-cream-bg/70">168 Gorordo Ave, Cebu City</span>
+                                <a href="#about-office" class="dropdown-link-item flex items-center justify-between px-3 py-2 rounded-lg text-white group/item">
+                                    <div class="flex flex-col">
+                                        <span class="dropdown-item-title text-xs font-semibold text-white transition-colors">Office &amp; Directory</span>
+                                        <span class="dropdown-item-desc text-[10px] text-cream-bg/70 transition-colors">168 Gorordo Ave, Cebu City</span>
+                                    </div>
+                                    <svg class="dropdown-item-arrow w-3.5 h-3.5 opacity-0 -translate-x-1 transition-all duration-200 text-gold-base shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                    </svg>
                                 </a>
                                 <!-- Future Container Slot -->
                                 <div class="mt-1 pt-1.5 border-t border-white/10">
-                                    <a href="#about-custom" class="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-dashed border-gold-base/50 bg-gold-base/10 text-gold-base hover:bg-gold-base/20 transition-colors text-[11px] font-semibold">
-                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+                                    <a href="#about-custom" class="flex items-center gap-2 px-3 py-2 rounded-lg border border-dashed border-gold-base/50 bg-gold-base/10 text-gold-base hover:bg-gold-base/20 hover:border-gold-base hover:shadow-xs transition-all text-[11px] font-semibold group/slot">
+                                        <svg class="w-3.5 h-3.5 transition-transform group-hover/slot:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
                                         <span>+ New About Container (Slot)</span>
                                     </a>
                                 </div>
@@ -482,14 +643,35 @@
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/></svg>
                     </button>
                 </div>
-                <div id="mobile-programs-sub" class="hidden pl-4 pr-1 py-1 space-y-1 border-l-2 border-gold-base/30 ml-3 my-1">
-                    <a href="#program-ip" class="block py-1.5 px-2 text-xs text-cream-bg/85 hover:text-gold-base">IP Rights Protection</a>
-                    <a href="#program-incubation" class="block py-1.5 px-2 text-xs text-cream-bg/85 hover:text-gold-base">Business Incubation</a>
-                    <a href="#program-simp" class="block py-1.5 px-2 text-xs text-cream-bg/85 hover:text-gold-base">Student Mentorship (SIMP)</a>
-                    <a href="#program-licensing" class="block py-1.5 px-2 text-xs text-cream-bg/85 hover:text-gold-base">Tech Licensing</a>
-                    <a href="#program-msme" class="block py-1.5 px-2 text-xs text-cream-bg/85 hover:text-gold-base">MSME Extension</a>
-                    <a href="#program-internship" class="block py-1.5 px-2 text-xs text-cream-bg/85 hover:text-gold-base">Internship &amp; Certification</a>
-                    <a href="#program-custom" class="block py-1.5 px-2 text-xs text-gold-base font-semibold">+ New Program Container</a>
+                <div id="mobile-programs-sub" class="hidden pl-3 pr-1 py-1 space-y-1 border-l-2 border-gold-base/40 ml-3 my-1">
+                    <a href="#program-ip" class="flex items-center justify-between py-1.5 px-2.5 rounded-md text-xs text-cream-bg/85 hover:text-gold-base hover:bg-white/10 hover:translate-x-1 transition-all group/mobitem">
+                        <span>IP Rights Protection</span>
+                        <svg class="w-3 h-3 text-gold-base opacity-0 group-hover/mobitem:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>
+                    </a>
+                    <a href="#program-incubation" class="flex items-center justify-between py-1.5 px-2.5 rounded-md text-xs text-cream-bg/85 hover:text-gold-base hover:bg-white/10 hover:translate-x-1 transition-all group/mobitem">
+                        <span>Business Incubation</span>
+                        <svg class="w-3 h-3 text-gold-base opacity-0 group-hover/mobitem:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>
+                    </a>
+                    <a href="#program-simp" class="flex items-center justify-between py-1.5 px-2.5 rounded-md text-xs text-cream-bg/85 hover:text-gold-base hover:bg-white/10 hover:translate-x-1 transition-all group/mobitem">
+                        <span>Student Mentorship (SIMP)</span>
+                        <svg class="w-3 h-3 text-gold-base opacity-0 group-hover/mobitem:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>
+                    </a>
+                    <a href="#program-licensing" class="flex items-center justify-between py-1.5 px-2.5 rounded-md text-xs text-cream-bg/85 hover:text-gold-base hover:bg-white/10 hover:translate-x-1 transition-all group/mobitem">
+                        <span>Tech Licensing</span>
+                        <svg class="w-3 h-3 text-gold-base opacity-0 group-hover/mobitem:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>
+                    </a>
+                    <a href="#program-msme" class="flex items-center justify-between py-1.5 px-2.5 rounded-md text-xs text-cream-bg/85 hover:text-gold-base hover:bg-white/10 hover:translate-x-1 transition-all group/mobitem">
+                        <span>MSME Extension</span>
+                        <svg class="w-3 h-3 text-gold-base opacity-0 group-hover/mobitem:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>
+                    </a>
+                    <a href="#program-internship" class="flex items-center justify-between py-1.5 px-2.5 rounded-md text-xs text-cream-bg/85 hover:text-gold-base hover:bg-white/10 hover:translate-x-1 transition-all group/mobitem">
+                        <span>Internship &amp; Certification</span>
+                        <svg class="w-3 h-3 text-gold-base opacity-0 group-hover/mobitem:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>
+                    </a>
+                    <a href="#program-custom" class="flex items-center gap-2 py-1.5 px-2.5 rounded-md text-xs text-gold-base hover:bg-gold-base/20 border border-dashed border-gold-base/50 font-semibold transition-all">
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+                        <span>+ New Program Container</span>
+                    </a>
                 </div>
             </div>
 
@@ -509,13 +691,31 @@
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/></svg>
                     </button>
                 </div>
-                <div id="mobile-about-sub" class="hidden pl-4 pr-1 py-1 space-y-1 border-l-2 border-gold-base/30 ml-3 my-1">
-                    <a href="#about-overview" class="block py-1.5 px-2 text-xs text-cream-bg/85 hover:text-gold-base">Overview &amp; Mandate</a>
-                    <a href="#about-vision" class="block py-1.5 px-2 text-xs text-cream-bg/85 hover:text-gold-base">Vision &amp; Mission</a>
-                    <a href="#about-pillars" class="block py-1.5 px-2 text-xs text-cream-bg/85 hover:text-gold-base">Four Strategic Pillars</a>
-                    <a href="#about-impact" class="block py-1.5 px-2 text-xs text-cream-bg/85 hover:text-gold-base">Impact &amp; Statistics</a>
-                    <a href="#about-office" class="block py-1.5 px-2 text-xs text-cream-bg/85 hover:text-gold-base">Office &amp; Directory</a>
-                    <a href="#about-custom" class="block py-1.5 px-2 text-xs text-gold-base font-semibold">+ New About Container</a>
+                <div id="mobile-about-sub" class="hidden pl-3 pr-1 py-1 space-y-1 border-l-2 border-gold-base/40 ml-3 my-1">
+                    <a href="#about-overview" class="flex items-center justify-between py-1.5 px-2.5 rounded-md text-xs text-cream-bg/85 hover:text-gold-base hover:bg-white/10 hover:translate-x-1 transition-all group/mobitem">
+                        <span>Overview &amp; Mandate</span>
+                        <svg class="w-3 h-3 text-gold-base opacity-0 group-hover/mobitem:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>
+                    </a>
+                    <a href="#about-vision" class="flex items-center justify-between py-1.5 px-2.5 rounded-md text-xs text-cream-bg/85 hover:text-gold-base hover:bg-white/10 hover:translate-x-1 transition-all group/mobitem">
+                        <span>Vision &amp; Mission</span>
+                        <svg class="w-3 h-3 text-gold-base opacity-0 group-hover/mobitem:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>
+                    </a>
+                    <a href="#about-pillars" class="flex items-center justify-between py-1.5 px-2.5 rounded-md text-xs text-cream-bg/85 hover:text-gold-base hover:bg-white/10 hover:translate-x-1 transition-all group/mobitem">
+                        <span>Four Strategic Pillars</span>
+                        <svg class="w-3 h-3 text-gold-base opacity-0 group-hover/mobitem:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>
+                    </a>
+                    <a href="#about-impact" class="flex items-center justify-between py-1.5 px-2.5 rounded-md text-xs text-cream-bg/85 hover:text-gold-base hover:bg-white/10 hover:translate-x-1 transition-all group/mobitem">
+                        <span>Impact &amp; Statistics</span>
+                        <svg class="w-3 h-3 text-gold-base opacity-0 group-hover/mobitem:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>
+                    </a>
+                    <a href="#about-office" class="flex items-center justify-between py-1.5 px-2.5 rounded-md text-xs text-cream-bg/85 hover:text-gold-base hover:bg-white/10 hover:translate-x-1 transition-all group/mobitem">
+                        <span>Office &amp; Directory</span>
+                        <svg class="w-3 h-3 text-gold-base opacity-0 group-hover/mobitem:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>
+                    </a>
+                    <a href="#about-custom" class="flex items-center gap-2 py-1.5 px-2.5 rounded-md text-xs text-gold-base hover:bg-gold-base/20 border border-dashed border-gold-base/50 font-semibold transition-all">
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+                        <span>+ New About Container</span>
+                    </a>
                 </div>
             </div>
 
