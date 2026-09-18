@@ -3,7 +3,10 @@
     <!-- =========================================================
          HEADER (Dark Maroon Primary #7B1113 with subtle Green border)
     ========================================================== -->
-    <header class="bg-maroon-base text-white border-b-2 border-green-base sticky top-0 z-50 shadow-md">
+    <?php
+$is_admin_active = function_exists('is_admin_logged_in') ? is_admin_logged_in() : false;
+?>
+<header class="bg-maroon-dark text-white border-b-2 border-gold-base sticky top-0 z-50 transition-all duration-300">
         <div
             class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 sm:h-20 lg:h-[100px] flex items-center gap-3 sm:gap-4 lg:gap-6">
 
@@ -192,6 +195,19 @@
                     <a class="nav-link whitespace-nowrap shrink-0" href="#contact">
                         Contact
                     </a>
+
+                    <?php if ($is_admin_active): ?>
+                    <a class="nav-link whitespace-nowrap shrink-0" href="ADMIN/index.php">
+                        Dashboard
+                    </a>
+                    <a class="nav-link whitespace-nowrap shrink-0" href="#" onclick="confirmAdminLogout(event)">
+                        Logout
+                    </a>
+                    <?php else: ?>
+                    <a class="nav-link whitespace-nowrap shrink-0" href="ADMIN/login.php">
+                        Login
+                    </a>
+                    <?php endif; ?>
                 </nav>
 
                 <!-- Search Icon Button (Desktop) -->
@@ -341,5 +357,27 @@
                     <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
                 </svg>
             </a>
+
+            <?php if ($is_admin_active): ?>
+            <a class="mobile-nav-link flex items-center justify-between py-2.5 px-3 rounded-md text-sm whitespace-nowrap" href="ADMIN/index.php">
+                <span>Dashboard</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                </svg>
+            </a>
+            <a class="mobile-nav-link flex items-center justify-between py-2.5 px-3 rounded-md text-sm whitespace-nowrap" href="#" onclick="confirmAdminLogout(event)">
+                <span>Logout</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
+                </svg>
+            </a>
+            <?php else: ?>
+            <a class="mobile-nav-link flex items-center justify-between py-2.5 px-3 rounded-md text-sm whitespace-nowrap" href="ADMIN/login.php">
+                <span>Login</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                </svg>
+            </a>
+            <?php endif; ?>
         </nav>
     </header>

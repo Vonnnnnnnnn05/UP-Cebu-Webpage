@@ -1,0 +1,71 @@
+<section id="home"
+    class="relative min-h-[560px] sm:min-h-[460px] md:min-h-[480px] lg:min-h-[520px] overflow-hidden bg-maroon-dark text-white flex items-end sm:items-center scroll-mt-24 lg:scroll-mt-28">
+
+    <!-- Background photograph -->
+    <div class="absolute inset-0 overflow-hidden z-0 pointer-events-none">
+        <div class="w-full h-full bg-cover bg-[50%_0%] sm:bg-[center_right_10%] scale-125 -translate-y-14 sm:scale-100 sm:translate-y-0 transform origin-top transition-transform duration-300"
+            style="background-image: url('{{ asset('assets/hero-campus.jpg') }}');" role="img"
+            aria-label="UP Cebu campus landscape and iconic Oblation statue"></div>
+    </div>
+
+    <!-- Gradient overlay -->
+    <div
+        class="absolute inset-0 z-10 bg-gradient-to-t sm:bg-gradient-to-r from-[#7B1113] via-[#7B1113]/90 via-50% to-transparent sm:from-[#7B1113] sm:via-[#7B1113]/85 sm:via-40% sm:to-transparent sm:w-[62%] w-full pointer-events-none">
+    </div>
+
+    <!-- Top subtle vignette for header transition -->
+    <div
+        class="absolute top-0 inset-x-0 h-16 bg-gradient-to-b from-black/35 to-transparent z-10 pointer-events-none sm:hidden">
+    </div>
+
+    <!-- Hero Content -->
+    <div
+        class="relative z-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-48 pb-12 sm:pt-14 sm:pb-16 md:py-18 w-full reveal-on-scroll">
+        <!-- Academic Green UP Cebu TTBDO badge -->
+        <div class="mb-3.5">
+            <span
+                class="inline-flex items-center gap-1.5 bg-green-base text-white border border-green-light/40 px-3 py-1 rounded-full text-[10.5px] sm:text-[11px] font-bold uppercase tracking-wider shadow-xs">
+                UP Cebu TTBDO
+            </span>
+        </div>
+
+        <!-- Headline: White + Gold #D4A017 -->
+        <h1
+            class="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-bold leading-[1.06] tracking-tight my-2.5 sm:my-3 text-white drop-shadow-xs">
+            Your Idea,<br>
+            <span class="text-gold-base">Our Dedication.</span>
+        </h1>
+
+        <p
+            class="max-w-md sm:max-w-lg text-xs sm:text-[13px] leading-relaxed text-white/90 mb-6 drop-shadow-xs">
+            The Technology Transfer and Business Development Office (TTBDO) connects the University’s
+            research and innovation with industry, community, and society for a more sustainable and inclusive
+            future.
+        </p>
+
+        <!-- Hero CTA Buttons -->
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
+            <a class="inline-flex items-center justify-center gap-2.5 bg-gold-base text-maroon-base border border-gold-base font-bold text-xs sm:text-[13px] px-6 py-3 rounded-md shadow-md hover:bg-maroon-base hover:text-white hover:border-gold-base active:scale-95 transition-all duration-200 group"
+                href="#programs">
+                <span>Explore Our Programs</span>
+                <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none"
+                    stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                </svg>
+            </a>
+            <a class="inline-flex items-center justify-center gap-2 bg-white/15 text-white hover:bg-white/25 border border-white/40 font-semibold text-xs sm:text-[13px] px-5 py-3 rounded-md shadow-xs active:scale-95 transition-all duration-200"
+                href="#events">
+                <span>Upcoming Events</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Decorative multi-band diagonal accent -->
+    <svg class="absolute z-20 bottom-0 right-0 w-36 sm:w-64 md:w-80 lg:w-[460px] h-auto pointer-events-none drop-shadow-lg hidden xs:block opacity-85 sm:opacity-100"
+        viewBox="0 0 460 140" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <polygon points="120,140 460,21 460,28 140,140" fill="#D4A017" />
+        <polygon points="140,140 460,28 460,63 240,140" fill="#7B1113" />
+        <polygon points="240,140 460,63 460,70 260,140" fill="#D4A017" />
+        <polygon points="260,140 460,70 460,140" fill="#146B3A" />
+    </svg>
+</section>

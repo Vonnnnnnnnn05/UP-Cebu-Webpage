@@ -1,0 +1,2227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Technology Transfer and Business Development Office - University of the Philippines Cebu">
+    <title>UP Cebu TTBDO</title>
+
+    <!-- Google Fonts: UP Authorized Typefaces (Arsenal, Source Serif 4, Libre Baskerville, Source Sans 3, Style Script, MonteCarlo) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Arsenal:ital,wght@0,400;0,700;1,400;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=MonteCarlo&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,700&family=Style+Script&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS v4 Play CDN -->
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+        @theme {
+            /* Dominant Neutral Background (~70% visual space) */
+            --color-cream-bg: #F3EBDD;
+            --color-cream-soft: #FBF8F2;
+
+            /* Primary Brand (UP Maroon - PANTONE 1955C #7B1113) */
+            --color-maroon-dark: #4D0A0C;
+            --color-maroon-base: #7B1113;
+            --color-maroon-hover: #911618;
+            --color-maroon-light: #A81B1F;
+            --color-red-base: #7B1113;
+            --color-red-card: #7B1113;
+
+            /* Secondary Brand (Forest Green - PANTONE 7484C #014421) */
+            --color-green-dark: #002B15;
+            --color-green-base: #014421;
+            --color-green-hover: #0D5D30;
+            --color-green-light: #1B733F;
+
+            /* Accent Brand (University Gold - PANTONE 1235C #D4A017 / #F2A900) */
+            --color-gold-base: #D4A017;
+            --color-gold-hover: #BF8E0F;
+            --color-gold-deep: #8E5E0B;
+            --color-gold-light: #F4E7C0;
+
+            /* Neutrals & Text (Spot Black & Warm Grays) */
+            --color-ink-base: #26231F;
+            --color-ink-muted: #5A554D;
+            --color-ink-subtle: #4B4640;
+            --color-border-card: #DDD2C2;
+
+            /* UP Authorized Typeface System:
+               - Titles & Headings: Arsenal / Libertinus Sans
+               - Official Body Text: Source Serif 4 / Libre Baskerville
+               - Unofficial Body Text & Materials: Source Sans 3 / Open Sans / Roboto
+               - Unofficial Headings & Materials: Style Script / MonteCarlo
+               - Official Logotype: Padayon / Arsenal
+            */
+            --font-heading: "Arsenal", "Libertinus Sans", sans-serif;
+            --font-title: "Arsenal", "Libertinus Sans", sans-serif;
+            --font-serif: "Arsenal", "Libertinus Sans", sans-serif;
+            --font-sans: "Source Sans 3", "Open Sans", Roboto, sans-serif;
+            --font-official-serif: "Source Serif 4", "Libre Baskerville", Georgia, serif;
+            --font-script: "Style Script", "MonteCarlo", cursive;
+            --font-logotype: "Padayon", "Arsenal", sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 5rem;
+            overflow-x: clip;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--color-cream-bg);
+            color: var(--color-ink-base);
+            overflow-x: clip;
+        }
+
+        /* UP Authorized Typography Hierarchy */
+        h1, h2, h3, h4, h5, h6, .font-heading, .font-title, .font-serif {
+            font-family: var(--font-heading);
+        }
+
+        .font-official-body, .official-body, .font-source-serif, .font-libre-baskerville {
+            font-family: var(--font-official-serif) !important;
+        }
+
+        .font-script, .font-style-script, .font-montecarlo {
+            font-family: var(--font-script) !important;
+        }
+
+        .font-logotype, .official-logotype {
+            font-family: var(--font-logotype) !important;
+        }
+
+        .brand-mark-ring::after {
+            content: "";
+            position: absolute;
+            inset: 5px;
+            border: 1px solid rgba(201, 154, 36, 0.6);
+            border-radius: 9999px;
+        }
+
+        /* Desktop Navigation Links */
+        .nav-link {
+            color: rgba(255, 255, 255, 0.9);
+            position: relative;
+            display: flex;
+            align-items: center;
+            height: 100%;
+            padding-left: 0.25rem;
+            padding-right: 0.25rem;
+            font-weight: 600;
+            white-space: nowrap;
+            flex-shrink: 0;
+            transition: color 0.25s ease;
+        }
+
+        .nav-link:hover {
+            color: #C99A24;
+        }
+
+        .nav-link.active {
+            color: #C99A24 !important;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .nav-link.active::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2.5px;
+            background-color: #C99A24;
+        }
+
+        /* Mobile Dropdown Navigation Links */
+        .mobile-nav-link {
+            color: rgba(255, 255, 255, 0.9);
+            background-color: transparent;
+            border-left: 3px solid transparent;
+            font-weight: 500;
+            white-space: nowrap;
+            transition: all 0.25s ease;
+        }
+
+        .mobile-nav-link:hover {
+            color: #C99A24;
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .mobile-nav-link.active {
+            color: #C99A24 !important;
+            background-color: rgba(201, 154, 36, 0.12);
+            border-left: 3px solid #C99A24;
+            font-weight: 700;
+        }
+
+        .mobile-nav-link svg {
+            color: rgba(255, 255, 255, 0.5);
+            transition: color 0.25s ease;
+        }
+
+        .mobile-nav-link:hover svg,
+        .mobile-nav-link.active svg {
+            color: #C99A24;
+        }
+
+        /* Dropdown Box & Item Hover Enhancements */
+        .group\/dropdown:hover > .nav-link {
+            color: #C99A24 !important;
+        }
+
+        .group\/dropdown:hover > .nav-link svg {
+            color: #C99A24 !important;
+        }
+
+        .dropdown-panel-box {
+            transform: translateY(6px);
+            transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+                        opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+                        visibility 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .group\/dropdown:hover .dropdown-panel-box {
+            transform: translateY(0);
+        }
+
+        .dropdown-link-item {
+            position: relative;
+            border-left: 2.5px solid transparent;
+            transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .dropdown-link-item:hover {
+            background-color: rgba(255, 255, 255, 0.12);
+            border-left-color: #C99A24;
+            padding-left: 0.85rem !important;
+            transform: translateX(3px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .dropdown-link-item:hover .dropdown-item-title {
+            color: #C99A24;
+        }
+
+        .dropdown-link-item:hover .dropdown-item-desc {
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        .dropdown-link-item:hover .dropdown-item-arrow {
+            opacity: 1 !important;
+            transform: translateX(0) !important;
+            color: #C99A24;
+        }
+
+        /* Reading Scroll Progress Bar */
+        #scroll-progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3.5px;
+            background: linear-gradient(90deg, #C99A24, #F4E7C0, #C99A24);
+            background-size: 200% 100%;
+            z-index: 9999;
+            transition: width 0.25s cubic-bezier(0.2, 0.8, 0.4, 1);
+            pointer-events: none;
+            box-shadow: 0 1px 6px rgba(201, 154, 36, 0.5);
+        }
+
+        /* Smooth Scroll-Triggered Reveal Classes (Gentle, Slower & Silky Smooth) */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(32px);
+            transition: opacity 1.15s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 1.15s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+
+        .reveal-on-scroll.is-revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Slide variations */
+        .reveal-slide-left {
+            opacity: 0;
+            transform: translateX(-36px);
+            transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+
+        .reveal-slide-left.is-revealed {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-slide-right {
+            opacity: 0;
+            transform: translateX(36px);
+            transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+
+        .reveal-slide-right.is-revealed {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Stagger delays for items */
+        .stagger-1 { transition-delay: 0.12s; }
+        .stagger-2 { transition-delay: 0.22s; }
+        .stagger-3 { transition-delay: 0.32s; }
+        .stagger-4 { transition-delay: 0.42s; }
+        .stagger-5 { transition-delay: 0.52s; }
+        .stagger-6 { transition-delay: 0.62s; }
+
+        /* Sticky Header Elevation on Scroll */
+        header {
+            position: sticky !important;
+            top: 0 !important;
+            z-index: 50 !important;
+            transition: box-shadow 0.4s ease, background-color 0.4s ease;
+        }
+
+        header.is-scrolled {
+            box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.28);
+        }
+
+        /* Floating Back to Top Button */
+        #back-to-top-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 2.85rem;
+            height: 2.85rem;
+            border-radius: 9999px;
+            background-color: #5A0A0D;
+            color: #C99A24;
+            border: 1.5px solid #C99A24;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(16px) scale(0.9);
+            transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                        visibility 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                        background-color 0.25s ease,
+                        color 0.25s ease,
+                        box-shadow 0.25s ease;
+            z-index: 90;
+        }
+
+        #back-to-top-btn.is-visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+        #back-to-top-btn:hover {
+            background-color: #C99A24;
+            color: #5A0A0D;
+            border-color: #F4E7C0;
+            transform: translateY(-3px) scale(1.06);
+            box-shadow: 0 6px 20px rgba(201, 154, 36, 0.4);
+        }
+
+        #back-to-top-btn:active {
+            transform: translateY(0) scale(0.95);
+        }
+
+        /* Animated Search Modal Styles */
+        #search-modal {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                        visibility 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        #search-modal.is-open {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        #search-modal .search-dialog-card {
+            opacity: 0;
+            transform: translateY(-26px) scale(0.95);
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                        opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                        box-shadow 0.5s ease;
+            will-change: transform, opacity;
+        }
+
+        #search-modal.is-open .search-dialog-card {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .search-result-item {
+            transition: background-color 0.22s ease, transform 0.22s ease, border-color 0.22s ease;
+        }
+
+        .search-result-item:hover,
+        .search-result-item.is-selected {
+            background-color: #F8F3EA;
+            border-color: #C99A24;
+            transform: translateX(4px);
+        }
+
+        mark.search-highlight {
+            background-color: rgba(212, 160, 23, 0.25);
+            color: #7B1113;
+            font-weight: 700;
+            border-radius: 2px;
+            padding: 0 2px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto !important;
+            }
+            .reveal-on-scroll,
+            .reveal-slide-left,
+            .reveal-slide-right {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+            }
+            #back-to-top-btn {
+                transition: none !important;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="bg-cream-bg text-ink-base antialiased selection:bg-maroon-base selection:text-white overflow-x-clip">
+
+    <!-- Reading Scroll Progress Bar -->
+    <div id="scroll-progress-bar" aria-hidden="true"></div>
+
+    <!-- =========================================================
+         HEADER (Dark Maroon Primary #7B1113 with subtle Green border)
+    ========================================================== -->
+    <header class="bg-maroon-base text-white border-b-2 border-green-base sticky top-0 z-50 shadow-md">
+        <div
+            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 sm:h-20 lg:h-[100px] flex items-center gap-3 sm:gap-4 lg:gap-6">
+
+            <!-- Logo / Brand -->
+            <a href="#home" class="flex items-center gap-2.5 sm:gap-3.5 group shrink-0">
+                <div
+                    class="bg-white rounded-md px-2 py-1 shadow-xs border border-white/40 flex items-center justify-center shrink-0 transition-transform group-hover:scale-105">
+                    <img src="assets/ttbdo-full-logo.png" alt="UP Cebu TTBDO Logo"
+                        class="h-8 sm:h-9 lg:h-10 w-auto object-contain shrink-0" />
+                </div>
+
+                <div class="leading-tight shrink-0 whitespace-nowrap">
+                    <span
+                        class="block font-serif text-[12px] xs:text-[13px] sm:text-[15px] md:text-[16.5px] lg:text-[18px] xl:text-[19.5px] font-bold text-white leading-[1.15] tracking-tight group-hover:text-gold-base transition-colors">
+                        <span class="block">University of the</span>
+                        <span class="block">Philippines Cebu</span>
+                    </span>
+                </div>
+            </a>
+
+            <!-- Right-aligned Header Group: Desktop Navigation Sections + Search -->
+            <div class="hidden lg:flex items-center gap-3 xl:gap-5 2xl:gap-6 h-full ml-auto shrink-0">
+                <nav class="flex items-center gap-4 xl:gap-6 2xl:gap-7 h-full text-[13.5px] xl:text-[14.5px] font-semibold whitespace-nowrap" aria-label="Main navigation">
+                    <a class="nav-link active whitespace-nowrap shrink-0" href="#home">
+                        Home
+                    </a>
+                    <a class="nav-link whitespace-nowrap shrink-0" href="#news">
+                        News
+                    </a>
+
+                    <!-- Programs Dropdown Box -->
+                    <div class="relative group/dropdown h-full flex items-center">
+                        <a class="nav-link whitespace-nowrap shrink-0 flex items-center gap-1.5" href="#programs">
+                            <span>Programs</span>
+                            <svg class="w-3.5 h-3.5 text-white/75 group-hover/dropdown:text-gold-base transition-transform duration-200 group-hover/dropdown:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </a>
+                        <!-- Dropdown Box Panel (Centered under Programs) -->
+                        <div class="absolute top-full left-1/2 -translate-x-1/2 pt-2 opacity-0 invisible group-hover/dropdown:opacity-100 group-hover/dropdown:visible transition-all duration-200 pointer-events-none group-hover/dropdown:pointer-events-auto z-50">
+                            <div class="dropdown-panel-box bg-maroon-dark border border-gold-base/40 hover:border-gold-base/70 rounded-xl shadow-2xl p-2.5 w-[295px] max-w-[calc(100vw-2rem)] backdrop-blur-md transition-colors">
+                                <div class="px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-gold-base border-b border-white/10 mb-1 flex items-center justify-between">
+                                    <span>Programs &amp; Services</span>
+                                    <span class="text-[9px] text-cream-bg/60 font-normal">Containers</span>
+                                </div>
+                                <a href="#program-ip" class="dropdown-link-item flex items-center justify-between px-3 py-2 rounded-lg text-white group/item">
+                                    <div class="flex flex-col">
+                                        <span class="dropdown-item-title text-xs font-semibold text-white transition-colors">IP Rights Protection</span>
+                                        <span class="dropdown-item-desc text-[10px] text-cream-bg/70 transition-colors">Patents, Trademarks &amp; Copyrights</span>
+                                    </div>
+                                    <svg class="dropdown-item-arrow w-3.5 h-3.5 opacity-0 -translate-x-1 transition-all duration-200 text-gold-base shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                    </svg>
+                                </a>
+                                <a href="#program-incubation" class="dropdown-link-item flex items-center justify-between px-3 py-2 rounded-lg text-white group/item">
+                                    <div class="flex flex-col">
+                                        <span class="dropdown-item-title text-xs font-semibold text-white transition-colors">Business Incubation</span>
+                                        <span class="dropdown-item-desc text-[10px] text-cream-bg/70 transition-colors">Co-working &amp; Startup Mentorship</span>
+                                    </div>
+                                    <svg class="dropdown-item-arrow w-3.5 h-3.5 opacity-0 -translate-x-1 transition-all duration-200 text-gold-base shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                    </svg>
+                                </a>
+                                <a href="#program-simp" class="dropdown-link-item flex items-center justify-between px-3 py-2 rounded-lg text-white group/item">
+                                    <div class="flex flex-col">
+                                        <span class="dropdown-item-title text-xs font-semibold text-white transition-colors">Student Mentorship (SIMP)</span>
+                                        <span class="dropdown-item-desc text-[10px] text-cream-bg/70 transition-colors">Capstone &amp; Prototype Grants</span>
+                                    </div>
+                                    <svg class="dropdown-item-arrow w-3.5 h-3.5 opacity-0 -translate-x-1 transition-all duration-200 text-gold-base shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                    </svg>
+                                </a>
+                                <a href="#program-licensing" class="dropdown-link-item flex items-center justify-between px-3 py-2 rounded-lg text-white group/item">
+                                    <div class="flex flex-col">
+                                        <span class="dropdown-item-title text-xs font-semibold text-white transition-colors">Tech Licensing</span>
+                                        <span class="dropdown-item-desc text-[10px] text-cream-bg/70 transition-colors">Commercialization &amp; Royalties</span>
+                                    </div>
+                                    <svg class="dropdown-item-arrow w-3.5 h-3.5 opacity-0 -translate-x-1 transition-all duration-200 text-gold-base shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                    </svg>
+                                </a>
+                                <a href="#program-msme" class="dropdown-link-item flex items-center justify-between px-3 py-2 rounded-lg text-white group/item">
+                                    <div class="flex flex-col">
+                                        <span class="dropdown-item-title text-xs font-semibold text-white transition-colors">MSME Extension</span>
+                                        <span class="dropdown-item-desc text-[10px] text-cream-bg/70 transition-colors">Community Enterprise Assistance</span>
+                                    </div>
+                                    <svg class="dropdown-item-arrow w-3.5 h-3.5 opacity-0 -translate-x-1 transition-all duration-200 text-gold-base shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                    </svg>
+                                </a>
+                                <a href="#program-internship" class="dropdown-link-item flex items-center justify-between px-3 py-2 rounded-lg text-white group/item">
+                                    <div class="flex flex-col">
+                                        <span class="dropdown-item-title text-xs font-semibold text-white transition-colors">Internship &amp; Certification</span>
+                                        <span class="dropdown-item-desc text-[10px] text-cream-bg/70 transition-colors">Experiential Tech Transfer</span>
+                                    </div>
+                                    <svg class="dropdown-item-arrow w-3.5 h-3.5 opacity-0 -translate-x-1 transition-all duration-200 text-gold-base shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                    </svg>
+                                </a>
+                                <!-- Future Container Slot -->
+                                <div class="mt-1 pt-1.5 border-t border-white/10">
+                                    <a href="#program-custom" class="flex items-center gap-2 px-3 py-2 rounded-lg border border-dashed border-gold-base/50 bg-gold-base/10 text-gold-base hover:bg-gold-base/20 hover:border-gold-base hover:shadow-xs transition-all text-[11px] font-semibold group/slot">
+                                        <svg class="w-3.5 h-3.5 transition-transform group-hover/slot:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+                                        <span>+ New Program Container (Slot)</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a class="nav-link whitespace-nowrap shrink-0" href="#events">
+                        Events
+                    </a>
+
+                    <!-- About Us Dropdown Box -->
+                    <div class="relative group/dropdown h-full flex items-center">
+                        <a class="nav-link whitespace-nowrap shrink-0 flex items-center gap-1.5" href="#about">
+                            <span>About&nbsp;Us</span>
+                            <svg class="w-3.5 h-3.5 text-white/75 group-hover/dropdown:text-gold-base transition-transform duration-200 group-hover/dropdown:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </a>
+                        <!-- Dropdown Box Panel (Anchored to the right so it never overflows screen edge) -->
+                        <div class="absolute top-full right-0 pt-2 opacity-0 invisible group-hover/dropdown:opacity-100 group-hover/dropdown:visible transition-all duration-200 pointer-events-none group-hover/dropdown:pointer-events-auto z-50">
+                            <div class="dropdown-panel-box bg-maroon-dark border border-gold-base/40 hover:border-gold-base/70 rounded-xl shadow-2xl p-2.5 w-[295px] max-w-[calc(100vw-2rem)] backdrop-blur-md transition-colors">
+                                <div class="px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-gold-base border-b border-white/10 mb-1 flex items-center justify-between">
+                                    <span>About UP Cebu TTBDO</span>
+                                    <span class="text-[9px] text-cream-bg/60 font-normal">Containers</span>
+                                </div>
+                                <a href="#about-overview" class="dropdown-link-item flex items-center justify-between px-3 py-2 rounded-lg text-white group/item">
+                                    <div class="flex flex-col">
+                                        <span class="dropdown-item-title text-xs font-semibold text-white transition-colors">Overview &amp; Mandate</span>
+                                        <span class="dropdown-item-desc text-[10px] text-cream-bg/70 transition-colors">Institutional Role &amp; History</span>
+                                    </div>
+                                    <svg class="dropdown-item-arrow w-3.5 h-3.5 opacity-0 -translate-x-1 transition-all duration-200 text-gold-base shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                    </svg>
+                                </a>
+                                <a href="#about-vision" class="dropdown-link-item flex items-center justify-between px-3 py-2 rounded-lg text-white group/item">
+                                    <div class="flex flex-col">
+                                        <span class="dropdown-item-title text-xs font-semibold text-white transition-colors">Vision &amp; Mission</span>
+                                        <span class="dropdown-item-desc text-[10px] text-cream-bg/70 transition-colors">Core Purpose &amp; Aspirations</span>
+                                    </div>
+                                    <svg class="dropdown-item-arrow w-3.5 h-3.5 opacity-0 -translate-x-1 transition-all duration-200 text-gold-base shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                    </svg>
+                                </a>
+                                <a href="#about-pillars" class="dropdown-link-item flex items-center justify-between px-3 py-2 rounded-lg text-white group/item">
+                                    <div class="flex flex-col">
+                                        <span class="dropdown-item-title text-xs font-semibold text-white transition-colors">Four Strategic Pillars</span>
+                                        <span class="dropdown-item-desc text-[10px] text-cream-bg/70 transition-colors">Governance, Licensing &amp; Incubation</span>
+                                    </div>
+                                    <svg class="dropdown-item-arrow w-3.5 h-3.5 opacity-0 -translate-x-1 transition-all duration-200 text-gold-base shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                    </svg>
+                                </a>
+                                <a href="#about-impact" class="dropdown-link-item flex items-center justify-between px-3 py-2 rounded-lg text-white group/item">
+                                    <div class="flex flex-col">
+                                        <span class="dropdown-item-title text-xs font-semibold text-white transition-colors">Impact &amp; Statistics</span>
+                                        <span class="dropdown-item-desc text-[10px] text-cream-bg/70 transition-colors">Filings, Startups &amp; Metrics</span>
+                                    </div>
+                                    <svg class="dropdown-item-arrow w-3.5 h-3.5 opacity-0 -translate-x-1 transition-all duration-200 text-gold-base shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                    </svg>
+                                </a>
+                                <a href="#about-office" class="dropdown-link-item flex items-center justify-between px-3 py-2 rounded-lg text-white group/item">
+                                    <div class="flex flex-col">
+                                        <span class="dropdown-item-title text-xs font-semibold text-white transition-colors">Office &amp; Directory</span>
+                                        <span class="dropdown-item-desc text-[10px] text-cream-bg/70 transition-colors">3rd Flr, Technology Innovation Center</span>
+                                    </div>
+                                    <svg class="dropdown-item-arrow w-3.5 h-3.5 opacity-0 -translate-x-1 transition-all duration-200 text-gold-base shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                    </svg>
+                                </a>
+                                <!-- Future Container Slot -->
+                                <div class="mt-1 pt-1.5 border-t border-white/10">
+                                    <a href="#about-custom" class="flex items-center gap-2 px-3 py-2 rounded-lg border border-dashed border-gold-base/50 bg-gold-base/10 text-gold-base hover:bg-gold-base/20 hover:border-gold-base hover:shadow-xs transition-all text-[11px] font-semibold group/slot">
+                                        <svg class="w-3.5 h-3.5 transition-transform group-hover/slot:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+                                        <span>+ New About Container (Slot)</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a class="nav-link whitespace-nowrap shrink-0" href="#contact">
+                        Contact
+                    </a>
+                </nav>
+
+                <!-- Search Icon Button (Desktop) -->
+                <button
+                    id="search-toggle-btn"
+                    class="text-white/80 hover:text-gold-base transition-colors p-2 flex items-center justify-center rounded-full hover:bg-white/10 shrink-0 cursor-pointer"
+                    aria-label="Search website" type="button">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Search Icon Button -->
+            <button
+                id="mobile-search-toggle-btn"
+                class="lg:hidden text-white/80 hover:text-gold-base transition-colors p-2 flex items-center justify-center rounded-full hover:bg-white/10 shrink-0 ml-auto mr-1 cursor-pointer"
+                aria-label="Search website" type="button">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                </svg>
+            </button>
+
+            <!-- Mobile Hamburger Button (toggles dropdown) -->
+            <button id="menu-toggle"
+                class="lg:hidden text-white p-2 sm:p-2.5 rounded-md hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-gold-base flex items-center justify-center shrink-0 min-w-[40px] min-h-[40px]"
+                aria-label="Toggle navigation menu" aria-expanded="false" type="button">
+                <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+                <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Menu Dropdown -->
+        <nav id="mobile-menu"
+            class="hidden lg:hidden flex-col bg-maroon-dark border-t border-green-base/40 px-4 sm:px-6 py-4 space-y-1 shadow-2xl transition-all max-h-[calc(100vh-4.5rem)] overflow-y-auto"
+            aria-label="Mobile navigation">
+            <a class="mobile-nav-link active flex items-center justify-between py-2.5 px-3 rounded-md text-sm whitespace-nowrap"
+                href="#home">
+                <span>Home</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                </svg>
+            </a>
+            <a class="mobile-nav-link flex items-center justify-between py-2.5 px-3 rounded-md text-sm whitespace-nowrap" href="#news">
+                <span>News</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                </svg>
+            </a>
+
+            <!-- Mobile Programs Accordion Dropdown -->
+            <div class="flex flex-col">
+                <div class="flex items-center justify-between mobile-nav-link py-2.5 px-3 rounded-md text-sm whitespace-nowrap">
+                    <a href="#programs" class="flex-1">Programs</a>
+                    <button type="button" class="p-1 text-white/70 hover:text-gold-base focus:outline-none" aria-label="Toggle Programs sub-menu" onclick="document.getElementById('mobile-programs-sub').classList.toggle('hidden')">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/></svg>
+                    </button>
+                </div>
+                <div id="mobile-programs-sub" class="hidden pl-3 pr-1 py-1 space-y-1 border-l-2 border-gold-base/40 ml-3 my-1">
+                    <a href="#program-ip" class="flex items-center justify-between py-1.5 px-2.5 rounded-md text-xs text-cream-bg/85 hover:text-gold-base hover:bg-white/10 hover:translate-x-1 transition-all group/mobitem">
+                        <span>IP Rights Protection</span>
+                        <svg class="w-3 h-3 text-gold-base opacity-0 group-hover/mobitem:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>
+                    </a>
+                    <a href="#program-incubation" class="flex items-center justify-between py-1.5 px-2.5 rounded-md text-xs text-cream-bg/85 hover:text-gold-base hover:bg-white/10 hover:translate-x-1 transition-all group/mobitem">
+                        <span>Business Incubation</span>
+                        <svg class="w-3 h-3 text-gold-base opacity-0 group-hover/mobitem:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>
+                    </a>
+                    <a href="#program-simp" class="flex items-center justify-between py-1.5 px-2.5 rounded-md text-xs text-cream-bg/85 hover:text-gold-base hover:bg-white/10 hover:translate-x-1 transition-all group/mobitem">
+                        <span>Student Mentorship (SIMP)</span>
+                        <svg class="w-3 h-3 text-gold-base opacity-0 group-hover/mobitem:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>
+                    </a>
+                    <a href="#program-licensing" class="flex items-center justify-between py-1.5 px-2.5 rounded-md text-xs text-cream-bg/85 hover:text-gold-base hover:bg-white/10 hover:translate-x-1 transition-all group/mobitem">
+                        <span>Tech Licensing</span>
+                        <svg class="w-3 h-3 text-gold-base opacity-0 group-hover/mobitem:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>
+                    </a>
+                    <a href="#program-msme" class="flex items-center justify-between py-1.5 px-2.5 rounded-md text-xs text-cream-bg/85 hover:text-gold-base hover:bg-white/10 hover:translate-x-1 transition-all group/mobitem">
+                        <span>MSME Extension</span>
+                        <svg class="w-3 h-3 text-gold-base opacity-0 group-hover/mobitem:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>
+                    </a>
+                    <a href="#program-internship" class="flex items-center justify-between py-1.5 px-2.5 rounded-md text-xs text-cream-bg/85 hover:text-gold-base hover:bg-white/10 hover:translate-x-1 transition-all group/mobitem">
+                        <span>Internship &amp; Certification</span>
+                        <svg class="w-3 h-3 text-gold-base opacity-0 group-hover/mobitem:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>
+                    </a>
+                    <a href="#program-custom" class="flex items-center gap-2 py-1.5 px-2.5 rounded-md text-xs text-gold-base hover:bg-gold-base/20 border border-dashed border-gold-base/50 font-semibold transition-all">
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+                        <span>+ New Program Container</span>
+                    </a>
+                </div>
+            </div>
+
+            <a class="mobile-nav-link flex items-center justify-between py-2.5 px-3 rounded-md text-sm whitespace-nowrap"
+                href="#events">
+                <span>Events</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                </svg>
+            </a>
+
+            <!-- Mobile About Us Accordion Dropdown -->
+            <div class="flex flex-col">
+                <div class="flex items-center justify-between mobile-nav-link py-2.5 px-3 rounded-md text-sm whitespace-nowrap">
+                    <a href="#about" class="flex-1">About Us</a>
+                    <button type="button" class="p-1 text-white/70 hover:text-gold-base focus:outline-none" aria-label="Toggle About Us sub-menu" onclick="document.getElementById('mobile-about-sub').classList.toggle('hidden')">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/></svg>
+                    </button>
+                </div>
+                <div id="mobile-about-sub" class="hidden pl-3 pr-1 py-1 space-y-1 border-l-2 border-gold-base/40 ml-3 my-1">
+                    <a href="#about-overview" class="flex items-center justify-between py-1.5 px-2.5 rounded-md text-xs text-cream-bg/85 hover:text-gold-base hover:bg-white/10 hover:translate-x-1 transition-all group/mobitem">
+                        <span>Overview &amp; Mandate</span>
+                        <svg class="w-3 h-3 text-gold-base opacity-0 group-hover/mobitem:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>
+                    </a>
+                    <a href="#about-vision" class="flex items-center justify-between py-1.5 px-2.5 rounded-md text-xs text-cream-bg/85 hover:text-gold-base hover:bg-white/10 hover:translate-x-1 transition-all group/mobitem">
+                        <span>Vision &amp; Mission</span>
+                        <svg class="w-3 h-3 text-gold-base opacity-0 group-hover/mobitem:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>
+                    </a>
+                    <a href="#about-pillars" class="flex items-center justify-between py-1.5 px-2.5 rounded-md text-xs text-cream-bg/85 hover:text-gold-base hover:bg-white/10 hover:translate-x-1 transition-all group/mobitem">
+                        <span>Four Strategic Pillars</span>
+                        <svg class="w-3 h-3 text-gold-base opacity-0 group-hover/mobitem:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>
+                    </a>
+                    <a href="#about-impact" class="flex items-center justify-between py-1.5 px-2.5 rounded-md text-xs text-cream-bg/85 hover:text-gold-base hover:bg-white/10 hover:translate-x-1 transition-all group/mobitem">
+                        <span>Impact &amp; Statistics</span>
+                        <svg class="w-3 h-3 text-gold-base opacity-0 group-hover/mobitem:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>
+                    </a>
+                    <a href="#about-office" class="flex items-center justify-between py-1.5 px-2.5 rounded-md text-xs text-cream-bg/85 hover:text-gold-base hover:bg-white/10 hover:translate-x-1 transition-all group/mobitem">
+                        <span>Office &amp; Directory</span>
+                        <svg class="w-3 h-3 text-gold-base opacity-0 group-hover/mobitem:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>
+                    </a>
+                    <a href="#about-custom" class="flex items-center gap-2 py-1.5 px-2.5 rounded-md text-xs text-gold-base hover:bg-gold-base/20 border border-dashed border-gold-base/50 font-semibold transition-all">
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+                        <span>+ New About Container</span>
+                    </a>
+                </div>
+            </div>
+
+            <a class="mobile-nav-link flex items-center justify-between py-2.5 px-3 rounded-md text-sm whitespace-nowrap" href="#contact">
+                <span>Contact</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                </svg>
+            </a>
+        </nav>
+    </header>
+
+
+    <!-- =========================================================
+         MAIN
+    ========================================================== -->
+    <main>
+
+        <!-- =====================================================
+             HERO (Natural Campus Photo with UP Cebu Oblation Prominent)
+        ====================================================== -->
+        <section id="home"
+            class="relative min-h-[560px] sm:min-h-[460px] md:min-h-[480px] lg:min-h-[520px] overflow-hidden bg-maroon-dark text-white flex items-end sm:items-center scroll-mt-24 lg:scroll-mt-28">
+
+            <!-- Background photograph: Oblation lifted higher into the top on mobile preview, natural framing on desktop -->
+            <div class="absolute inset-0 overflow-hidden z-0 pointer-events-none">
+                <div class="w-full h-full bg-cover bg-[50%_0%] sm:bg-[center_right_10%] scale-125 -translate-y-14 sm:scale-100 sm:translate-y-0 transform origin-top transition-transform duration-300"
+                    style="background-image: url('assets/hero-campus.jpg');" role="img"
+                    aria-label="UP Cebu campus landscape and iconic Oblation statue"></div>
+            </div>
+
+            <!-- Gradient overlay: on mobile, rises from bottom so the top half with the Oblation is crystal clear and unobstructed; on desktop, transitions left-to-right -->
+            <div
+                class="absolute inset-0 z-10 bg-gradient-to-t sm:bg-gradient-to-r from-[#7B1113] via-[#7B1113]/90 via-50% to-transparent sm:from-[#7B1113] sm:via-[#7B1113]/85 sm:via-40% sm:to-transparent sm:w-[62%] w-full pointer-events-none">
+            </div>
+
+            <!-- Top subtle vignette for header transition without darkening the statue -->
+            <div
+                class="absolute top-0 inset-x-0 h-16 bg-gradient-to-b from-black/35 to-transparent z-10 pointer-events-none sm:hidden">
+            </div>
+
+            <!-- Hero Content with clean hierarchy, positioned cleanly beneath the Oblation on mobile -->
+            <div
+                class="relative z-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-48 pb-12 sm:pt-14 sm:pb-16 md:py-18 w-full reveal-on-scroll">
+                <!-- Academic Green UP Cebu TTBDO badge -->
+                <div class="mb-3.5">
+                    <span
+                        class="inline-flex items-center gap-1.5 bg-green-base text-white border border-green-light/40 px-3 py-1 rounded-full text-[10.5px] sm:text-[11px] font-bold uppercase tracking-wider shadow-xs">
+                        UP Cebu TTBDO
+                    </span>
+                </div>
+
+                <!-- Headline: White + Gold #D4A017 -->
+                <h1
+                    class="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-bold leading-[1.06] tracking-tight my-2.5 sm:my-3 text-white drop-shadow-xs">
+                    Your Idea,<br>
+                    <span class="text-gold-base">Our Dedication.</span>
+                </h1>
+
+                <p
+                    class="max-w-md sm:max-w-lg text-xs sm:text-[13px] leading-relaxed text-white/90 mb-6 drop-shadow-xs">
+                    The Technology Transfer and Business Development Office (TTBDO) connects the University’s
+                    research and innovation with industry, community, and society for a more sustainable and inclusive
+                    future.
+                </p>
+
+                <!-- Hero CTA Buttons -->
+                <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
+                    <a class="inline-flex items-center justify-center gap-2.5 bg-gold-base text-maroon-base border border-gold-base font-bold text-xs sm:text-[13px] px-6 py-3 rounded-md shadow-md hover:bg-maroon-base hover:text-white hover:border-gold-base active:scale-95 transition-all duration-200 group"
+                        href="#programs">
+                        <span>Explore Our Programs</span>
+                        <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                        </svg>
+                    </a>
+                    <a class="inline-flex items-center justify-center gap-2 bg-white/15 text-white hover:bg-white/25 border border-white/40 font-semibold text-xs sm:text-[13px] px-5 py-3 rounded-md shadow-xs active:scale-95 transition-all duration-200"
+                        href="#events">
+                        <span>Upcoming Events</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Decorative multi-band diagonal accent (Maroon, Gold, and Green — 70-20-10 palette) -->
+            <svg class="absolute z-20 bottom-0 right-0 w-36 sm:w-64 md:w-80 lg:w-[460px] h-auto pointer-events-none drop-shadow-lg hidden xs:block opacity-85 sm:opacity-100"
+                viewBox="0 0 460 140" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <!-- Top Gold Stripe -->
+                <polygon points="120,140 460,21 460,28 140,140" fill="#D4A017" />
+
+                <!-- Maroon Main Band -->
+                <polygon points="140,140 460,28 460,63 240,140" fill="#7B1113" />
+
+                <!-- Middle Gold Stripe -->
+                <polygon points="240,140 460,63 460,70 260,140" fill="#D4A017" />
+
+                <!-- Bottom-Right Green Corner -->
+                <polygon points="260,140 460,70 460,140" fill="#146B3A" />
+            </svg>
+        </section>
+
+
+
+        <!-- =====================================================
+             NEWS & ANNOUNCEMENTS (Requested Section 2)
+        ====================================================== -->
+        <section id="news" class="bg-cream-bg py-14 sm:py-20 border-b border-border-card scroll-mt-24 lg:scroll-mt-28">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Section Header -->
+                <div class="reveal-on-scroll mb-10">
+                    <div
+                        class="flex items-center gap-2.5 text-[11px] font-bold tracking-[1.5px] uppercase text-green-base mb-2">
+                        <span class="inline-block w-6 sm:w-7 h-0.5 bg-green-base rounded-full"></span>
+                        NEWS &amp; ANNOUNCEMENTS
+                    </div>
+                    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                        <div>
+                            <h2 class="font-serif text-3xl sm:text-4xl font-bold text-maroon-base tracking-tight leading-tight">
+                                Latest News &amp; Research Highlights
+                            </h2>
+                            <p class="max-w-xl text-xs sm:text-[13px] leading-relaxed text-ink-muted mt-2">
+                                Discover university inventions, grant calls, regional innovation partnerships, and technology transfer milestones across UP Cebu.
+                            </p>
+                        </div>
+                        <a href="#contact"
+                            class="inline-flex items-center gap-2 text-xs font-bold text-maroon-base hover:text-green-base transition-colors group self-start md:self-auto py-1">
+                            <span>Inquire for Media &amp; Press</span>
+                            <svg class="w-3.5 h-3.5 text-gold-base transition-transform group-hover:translate-x-1" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Featured News + Recent Articles Layout -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+                    <!-- Featured Article (Span 7) -->
+                    <article
+                        class="lg:col-span-7 bg-white border border-border-card rounded-2xl overflow-hidden shadow-xs hover:shadow-md transition-all flex flex-col justify-between reveal-on-scroll stagger-1 group">
+                        <div class="p-6 sm:p-8">
+                            <div class="flex flex-wrap items-center gap-2.5 mb-4">
+                                <span
+                                    class="bg-maroon-base text-white text-[10px] font-bold tracking-wider uppercase px-2.5 py-0.5 rounded-full">
+                                    FEATURED STORY
+                                </span>
+                                <span
+                                    class="bg-green-base/10 text-green-base text-[10px] font-bold tracking-wider uppercase px-2.5 py-0.5 rounded-full">
+                                    PARTNERSHIP
+                                </span>
+                                <span class="text-[11px] text-ink-muted">April 15, 2025</span>
+                            </div>
+
+                            <h3 onclick="openArticleModal(1)"
+                                class="font-serif text-xl sm:text-2xl font-bold text-maroon-base leading-snug group-hover:text-green-base transition-colors mb-3 cursor-pointer">
+                                UP Cebu and DOST Regional Office VII Formalize Regional Innovation Hub Partnership
+                            </h3>
+
+                            <p class="text-xs sm:text-[13px] leading-relaxed text-ink-muted mb-6">
+                                The University of the Philippines Cebu, through the Technology Transfer and Business Development Office (TTBDO), collaborates with the Department of Science and Technology (DOST-VII) to establish dedicated prototyping and acceleration tracks for faculty and student spin-offs throughout Central Visayas.
+                            </p>
+
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 p-3.5 bg-cream-soft rounded-xl border border-border-card text-center mb-6">
+                                <div>
+                                    <span class="block text-base sm:text-lg font-bold text-maroon-base">12</span>
+                                    <span class="text-[10px] text-ink-muted uppercase font-semibold">Startups Assisted</span>
+                                </div>
+                                <div>
+                                    <span class="block text-base sm:text-lg font-bold text-maroon-base">Innovation Hub</span>
+                                    <span class="text-[10px] text-ink-muted uppercase font-semibold">Meeting Focus</span>
+                                </div>
+                                <div class="col-span-2 sm:col-span-1">
+                                    <span class="block text-base sm:text-lg font-bold text-maroon-base">Central Visayas</span>
+                                    <span class="text-[10px] text-ink-muted uppercase font-semibold">Partner / Region</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="px-6 sm:px-8 pb-6 sm:pb-8 pt-2 border-t border-border-card/60 flex items-center justify-between">
+                            <span class="text-[11px] font-medium text-ink-muted">By TTBDO Media Communications</span>
+                            <button type="button" onclick="openArticleModal(1)"
+                                class="inline-flex items-center gap-1.5 text-xs font-bold text-maroon-base hover:text-green-base transition-colors group/link cursor-pointer">
+                                <span>View Article</span>
+                                <svg class="w-3.5 h-3.5 text-gold-base transition-transform group-hover/link:translate-x-1"
+                                    fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                                </svg>
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- Recent News List (Span 5) -->
+                    <div class="lg:col-span-5 flex flex-col gap-4">
+                        <!-- News Card 1 -->
+                        <article
+                            onclick="openArticleModal(2)"
+                            class="bg-white border border-border-card rounded-xl p-5 shadow-xs hover:border-maroon-base/40 hover:-translate-y-0.5 transition-all duration-200 reveal-on-scroll stagger-2 cursor-pointer group/item flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between gap-2 mb-2">
+                                    <span
+                                        class="inline-block bg-gold-light text-gold-deep text-[9.5px] font-bold px-2 py-0.5 rounded tracking-wider uppercase">
+                                        CALL FOR PROPOSALS
+                                    </span>
+                                    <span class="text-[10.5px] text-ink-muted">APR 08, 2025</span>
+                                </div>
+                                <h4 class="font-serif text-[15px] font-bold text-maroon-base leading-snug group-hover/item:text-green-base transition-colors mb-1.5">
+                                    2025 Research &amp; Commercialization Grants Open for Faculty Teams
+                                </h4>
+                                <p class="text-[11.5px] text-ink-muted leading-relaxed line-clamp-2 mb-3">
+                                    UP Cebu TTBDO is now accepting applications for seed commercialization grants aimed at validating proof-of-concept for laboratory inventions.
+                                </p>
+                            </div>
+                            <div class="flex items-center justify-between pt-2.5 border-t border-border-card/40 text-[11px] font-bold text-maroon-base group-hover/item:text-green-base transition-colors">
+                                <span>View Article</span>
+                                <svg class="w-3.5 h-3.5 text-gold-base transition-transform group-hover/item:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                                </svg>
+                            </div>
+                        </article>
+
+                        <!-- News Card 2 -->
+                        <article
+                            onclick="openArticleModal(3)"
+                            class="bg-white border border-border-card rounded-xl p-5 shadow-xs hover:border-maroon-base/40 hover:-translate-y-0.5 transition-all duration-200 reveal-on-scroll stagger-3 cursor-pointer group/item flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between gap-2 mb-2">
+                                    <span
+                                        class="inline-block bg-green-base/10 text-green-base text-[9.5px] font-bold px-2 py-0.5 rounded tracking-wider uppercase">
+                                        IP REGISTRATIONS
+                                    </span>
+                                    <span class="text-[10.5px] text-ink-muted">MAR 29, 2025</span>
+                                </div>
+                                <h4 class="font-serif text-[15px] font-bold text-maroon-base leading-snug group-hover/item:text-green-base transition-colors mb-1.5">
+                                    Five UP Cebu Innovations Secure Official IPOPHL Certificates
+                                </h4>
+                                <p class="text-[11.5px] text-ink-muted leading-relaxed line-clamp-2 mb-3">
+                                    Software technologies, utility models, and novel creative designs developed by student and faculty researchers officially awarded IP certificates.
+                                </p>
+                            </div>
+                            <div class="flex items-center justify-between pt-2.5 border-t border-border-card/40 text-[11px] font-bold text-maroon-base group-hover/item:text-green-base transition-colors">
+                                <span>View Article</span>
+                                <svg class="w-3.5 h-3.5 text-gold-base transition-transform group-hover/item:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                                </svg>
+                            </div>
+                        </article>
+
+                        <!-- News Card 3 -->
+                        <article
+                            onclick="openArticleModal(4)"
+                            class="bg-white border border-border-card rounded-xl p-5 shadow-xs hover:border-maroon-base/40 hover:-translate-y-0.5 transition-all duration-200 reveal-on-scroll stagger-4 cursor-pointer group/item flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between gap-2 mb-2">
+                                    <span
+                                        class="inline-block bg-maroon-base/10 text-maroon-base text-[9.5px] font-bold px-2 py-0.5 rounded tracking-wider uppercase">
+                                        CAPACITY BUILDING
+                                    </span>
+                                    <span class="text-[10.5px] text-ink-muted">MAR 18, 2025</span>
+                                </div>
+                                <h4 class="font-serif text-[15px] font-bold text-maroon-base leading-snug group-hover/item:text-green-base transition-colors mb-1.5">
+                                    TTBDO Conducts Hands-On Prior Art Patent Search Workshop
+                                </h4>
+                                <p class="text-[11.5px] text-ink-muted leading-relaxed line-clamp-2 mb-3">
+                                    Faculty and research assistants attended an intensive session on navigating international patent databases and properly disclosing inventions.
+                                </p>
+                            </div>
+                            <div class="flex items-center justify-between pt-2.5 border-t border-border-card/40 text-[11px] font-bold text-maroon-base group-hover/item:text-green-base transition-colors">
+                                <span>View Article</span>
+                                <svg class="w-3.5 h-3.5 text-gold-base transition-transform group-hover/item:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                                </svg>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <!-- Forms & Policies Quick Access Bar -->
+                <div
+                    class="mt-8 bg-white border border-border-card rounded-xl p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xs reveal-on-scroll">
+                    <div class="flex items-center gap-3 text-center sm:text-left">
+                        <div
+                            class="w-10 h-10 rounded-lg bg-green-base/10 text-green-base flex items-center justify-center shrink-0 hidden sm:flex">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <span class="block text-xs font-bold text-maroon-base">Essential University Forms &amp; Policies</span>
+                            <span class="text-[11px] text-ink-muted">Download official Technology Disclosure Forms (TDF) and UP System IP guidelines</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2.5 w-full sm:w-auto">
+                        <a href="#contact"
+                            class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-md bg-cream-soft hover:bg-cream-bg border border-border-card text-xs font-semibold text-ink-base transition-colors">
+                            <svg class="w-3.5 h-3.5 text-green-base" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                            </svg>
+                            <span>Download TDF</span>
+                        </a>
+                        <a href="#contact"
+                            class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-md bg-maroon-base hover:bg-maroon-hover text-white text-xs font-bold transition-colors">
+                            <span>IP Policy Guide</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- =====================================================
+             PROGRAMS (Requested Section 3 - Expanded & Comprehensive)
+        ====================================================== -->
+        <section id="programs" class="py-16 sm:py-22 bg-white border-b border-border-card scroll-mt-24 lg:scroll-mt-28">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Section Header -->
+                <div class="reveal-on-scroll max-w-3xl mb-12">
+                    <div
+                        class="flex items-center gap-2.5 text-[11px] font-bold tracking-[1.5px] uppercase text-green-base mb-2">
+                        <span class="inline-block w-6 sm:w-7 h-0.5 bg-green-base rounded-full"></span>
+                        OUR PROGRAMS &amp; SERVICES
+                    </div>
+
+                    <h2 class="font-serif text-3xl sm:text-4xl lg:text-[40px] font-bold text-maroon-base tracking-tight leading-tight mb-3">
+                        Turning Innovation into Sustainable Impact
+                    </h2>
+
+                    <p class="text-xs sm:text-[13.5px] leading-relaxed text-ink-muted">
+                        The UP Cebu TTBDO provides structured support pathways for students, researchers, faculty, and industry partners to translate academic discoveries into protected intellectual assets and thriving enterprises.
+                    </p>
+                </div>
+
+                <!-- Program Pathways Grid: University Programs & Reserved Containers -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-14">
+
+                    <!-- Program 1: IP Rights Protection & Patent Drafting -->
+                    <article id="program-ip"
+                        class="bg-cream-soft border border-border-card border-t-[3.5px] border-t-maroon-base rounded-xl p-6 shadow-xs hover:-translate-y-1 hover:shadow-md transition-all duration-200 flex flex-col justify-between reveal-on-scroll stagger-1 scroll-mt-28">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div
+                                    class="w-12 h-12 rounded-full bg-maroon-base flex items-center justify-center text-white shadow-xs">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
+                                    </svg>
+                                </div>
+                                <span
+                                    class="text-[9.5px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-maroon-base/10 text-maroon-base">
+                                    Research &amp; Faculty
+                                </span>
+                            </div>
+
+                            <h3 class="font-serif text-[18px] font-bold text-maroon-base leading-tight mb-2.5">
+                                Intellectual Property Rights Protection
+                            </h3>
+
+                            <p class="text-[12px] leading-relaxed text-ink-muted mb-4">
+                                Complete institutional assistance in patent search, claim drafting, copyright deposits, trademark registrations, and filing with IPOPHL.
+                            </p>
+
+                            <ul class="space-y-1.5 text-[11px] text-ink-base mb-5 border-t border-border-card/60 pt-3">
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-3.5 h-3.5 text-green-base shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+                                    <span>Prior Art &amp; Patentability Analysis</span>
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-3.5 h-3.5 text-green-base shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+                                    <span>Subsidized IPOPHL Official Filing Fees</span>
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-3.5 h-3.5 text-green-base shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+                                    <span>Confidentiality &amp; NDA Advisory</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <a href="#contact"
+                            class="inline-flex items-center text-[12px] font-bold text-maroon-base hover:text-green-base transition-colors group w-fit">
+                            <span>File an Invention Disclosure</span>
+                            <svg class="w-3.5 h-3.5 ml-1.5 text-gold-base transition-transform group-hover:translate-x-1"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                            </svg>
+                        </a>
+                    </article>
+
+                    <!-- Program 2: Startup Incubation Program -->
+                    <article id="program-incubation"
+                        class="bg-cream-soft border border-border-card border-t-[3.5px] border-t-gold-base rounded-xl p-6 shadow-xs hover:-translate-y-1 hover:shadow-md transition-all duration-200 flex flex-col justify-between reveal-on-scroll stagger-2 scroll-mt-28">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div
+                                    class="w-12 h-12 rounded-full bg-gold-base flex items-center justify-center text-maroon-dark shadow-xs">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M12 18v-2m-3 2h6m-7-6a5 5 0 1 1 8 0c-.8 1.1-1.3 2.1-1.5 3h-5c-.2-.9-.7-1.9-1.5-3Z" />
+                                    </svg>
+                                </div>
+                                <span
+                                    class="text-[9.5px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-gold-light text-gold-deep">
+                                    Startups &amp; Founders
+                                </span>
+                            </div>
+
+                            <h3 class="font-serif text-[18px] font-bold text-maroon-base leading-tight mb-2.5">
+                                Technology Business Incubation
+                            </h3>
+
+                            <p class="text-[12px] leading-relaxed text-ink-muted mb-4">
+                                Incubation infrastructure, seed funding linkage, and bespoke mentoring for startups founded by UP Cebu faculty, students, and alumni.
+                            </p>
+
+                            <ul class="space-y-1.5 text-[11px] text-ink-base mb-5 border-t border-border-card/60 pt-3">
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-3.5 h-3.5 text-green-base shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+                                    <span>Dedicated Co-Working Space &amp; Labs</span>
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-3.5 h-3.5 text-green-base shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+                                    <span>Investor Pitching &amp; Demo Days</span>
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-3.5 h-3.5 text-green-base shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+                                    <span>Corporate Structuring &amp; SEC Registration</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <a href="#contact"
+                            class="inline-flex items-center text-[12px] font-bold text-maroon-base hover:text-green-base transition-colors group w-fit">
+                            <span>Apply for Incubation</span>
+                            <svg class="w-3.5 h-3.5 ml-1.5 text-gold-base transition-transform group-hover:translate-x-1"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                            </svg>
+                        </a>
+                    </article>
+
+                    <!-- Program 3: Student Innovation Mentorship Program (SIMP) -->
+                    <article id="program-simp"
+                        class="bg-cream-soft border border-border-card border-t-[3.5px] border-t-green-base rounded-xl p-6 shadow-xs hover:-translate-y-1 hover:shadow-md transition-all duration-200 flex flex-col justify-between reveal-on-scroll stagger-3 scroll-mt-28">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div
+                                    class="w-12 h-12 rounded-full bg-green-base flex items-center justify-center text-white shadow-xs">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.999-3.199a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
+                                    </svg>
+                                </div>
+                                <span
+                                    class="text-[9.5px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-green-base/10 text-green-base">
+                                    Students &amp; Capstone
+                                </span>
+                            </div>
+
+                            <h3 class="font-serif text-[18px] font-bold text-maroon-base leading-tight mb-2.5">
+                                Student Innovation Mentorship (SIMP)
+                            </h3>
+
+                            <p class="text-[12px] leading-relaxed text-ink-muted mb-4">
+                                Converts senior capstones, theses, and extracurricular projects into viable market solutions through intensive mentorship and industry linkage.
+                            </p>
+
+                            <ul class="space-y-1.5 text-[11px] text-ink-base mb-5 border-t border-border-card/60 pt-3">
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-3.5 h-3.5 text-green-base shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+                                    <span>Industry Executive Mentorship</span>
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-3.5 h-3.5 text-green-base shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+                                    <span>Prototype Validation Grants</span>
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-3.5 h-3.5 text-green-base shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+                                    <span>Pitch Competition Coaching</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <a href="#contact"
+                            class="inline-flex items-center text-[12px] font-bold text-maroon-base hover:text-green-base transition-colors group w-fit">
+                            <span>Join Next SIMP Cohort</span>
+                            <svg class="w-3.5 h-3.5 ml-1.5 text-gold-base transition-transform group-hover:translate-x-1"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                            </svg>
+                        </a>
+                    </article>
+
+                    <!-- Program 4: Technology Licensing & Commercialization -->
+                    <article id="program-licensing"
+                        class="bg-cream-soft border border-border-card border-t-[3.5px] border-t-maroon-base rounded-xl p-6 shadow-xs hover:-translate-y-1 hover:shadow-md transition-all duration-200 flex flex-col justify-between reveal-on-scroll stagger-4 scroll-mt-28">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div
+                                    class="w-12 h-12 rounded-full bg-maroon-base flex items-center justify-center text-white shadow-xs">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
+                                    </svg>
+                                </div>
+                                <span
+                                    class="text-[9.5px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-maroon-base/10 text-maroon-base">
+                                    Industry &amp; Licensing
+                                </span>
+                            </div>
+
+                            <h3 class="font-serif text-[18px] font-bold text-maroon-base leading-tight mb-2.5">
+                                Tech Licensing &amp; Commercialization
+                            </h3>
+
+                            <p class="text-[12px] leading-relaxed text-ink-muted mb-4">
+                                Bridging university inventions with commercial enterprises, formulating fair licensing terms, and managing royalty distribution to creators.
+                            </p>
+
+                            <ul class="space-y-1.5 text-[11px] text-ink-base mb-5 border-t border-border-card/60 pt-3">
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-3.5 h-3.5 text-green-base shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+                                    <span>Technology Valuation &amp; Market Scoping</span>
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-3.5 h-3.5 text-green-base shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+                                    <span>Commercial Licensing &amp; Spinoff Agreements</span>
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-3.5 h-3.5 text-green-base shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+                                    <span>Equitable Inventor Royalty Sharing</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <a href="#contact"
+                            class="inline-flex items-center text-[12px] font-bold text-maroon-base hover:text-green-base transition-colors group w-fit">
+                            <span>Explore Available Technologies</span>
+                            <svg class="w-3.5 h-3.5 ml-1.5 text-gold-base transition-transform group-hover:translate-x-1"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                            </svg>
+                        </a>
+                    </article>
+
+                    <!-- Program 5: Regional MSME Extension & Mentorship -->
+                    <article id="program-msme"
+                        class="bg-cream-soft border border-border-card border-t-[3.5px] border-t-gold-base rounded-xl p-6 shadow-xs hover:-translate-y-1 hover:shadow-md transition-all duration-200 flex flex-col justify-between reveal-on-scroll stagger-5 scroll-mt-28">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div
+                                    class="w-12 h-12 rounded-full bg-gold-base flex items-center justify-center text-maroon-dark shadow-xs">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M12 21v-8.25m0 0c0-4.5 3-7.5 7.5-7.5-1.5 4.5-4.5 7.5-7.5 7.5Zm0 0c0-3.5-2.5-6-6-6 1.2 3.6 3.6 6 6 6Z" />
+                                    </svg>
+                                </div>
+                                <span
+                                    class="text-[9.5px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-gold-light text-gold-deep">
+                                    Regional MSMEs
+                                </span>
+                            </div>
+
+                            <h3 class="font-serif text-[18px] font-bold text-maroon-base leading-tight mb-2.5">
+                                Regional MSME Mentorship &amp; Extension
+                            </h3>
+
+                            <p class="text-[12px] leading-relaxed text-ink-muted mb-4">
+                                Assisting local micro, small, and medium enterprises across Central Visayas through technology adoption, branding protection, and capacity training.
+                            </p>
+
+                            <ul class="space-y-1.5 text-[11px] text-ink-base mb-5 border-t border-border-card/60 pt-3">
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-3.5 h-3.5 text-green-base shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+                                    <span>Appropriate Technology Matching</span>
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-3.5 h-3.5 text-green-base shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+                                    <span>Brand Protection &amp; Trademark Clinics</span>
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-3.5 h-3.5 text-green-base shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+                                    <span>DOST SETUP Extension Linkage</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <a href="#contact"
+                            class="inline-flex items-center text-[12px] font-bold text-maroon-base hover:text-green-base transition-colors group w-fit">
+                            <span>Connect Your Business</span>
+                            <svg class="w-3.5 h-3.5 ml-1.5 text-gold-base transition-transform group-hover:translate-x-1"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                            </svg>
+                        </a>
+                    </article>
+
+                    <!-- Program 6: TTBDO Internship & Innovation Certification -->
+                    <article id="program-internship"
+                        class="bg-cream-soft border border-border-card border-t-[3.5px] border-t-green-base rounded-xl p-6 shadow-xs hover:-translate-y-1 hover:shadow-md transition-all duration-200 flex flex-col justify-between reveal-on-scroll stagger-6 scroll-mt-28">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div
+                                    class="w-12 h-12 rounded-full bg-green-base flex items-center justify-center text-white shadow-xs">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 0 0 .75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 0 0-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0 1 12 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 0 1-.673-.38m0 0A2.18 2.18 0 0 1 3 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 0 1 3.413-.387m7.5 0V5.25A2.25 2.25 0 0 0 13.5 3h-3a2.25 2.25 0 0 0-2.25 2.25v1.069m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                                    </svg>
+                                </div>
+                                <span
+                                    class="text-[9.5px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-green-base/10 text-green-base">
+                                    Experiential Learning
+                                </span>
+                            </div>
+
+                            <h3 class="font-serif text-[18px] font-bold text-maroon-base leading-tight mb-2.5">
+                                Internship &amp; Skills Certification
+                            </h3>
+
+                            <p class="text-[12px] leading-relaxed text-ink-muted mb-4">
+                                Immersive internships for UP Cebu students in technology commercialization, legal IP operations, and innovation management credentials.
+                            </p>
+
+                            <ul class="space-y-1.5 text-[11px] text-ink-base mb-5 border-t border-border-card/60 pt-3">
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-3.5 h-3.5 text-green-base shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+                                    <span>Real-World IP Law &amp; Tech Case Work</span>
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-3.5 h-3.5 text-green-base shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+                                    <span>Direct Mentorship with Registered Patent Agents</span>
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-3.5 h-3.5 text-green-base shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+                                    <span>Formal Certificate of Technology Transfer Mastery</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <a href="#contact"
+                            class="inline-flex items-center text-[12px] font-bold text-maroon-base hover:text-green-base transition-colors group w-fit">
+                            <span>Apply for Internship</span>
+                            <svg class="w-3.5 h-3.5 ml-1.5 text-gold-base transition-transform group-hover:translate-x-1"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                            </svg>
+                        </a>
+                    </article>
+
+                    <!-- Program 7: Reserved / Custom Container (Ready to be filled soon) -->
+                    <article id="program-custom"
+                        class="bg-cream-soft border-2 border-dashed border-gold-base/60 rounded-xl p-6 shadow-xs hover:-translate-y-1 hover:shadow-md transition-all duration-200 flex flex-col justify-between reveal-on-scroll stagger-6 scroll-mt-28 relative group">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div
+                                    class="w-12 h-12 rounded-full bg-gold-base/20 border border-gold-base/50 flex items-center justify-center text-gold-deep shadow-xs">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                                    </svg>
+                                </div>
+                                <span
+                                    class="text-[9px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-gold-base/20 text-gold-deep border border-gold-base/30">
+                                    Slot • Ready to be Filled
+                                </span>
+                            </div>
+
+                            <h3 class="font-serif text-[18px] font-bold text-maroon-base leading-tight mb-2.5">
+                                [Future Program Container]
+                            </h3>
+
+                            <p class="text-[12px] leading-relaxed text-ink-muted mb-4">
+                                This container is prepared and designated for upcoming specialized UP Cebu TTBDO programs, special innovation grants, or external partner tracks.
+                            </p>
+
+                            <div class="p-3 bg-white/70 rounded-lg border border-dashed border-border-card text-[11px] text-ink-muted space-y-1 mb-5">
+                                <div class="font-semibold text-maroon-base">Available Configuration:</div>
+                                <div>• Customizable program badge &amp; icon</div>
+                                <div>• Feature checklist &amp; target audience tag</div>
+                                <div>• Direct call-to-action application linkage</div>
+                            </div>
+                        </div>
+
+                        <a href="#contact"
+                            class="inline-flex items-center text-[12px] font-bold text-gold-deep hover:text-maroon-base transition-colors group/btn w-fit">
+                            <span>Submit Container Information</span>
+                            <svg class="w-3.5 h-3.5 ml-1.5 text-gold-base transition-transform group-hover/btn:translate-x-1"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                            </svg>
+                        </a>
+                    </article>
+
+                </div>
+
+                <!-- 3-Step Technology Transfer Pathway -->
+                <div class="bg-cream-bg rounded-2xl p-6 sm:p-10 border border-border-card reveal-on-scroll">
+                    <div class="text-center max-w-xl mx-auto mb-8">
+                        <span class="text-[10px] uppercase font-bold tracking-[2px] text-green-base block mb-1">
+                            HOW TO ENGAGE WITH TTBDO
+                        </span>
+                        <h3 class="font-serif text-2xl sm:text-3xl font-bold text-maroon-base">
+                            The 3-Step Innovation Pathway
+                        </h3>
+                        <p class="text-xs sm:text-[12.5px] text-ink-muted mt-1.5">
+                            A clear, transparent process for university creators and prospective industry collaborators.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
+                        <!-- Step 1 -->
+                        <div class="bg-white rounded-xl p-6 border border-border-card shadow-xs relative">
+                            <div
+                                class="w-8 h-8 rounded-full bg-maroon-base text-white font-bold text-xs flex items-center justify-center mb-3.5">
+                                1
+                            </div>
+                            <h4 class="font-serif text-[16px] font-bold text-maroon-base mb-1.5">Submit Disclosure</h4>
+                            <p class="text-[11.5px] text-ink-muted leading-relaxed">
+                                Complete and submit the Technology Disclosure Form (TDF) describing your research findings, software code, or creative design to TTBDO.
+                            </p>
+                        </div>
+
+                        <!-- Step 2 -->
+                        <div class="bg-white rounded-xl p-6 border border-border-card shadow-xs relative">
+                            <div
+                                class="w-8 h-8 rounded-full bg-gold-base text-maroon-dark font-bold text-xs flex items-center justify-center mb-3.5">
+                                2
+                            </div>
+                            <h4 class="font-serif text-[16px] font-bold text-maroon-base mb-1.5">Evaluate &amp; Protect</h4>
+                            <p class="text-[11.5px] text-ink-muted leading-relaxed">
+                                Our patent specialists review novelty, conduct prior art searches, formulate claims, and file official applications with the IPOPHL.
+                            </p>
+                        </div>
+
+                        <!-- Step 3 -->
+                        <div class="bg-white rounded-xl p-6 border border-border-card shadow-xs relative">
+                            <div
+                                class="w-8 h-8 rounded-full bg-green-base text-white font-bold text-xs flex items-center justify-center mb-3.5">
+                                3
+                            </div>
+                            <h4 class="font-serif text-[16px] font-bold text-maroon-base mb-1.5">Scale &amp; Commercialize</h4>
+                            <p class="text-[11.5px] text-ink-muted leading-relaxed">
+                                We match your protected innovation with commercial industry licensees or support you in founding a viable academic startup spin-off.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- =====================================================
+             EVENTS (Requested Section 4 - Brand New Dedicated Section)
+        ====================================================== -->
+        <section id="events" class="bg-cream-bg py-16 sm:py-22 border-b border-border-card scroll-mt-24 lg:scroll-mt-28">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Section Header -->
+                <div class="reveal-on-scroll mb-10">
+                    <div
+                        class="flex items-center gap-2.5 text-[11px] font-bold tracking-[1.5px] uppercase text-green-base mb-2">
+                        <span class="inline-block w-6 sm:w-7 h-0.5 bg-green-base rounded-full"></span>
+                        CALENDAR &amp; ENGAGEMENTS
+                    </div>
+                    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                        <div>
+                            <h2 class="font-serif text-3xl sm:text-4xl font-bold text-maroon-base tracking-tight leading-tight">
+                                Upcoming Events &amp; Workshops
+                            </h2>
+                            <p class="max-w-xl text-xs sm:text-[13px] leading-relaxed text-ink-muted mt-2">
+                                Engage in university pitch competitions, IP clinics, innovation masterclasses, and regional summits hosted across UP Cebu campuses.
+                            </p>
+                        </div>
+                        <a href="#contact"
+                            class="inline-flex items-center gap-2 text-xs font-bold text-maroon-base hover:text-green-base transition-colors group self-start md:self-auto py-1">
+                            <span>Request a Workshop for Your College</span>
+                            <svg class="w-3.5 h-3.5 text-gold-base transition-transform group-hover:translate-x-1" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Featured Summit Card (Full Width Hero Card) -->
+                <div
+                    class="bg-white border-2 border-gold-base/60 rounded-2xl p-6 sm:p-8 lg:p-10 shadow-sm mb-8 reveal-on-scroll">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                        <div class="lg:col-span-8">
+                            <div class="flex flex-wrap items-center gap-2.5 mb-3">
+                                <span
+                                    class="bg-green-base text-white text-[10px] font-bold tracking-wider uppercase px-3 py-0.5 rounded-full">
+                                    REGISTRATION OPEN
+                                </span>
+                                <span
+                                    class="bg-gold-light text-gold-deep text-[10px] font-bold tracking-wider uppercase px-2.5 py-0.5 rounded-full">
+                                    HYBRID EVENT
+                                </span>
+                                <span class="text-[11.5px] font-semibold text-maroon-base">
+                                    May 16, 2025 • 9:00 AM – 4:30 PM PHT
+                                </span>
+                            </div>
+
+                            <h3 class="font-serif text-2xl sm:text-3xl font-bold text-maroon-base leading-snug mb-3">
+                                Central Visayas Innovation Summit &amp; Startup Demo Day 2025
+                            </h3>
+
+                            <p class="text-xs sm:text-[13px] leading-relaxed text-ink-muted mb-4">
+                                Join university researchers, student founders, venture investors, DOST officials, and industry leaders for a full-day showcase of breakthrough technologies originating from UP Cebu. Includes live seed pitching, prototyping exhibits, and policy roundtables.
+                            </p>
+
+                            <div class="flex flex-wrap items-center gap-y-2 gap-x-6 text-xs text-ink-base">
+                                <span class="flex items-center gap-1.5 font-medium">
+                                    <svg class="w-4 h-4 text-green-base" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/></svg>
+                                    UP Cebu SRP Campus • Performing Arts Hall
+                                </span>
+                                <span class="flex items-center gap-1.5 font-medium">
+                                    <svg class="w-4 h-4 text-gold-deep" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25h-9A2.25 2.25 0 0 0 2.25 7.5v9a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+                                    Zoom &amp; YouTube Live Broadcast
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-3 justify-center">
+                            <a href="#contact"
+                                class="inline-flex items-center justify-center gap-2 bg-maroon-base hover:bg-maroon-hover text-white text-xs sm:text-[13px] font-bold px-6 py-3.5 rounded-lg shadow-md hover:-translate-y-0.5 active:scale-95 transition-all text-center">
+                                <span>Register to Attend (Free)</span>
+                                <svg class="w-4 h-4 text-gold-base" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+                            </a>
+                            <a href="#contact"
+                                class="inline-flex items-center justify-center gap-2 bg-cream-soft hover:bg-cream-bg border border-border-card text-ink-base text-xs font-semibold px-5 py-3 rounded-lg transition-colors text-center">
+                                <svg class="w-4 h-4 text-ink-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5"/></svg>
+                                <span>Add to Calendar</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upcoming Schedule Grid (3 Event Cards) -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                    <!-- Event Card 1 -->
+                    <article
+                        class="bg-white border border-border-card rounded-xl p-6 shadow-xs hover:border-maroon-base/40 hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between reveal-on-scroll stagger-1">
+                        <div>
+                            <div class="flex items-center justify-between gap-2 mb-3">
+                                <span
+                                    class="bg-maroon-base text-white text-[9px] font-bold px-2.5 py-0.5 rounded uppercase tracking-wider">
+                                    WORKSHOP
+                                </span>
+                                <span class="text-[11px] font-semibold text-green-base">APR 24, 2025</span>
+                            </div>
+
+                            <h4 class="font-serif text-[16px] font-bold text-maroon-base leading-snug mb-2">
+                                Prior Art Search &amp; Patent Drafting Essentials
+                            </h4>
+
+                            <p class="text-[12px] leading-relaxed text-ink-muted mb-4">
+                                Interactive computer lab clinic on mastering WIPO Patentscope and preparing official technology disclosures.
+                            </p>
+
+                            <div class="text-[11px] text-ink-muted space-y-1 mb-5">
+                                <div class="flex items-center gap-1.5">
+                                    <svg class="w-3.5 h-3.5 text-gold-base shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+                                    <span>1:30 PM – 4:30 PM PHT</span>
+                                </div>
+                                <div class="flex items-center gap-1.5">
+                                    <svg class="w-3.5 h-3.5 text-green-base shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/></svg>
+                                    <span>Comp Lab 2, UP Cebu Lahug</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="#contact"
+                            class="inline-flex items-center justify-between w-full pt-3 border-t border-border-card text-xs font-bold text-maroon-base hover:text-green-base transition-colors group">
+                            <span>Reserve a Seat</span>
+                            <svg class="w-3.5 h-3.5 text-gold-base group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+                        </a>
+                    </article>
+
+                    <!-- Event Card 2 -->
+                    <article
+                        class="bg-white border border-border-card rounded-xl p-6 shadow-xs hover:border-maroon-base/40 hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between reveal-on-scroll stagger-2">
+                        <div>
+                            <div class="flex items-center justify-between gap-2 mb-3">
+                                <span
+                                    class="bg-gold-base text-maroon-dark text-[9px] font-bold px-2.5 py-0.5 rounded uppercase tracking-wider">
+                                    COMPETITION
+                                </span>
+                                <span class="text-[11px] font-semibold text-green-base">MAY 08, 2025</span>
+                            </div>
+
+                            <h4 class="font-serif text-[16px] font-bold text-maroon-base leading-snug mb-2">
+                                Annual Student Startup Pitch Competition 2025
+                            </h4>
+
+                            <p class="text-[12px] leading-relaxed text-ink-muted mb-4">
+                                Student teams present capstone innovations for seed prototyping grants and fast-track incubation entry.
+                            </p>
+
+                            <div class="text-[11px] text-ink-muted space-y-1 mb-5">
+                                <div class="flex items-center gap-1.5">
+                                    <svg class="w-3.5 h-3.5 text-gold-base shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+                                    <span>10:00 AM – 3:00 PM PHT</span>
+                                </div>
+                                <div class="flex items-center gap-1.5">
+                                    <svg class="w-3.5 h-3.5 text-green-base shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/></svg>
+                                    <span>Arts &amp; Sciences Hall, UP Cebu</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="#contact"
+                            class="inline-flex items-center justify-between w-full pt-3 border-t border-border-card text-xs font-bold text-maroon-base hover:text-green-base transition-colors group">
+                            <span>Register Student Team</span>
+                            <svg class="w-3.5 h-3.5 text-gold-base group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+                        </a>
+                    </article>
+
+                    <!-- Event Card 3 -->
+                    <article
+                        class="bg-white border border-border-card rounded-xl p-6 shadow-xs hover:border-maroon-base/40 hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between reveal-on-scroll stagger-3">
+                        <div>
+                            <div class="flex items-center justify-between gap-2 mb-3">
+                                <span
+                                    class="bg-green-base text-white text-[9px] font-bold px-2.5 py-0.5 rounded uppercase tracking-wider">
+                                    WEBINAR
+                                </span>
+                                <span class="text-[11px] font-semibold text-green-base">JUN 05, 2025</span>
+                            </div>
+
+                            <h4 class="font-serif text-[16px] font-bold text-maroon-base leading-snug mb-2">
+                                University Tech Licensing &amp; Valuation Masterclass
+                            </h4>
+
+                            <p class="text-[12px] leading-relaxed text-ink-muted mb-4">
+                                Specialist lecture on negotiating licensing agreements, IP valuation models, and commercialization law.
+                            </p>
+
+                            <div class="text-[11px] text-ink-muted space-y-1 mb-5">
+                                <div class="flex items-center gap-1.5">
+                                    <svg class="w-3.5 h-3.5 text-gold-base shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+                                    <span>2:00 PM – 5:00 PM PHT</span>
+                                </div>
+                                <div class="flex items-center gap-1.5">
+                                    <svg class="w-3.5 h-3.5 text-green-base shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25h-9A2.25 2.25 0 0 0 2.25 7.5v9a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+                                    <span>Virtual Event (Zoom)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="#contact"
+                            class="inline-flex items-center justify-between w-full pt-3 border-t border-border-card text-xs font-bold text-maroon-base hover:text-green-base transition-colors group">
+                            <span>Get Webinar Link</span>
+                            <svg class="w-3.5 h-3.5 text-gold-base group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+                        </a>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- =====================================================
+             ABOUT US (Requested Section 5 - Expanded & Comprehensive)
+        ====================================================== -->
+        <section id="about" class="bg-white py-16 sm:py-24 border-b border-border-card scroll-mt-24 lg:scroll-mt-28">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Section Header / Overview -->
+                <div id="about-overview" class="reveal-on-scroll max-w-3xl mb-12 scroll-mt-28">
+                    <div
+                        class="flex items-center gap-2.5 text-[11px] font-bold tracking-[1.5px] uppercase text-green-base mb-2">
+                        <span class="inline-block w-6 sm:w-7 h-0.5 bg-green-base rounded-full"></span>
+                        ABOUT UP CEBU TTBDO
+                    </div>
+
+                    <h2 class="font-serif text-3xl sm:text-4xl lg:text-[40px] font-bold text-maroon-base tracking-tight leading-tight mb-4">
+                        Pioneering Knowledge Translation &amp; Enterprise in Central Visayas
+                    </h2>
+
+                    <p class="text-xs sm:text-[13.5px] leading-relaxed text-ink-muted">
+                        The Technology Transfer and Business Development Office (TTBDO) of the University of the Philippines Cebu is the university's institutional engine for intellectual property management, commercialization, and entrepreneurial incubation. Operating under the tripartite mandate of the national university—teaching, research, and public service—we bridge academic discovery with regional industry needs to produce tangible economic and community impact.
+                    </p>
+                </div>
+
+                <!-- Vision & Mission 2-Card Row -->
+                <div id="about-vision" class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12 scroll-mt-28">
+                    <!-- Vision Card -->
+                    <div
+                        class="bg-cream-bg rounded-2xl p-7 sm:p-9 border border-border-card shadow-xs relative overflow-hidden reveal-on-scroll stagger-1">
+                        <div class="w-10 h-10 rounded-lg bg-maroon-base text-white flex items-center justify-center mb-4">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                            </svg>
+                        </div>
+                        <span class="text-[10px] uppercase font-bold tracking-[2px] text-green-base block mb-1">
+                            OUR ASPIRATION
+                        </span>
+                        <h3 class="font-serif text-2xl font-bold text-maroon-base mb-3">Our Vision</h3>
+                        <p class="text-xs sm:text-[13px] leading-relaxed text-ink-muted">
+                            To be the premier university technology transfer and innovation powerhouse in Central Visayas, recognized for ethically stewarding intellectual creations, nurturing regional startups, and accelerating solutions that advance national development.
+                        </p>
+                    </div>
+
+                    <!-- Mission Card -->
+                    <div
+                        class="bg-cream-bg rounded-2xl p-7 sm:p-9 border border-border-card shadow-xs relative overflow-hidden reveal-on-scroll stagger-2">
+                        <div class="w-10 h-10 rounded-lg bg-green-base text-white flex items-center justify-center mb-4">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M15.59 14.37a6 6 0 0 1-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 0 0 6.16-12.12A14.98 14.98 0 0 0 9.631 8.41m5.96 5.96a14.926 14.926 0 0 1-5.841 2.58m-.119-8.54a6 6 0 0 0-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 0 0-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 0 1-2.448-2.448 14.9 14.9 0 0 1 .06-.312m-2.24 2.39a4.493 4.493 0 0 0-1.757 4.306 4.493 4.493 0 0 0 4.306-1.758M16.5 9a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z" />
+                            </svg>
+                        </div>
+                        <span class="text-[10px] uppercase font-bold tracking-[2px] text-green-base block mb-1">
+                            OUR COMMITMENT
+                        </span>
+                        <h3 class="font-serif text-2xl font-bold text-maroon-base mb-3">Our Mission</h3>
+                        <p class="text-xs sm:text-[13px] leading-relaxed text-ink-muted">
+                            To empower creators within the UP Cebu academic community by protecting their intellectual property, bridging university research with industry and public sectors, and cultivating an enduring culture of social enterprise and responsible commercialization.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 4 Strategic Pillars of TTBDO -->
+                <div id="about-pillars" class="mb-14 reveal-on-scroll scroll-mt-28">
+                    <h3 class="font-serif text-xl sm:text-2xl font-bold text-maroon-base mb-6 text-center sm:text-left">
+                        Our Four Strategic Pillars
+                    </h3>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                        <!-- Pillar 1 -->
+                        <div class="p-5 rounded-xl border border-border-card bg-white hover:border-maroon-base/40 transition-colors">
+                            <div class="text-gold-base font-serif text-2xl font-bold mb-1.5">01</div>
+                            <h4 class="font-serif text-base font-bold text-maroon-base mb-1.5">IP Governance &amp; Stewardship</h4>
+                            <p class="text-[11.5px] text-ink-muted leading-relaxed">
+                                Ensuring robust legal protection for inventions, copyrights, and designs under Republic Act 10055 and UP System policies.
+                            </p>
+                        </div>
+
+                        <!-- Pillar 2 -->
+                        <div class="p-5 rounded-xl border border-border-card bg-white hover:border-maroon-base/40 transition-colors">
+                            <div class="text-gold-base font-serif text-2xl font-bold mb-1.5">02</div>
+                            <h4 class="font-serif text-base font-bold text-maroon-base mb-1.5">Commercial Licensing</h4>
+                            <p class="text-[11.5px] text-ink-muted leading-relaxed">
+                                Facilitating fair, mutually beneficial agreements with private and public organizations to translate university IP into market solutions.
+                            </p>
+                        </div>
+
+                        <!-- Pillar 3 -->
+                        <div class="p-5 rounded-xl border border-border-card bg-white hover:border-maroon-base/40 transition-colors">
+                            <div class="text-gold-base font-serif text-2xl font-bold mb-1.5">03</div>
+                            <h4 class="font-serif text-base font-bold text-maroon-base mb-1.5">Startup Acceleration</h4>
+                            <p class="text-[11.5px] text-ink-muted leading-relaxed">
+                                Supplying workspace, seed funding connections, and corporate structuring to launch successful student and faculty spin-offs.
+                            </p>
+                        </div>
+
+                        <!-- Pillar 4 -->
+                        <div class="p-5 rounded-xl border border-border-card bg-white hover:border-maroon-base/40 transition-colors">
+                            <div class="text-gold-base font-serif text-2xl font-bold mb-1.5">04</div>
+                            <h4 class="font-serif text-base font-bold text-maroon-base mb-1.5">Regional Extension</h4>
+                            <p class="text-[11.5px] text-ink-muted leading-relaxed">
+                                Empowering micro-enterprises and grassroots cooperatives across Region VII through accessible technology adoption and IP training.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Impact Metrics Bar -->
+                <div id="about-impact"
+                    class="bg-maroon-base text-white rounded-2xl p-7 sm:p-10 shadow-lg grid grid-cols-2 md:grid-cols-4 gap-6 text-center reveal-on-scroll scroll-mt-28">
+                    <div>
+                        <strong class="block font-serif text-3xl sm:text-4xl font-bold text-gold-base">45+</strong>
+                        <span class="text-[11px] uppercase tracking-wider text-cream-bg/85 font-medium mt-1 block">IP Filings Assisted</span>
+                    </div>
+                    <div>
+                        <strong class="block font-serif text-3xl sm:text-4xl font-bold text-gold-base">18+</strong>
+                        <span class="text-[11px] uppercase tracking-wider text-cream-bg/85 font-medium mt-1 block">Startups Incubated</span>
+                    </div>
+                    <div>
+                        <strong class="block font-serif text-3xl sm:text-4xl font-bold text-gold-base">30+</strong>
+                        <span class="text-[11px] uppercase tracking-wider text-cream-bg/85 font-medium mt-1 block">Industry Partners</span>
+                    </div>
+                    <div>
+                        <strong class="block font-serif text-3xl sm:text-4xl font-bold text-gold-base">500+</strong>
+                        <span class="text-[11px] uppercase tracking-wider text-cream-bg/85 font-medium mt-1 block">Innovators Trained</span>
+                    </div>
+                </div>
+
+                <!-- Institutional Office Card -->
+                <div id="about-office"
+                    class="group mt-10 bg-cream-soft border border-border-card hover:border-gold-base/70 hover:shadow-md transition-all duration-300 rounded-xl p-6 sm:p-7 flex flex-col md:flex-row items-center justify-between gap-6 reveal-on-scroll scroll-mt-28">
+                    <div class="flex items-center gap-4">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-white border border-border-card flex items-center justify-center p-2 shrink-0 shadow-xs transition-transform duration-300 group-hover:scale-105">
+                            <img src="assets/ttbdo-full-logo.png" alt="UP Cebu TTBDO Emblem" class="w-full h-full object-contain" />
+                        </div>
+                        <div>
+                            <h4 class="font-serif text-[15px] font-bold text-maroon-base group-hover:text-maroon-hover transition-colors">Technology Transfer and Business Development Office</h4>
+                            <p class="text-[11.5px] text-ink-muted">
+                                3rd Floor, Technology Innovation Center • University of the Philippines Cebu
+                            </p>
+                        </div>
+                    </div>
+                    <a href="#contact"
+                        class="inline-flex items-center justify-center gap-2 bg-maroon-base hover:bg-maroon-hover text-white text-xs font-bold px-5 py-2.5 rounded-md shadow-xs active:scale-95 transition-all shrink-0 w-full md:w-auto">
+                        <span>Contact TTBDO Team</span>
+                        <svg class="w-3.5 h-3.5 text-gold-base" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+                    </a>
+                </div>
+
+                <!-- Reserved / Custom About Container (Ready to be filled soon) -->
+                <div id="about-custom"
+                    class="mt-8 bg-cream-soft border-2 border-dashed border-gold-base/60 rounded-2xl p-6 sm:p-8 shadow-xs hover:border-gold-base hover:shadow-md transition-all duration-200 reveal-on-scroll scroll-mt-28 relative group">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-border-card/60 mb-5">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-gold-base/20 border border-gold-base/50 flex items-center justify-center text-gold-deep shadow-xs shrink-0">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                                </svg>
+                            </div>
+                            <div>
+                                <span class="text-[9.5px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-gold-base/20 text-gold-deep border border-gold-base/30">
+                                    About Container • Ready to be Filled Soon
+                                </span>
+                                <h3 class="font-serif text-xl sm:text-2xl font-bold text-maroon-base mt-1">
+                                    [Future About Us Section / Institutional Container]
+                                </h3>
+                            </div>
+                        </div>
+                        <span class="text-xs text-ink-muted bg-white px-3 py-1 rounded-full border border-border-card self-start sm:self-auto font-medium">
+                            Reserved Slot #AB-01
+                        </span>
+                    </div>
+
+                    <p class="text-xs sm:text-[13px] leading-relaxed text-ink-muted mb-5">
+                        This dedicated container slot is prepared for upcoming institutional sections—such as the UP Cebu TTBDO Organizational Chart &amp; Personnel Directory, Advisory Board profiles, Accreditation Credentials, or University System IP Policies.
+                    </p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+                        <div class="p-4 bg-white/80 rounded-xl border border-dashed border-border-card">
+                            <strong class="block text-xs font-bold text-maroon-base mb-1">Personnel Directory</strong>
+                            <p class="text-[11px] text-ink-muted">Prepared slot for unit officers, patent agents, and legal counsel listings.</p>
+                        </div>
+                        <div class="p-4 bg-white/80 rounded-xl border border-dashed border-border-card">
+                            <strong class="block text-xs font-bold text-maroon-base mb-1">Board &amp; Committees</strong>
+                            <p class="text-[11px] text-ink-muted">Reserved space for Chancellor's Advisory Council on Technology Transfer.</p>
+                        </div>
+                        <div class="p-4 bg-white/80 rounded-xl border border-dashed border-border-card">
+                            <strong class="block text-xs font-bold text-maroon-base mb-1">Policy Repository</strong>
+                            <p class="text-[11px] text-ink-muted">Structured slot for downloadable UP System Governing Board resolutions.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-border-card/60">
+                        <span class="text-[11.5px] text-ink-muted font-medium">
+                            Need to populate this container with copy or assets?
+                        </span>
+                        <a href="#contact"
+                            class="inline-flex items-center gap-2 bg-gold-base/15 hover:bg-gold-base/25 text-gold-deep border border-gold-base/40 text-xs font-bold px-4 py-2 rounded-lg transition-colors">
+                            <span>Submit Container Details</span>
+                            <svg class="w-3.5 h-3.5 text-gold-deep" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+
+    <!-- =========================================================
+         FOOTER (Dark Maroon Primary #7B1113 Anchor with Gold Top Border)
+    ========================================================== -->
+    <footer id="contact" class="bg-maroon-base text-white pt-10 pb-6 border-t-2 border-gold-base">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 reveal-on-scroll">
+
+            <!-- Footer Top -->
+            <div
+                class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_auto] gap-6 sm:gap-8 pb-8 items-start sm:items-center">
+
+                <!-- Footer Brand -->
+                <div class="flex items-center gap-3 sm:gap-3.5">
+                    <div
+                        class="bg-white rounded-md px-1.5 py-1 shadow-xs border border-gold-base/50 flex items-center justify-center shrink-0">
+                        <img src="assets/ttbdo-full-logo.png" alt="UP Cebu TTBDO Logo"
+                            class="h-7 sm:h-8 lg:h-9 w-auto object-contain" />
+                    </div>
+                    <div class="min-w-0">
+                        <span
+                            class="block text-[7.5px] sm:text-[8px] tracking-wider uppercase text-cream-bg/80 font-medium truncate">
+                            UNIVERSITY OF THE PHILIPPINES CEBU
+                        </span>
+                        <strong
+                            class="block font-serif text-[13px] sm:text-sm font-bold leading-tight mt-0.5 text-white">
+                            Technology Transfer and<br>Business Development Office
+                        </strong>
+                    </div>
+                </div>
+
+                <!-- Address / Office Location -->
+                <div
+                    class="office-location-info flex items-start gap-3 border-t sm:border-t-0 sm:border-l border-white/15 pt-4 sm:pt-0 sm:pl-6 text-[11px] leading-relaxed text-cream-bg/85 cursor-default select-text">
+                    <svg class="office-location-icon w-5 h-5 text-gold-base shrink-0 mt-0.5 transition-transform duration-300" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24" stroke-width="1.8" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                    </svg>
+                    <div>
+                        <strong class="office-location-title text-white block font-semibold mb-0.5 transition-colors duration-300">Office Location</strong>
+                        <div class="office-location-text text-cream-bg/85 transition-colors duration-300">
+                            Technology Transfer and Business Development Office<br>
+                            3rd Floor, Technology Innovation Center<br>
+                            University of the Philippines Cebu
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact -->
+                <div
+                    class="flex items-start gap-3 border-t lg:border-t-0 lg:border-l border-white/15 pt-4 lg:pt-0 lg:pl-6 text-[11px] leading-relaxed text-cream-bg/85">
+                    <svg class="w-5 h-5 text-gold-base shrink-0 mt-0.5" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24" stroke-width="1.8" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                    </svg>
+                    <div>
+                        <a href="mailto:ttbdo@upcebu.edu.ph"
+                            class="hover:text-gold-base transition-colors block py-0.5">
+                            ttbdo@upcebu.edu.ph
+                        </a>
+                        <a href="tel:+63322326001" class="hover:text-gold-base transition-colors block py-0.5">
+                            (032) 232-6001 loc. 301
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Socials (Small Academic Green Accents) -->
+                <div
+                    class="flex items-center gap-3 pt-3 sm:pt-0 border-t sm:border-t-0 border-white/15 sm:border-transparent">
+                    <a href="#" aria-label="Facebook"
+                        class="w-8 h-8 rounded-full bg-green-base text-white flex items-center justify-center hover:scale-110 active:scale-95 hover:bg-gold-base hover:text-maroon-base transition-all shadow-xs border border-green-light/40">
+                        <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                            <path
+                                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                        </svg>
+                    </a>
+                    <a href="mailto:ttbdo@upcebu.edu.ph" aria-label="Email"
+                        class="w-8 h-8 rounded-full bg-green-base text-white flex items-center justify-center hover:scale-110 active:scale-95 hover:bg-gold-base hover:text-maroon-base transition-all shadow-xs border border-green-light/40">
+                        <svg class="w-3.5 h-3.5 fill-none stroke-current" viewBox="0 0 24 24" stroke-width="2"
+                            aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                        </svg>
+                    </a>
+                </div>
+
+            </div>
+
+            <!-- Footer Bottom with Official Motto -->
+            <div
+                class="border-t border-white/15 pt-5 mt-2 flex flex-col sm:flex-row items-center justify-between gap-2.5 text-[9.5px] sm:text-[10px] text-cream-bg/75 text-center sm:text-left">
+                <span>
+                    © 2025 University of the Philippines Cebu. All rights reserved.
+                </span>
+                <span class="italic text-gold-base font-medium">
+                    Nurtured to Create • Inspired to Innovate • Destined to Serve
+                </span>
+            </div>
+
+        </div>
+    </footer>
+
+
+
+    <!-- Floating Back to Top Button with Smooth Scroll -->
+    <button id="back-to-top-btn" type="button" aria-label="Scroll back to top" class="group">
+        <svg class="w-5 h-5 transition-transform group-hover:-translate-y-0.5" fill="none" stroke="currentColor"
+            viewBox="0 0 24 24" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+        </svg>
+    </button>
+
+    <!-- =========================================================
+         ANIMATED SEARCH MODAL (Powered by search-data.json)
+    ========================================================== -->
+    <div id="search-modal" class="fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm flex items-start justify-center pt-12 sm:pt-20 px-3 sm:px-4" role="dialog" aria-modal="true" aria-labelledby="search-modal-input">
+        <div class="search-dialog-card w-full max-w-2xl bg-white rounded-2xl shadow-2xl border border-border-card overflow-hidden flex flex-col max-h-[85vh]">
+            <!-- Search Input Header -->
+            <div class="p-3.5 sm:p-4 border-b border-border-card/80 flex items-center gap-3 bg-cream-soft">
+                <div class="w-9 h-9 rounded-xl bg-maroon-base/10 text-maroon-base flex items-center justify-center shrink-0">
+                    <svg class="w-5 h-5 text-maroon-base" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                    </svg>
+                </div>
+                <input id="search-modal-input" type="search" placeholder="Search programs, news, IP, events, office location..." autocomplete="off"
+                    class="flex-1 bg-transparent text-ink-base placeholder:text-ink-muted/70 text-sm sm:text-base focus:outline-none font-medium" />
+                <button id="search-modal-close" type="button" aria-label="Close search"
+                    class="p-1.5 rounded-lg text-ink-muted hover:text-maroon-base hover:bg-black/5 transition-colors cursor-pointer">
+                    <kbd class="hidden sm:inline-block text-[10px] font-mono px-1.5 py-0.5 rounded bg-white border border-border-card text-ink-muted shadow-2xs mr-1">ESC</kbd>
+                    <svg class="w-5 h-5 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Quick Filter Chips -->
+            <div class="px-3.5 sm:px-4 py-2 border-b border-border-card/60 bg-white flex items-center gap-1.5 overflow-x-auto text-[11px] font-medium text-ink-muted">
+                <span class="text-[10px] uppercase font-bold text-ink-muted/60 tracking-wider mr-1 shrink-0">Filter:</span>
+                <button type="button" data-filter="all" class="search-filter-chip px-2.5 py-1 rounded-full bg-maroon-base text-white hover:opacity-95 transition-all shrink-0 cursor-pointer">All</button>
+                <button type="button" data-filter="Programs" class="search-filter-chip px-2.5 py-1 rounded-full bg-cream-bg text-ink-base hover:bg-gold-base/20 transition-all shrink-0 cursor-pointer">Programs</button>
+                <button type="button" data-filter="News" class="search-filter-chip px-2.5 py-1 rounded-full bg-cream-bg text-ink-base hover:bg-gold-base/20 transition-all shrink-0 cursor-pointer">News</button>
+                <button type="button" data-filter="Events" class="search-filter-chip px-2.5 py-1 rounded-full bg-cream-bg text-ink-base hover:bg-gold-base/20 transition-all shrink-0 cursor-pointer">Events</button>
+                <button type="button" data-filter="About Us" class="search-filter-chip px-2.5 py-1 rounded-full bg-cream-bg text-ink-base hover:bg-gold-base/20 transition-all shrink-0 cursor-pointer">About</button>
+                <button type="button" data-filter="Contact" class="search-filter-chip px-2.5 py-1 rounded-full bg-cream-bg text-ink-base hover:bg-gold-base/20 transition-all shrink-0 cursor-pointer">Location</button>
+            </div>
+
+            <!-- Search Results Scroll Area -->
+            <div id="search-results-list" class="p-3 sm:p-4 overflow-y-auto space-y-1.5 min-h-[160px] max-h-[50vh]">
+                <!-- Populated dynamically from JSON -->
+            </div>
+
+            <!-- Search Modal Footer -->
+            <div class="px-4 py-2.5 bg-cream-soft border-t border-border-card/80 flex items-center justify-between text-[11px] text-ink-muted">
+                <span id="search-results-count" class="font-medium">Loading search index...</span>
+                <div class="flex items-center gap-3 text-[10px] hidden sm:flex">
+                    <span><kbd class="px-1 py-0.5 bg-white border border-border-card rounded shadow-2xs">↑</kbd> <kbd class="px-1 py-0.5 bg-white border border-border-card rounded shadow-2xs">↓</kbd> Navigate</span>
+                    <span><kbd class="px-1 py-0.5 bg-white border border-border-card rounded shadow-2xs">↵</kbd> Select</span>
+                    <span><kbd class="px-1 py-0.5 bg-white border border-border-card rounded shadow-2xs">ESC</kbd> Close</span>
+                </div>
+            </div>
+        </div>
+    <!-- =========================================================
+         ARTICLE VIEWER MODAL (Popup Article Reader)
+    ========================================================== -->
+    <div id="article-modal" class="fixed inset-0 z-[110] bg-black/65 backdrop-blur-sm flex items-center justify-center p-3 sm:p-6 opacity-0 pointer-events-none transition-all duration-300" role="dialog" aria-modal="true" aria-labelledby="article-modal-title">
+        <div class="article-dialog-card w-full max-w-3xl bg-white rounded-2xl sm:rounded-3xl shadow-2xl border border-border-card overflow-hidden flex flex-col max-h-[90vh] transform scale-95 transition-all duration-300">
+            <!-- Header Bar -->
+            <div class="p-4 sm:p-5 border-b border-border-card/80 bg-cream-soft flex items-center justify-between gap-4">
+                <div class="flex flex-wrap items-center gap-2">
+                    <span id="article-modal-badge" class="bg-maroon-base text-white text-[10px] font-bold tracking-wider uppercase px-2.5 py-0.5 rounded-full">
+                        FEATURED STORY
+                    </span>
+                    <span id="article-modal-category" class="bg-green-base/10 text-green-base text-[10px] font-bold tracking-wider uppercase px-2.5 py-0.5 rounded-full">
+                        PARTNERSHIP
+                    </span>
+                    <span id="article-modal-date" class="text-[11px] text-ink-muted">
+                        April 15, 2025
+                    </span>
+                </div>
+                <button id="article-modal-close" type="button" aria-label="Close article viewer"
+                    class="p-1.5 rounded-lg text-ink-muted hover:text-maroon-base hover:bg-black/5 transition-colors cursor-pointer shrink-0">
+                    <kbd class="hidden sm:inline-block text-[10px] font-mono px-1.5 py-0.5 rounded bg-white border border-border-card text-ink-muted shadow-2xs mr-1">ESC</kbd>
+                    <svg class="w-5 h-5 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Scrollable Article Body -->
+            <div class="p-6 sm:p-8 overflow-y-auto space-y-6">
+                <div>
+                    <h2 id="article-modal-title" class="font-serif text-2xl sm:text-3xl font-bold text-maroon-base leading-snug tracking-tight">
+                        Article Title
+                    </h2>
+                    <div class="flex items-center gap-2 mt-2.5 text-xs text-ink-muted">
+                        <span class="inline-block w-2 h-2 rounded-full bg-gold-base"></span>
+                        <span>By <strong id="article-modal-author" class="font-semibold text-ink-base">TTBDO Media Communications</strong></span>
+                    </div>
+                </div>
+
+                <div id="article-modal-metrics" class="grid grid-cols-1 sm:grid-cols-3 gap-3 p-3.5 bg-cream-soft rounded-xl border border-border-card text-center hidden">
+                    <div id="article-metric-startups-container" class="hidden">
+                        <span id="article-modal-startups" class="block text-base sm:text-lg font-bold text-maroon-base"></span>
+                        <span class="text-[10px] text-ink-muted uppercase font-semibold">Startups Assisted</span>
+                    </div>
+                    <div id="article-metric-meeting-container" class="hidden">
+                        <span id="article-modal-meeting" class="block text-base sm:text-lg font-bold text-maroon-base"></span>
+                        <span class="text-[10px] text-ink-muted uppercase font-semibold">Meeting Focus</span>
+                    </div>
+                    <div id="article-metric-region-container" class="hidden">
+                        <span id="article-modal-region" class="block text-base sm:text-lg font-bold text-maroon-base"></span>
+                        <span class="text-[10px] text-ink-muted uppercase font-semibold">Partner / Region</span>
+                    </div>
+                </div>
+
+                <div class="p-4 sm:p-5 rounded-xl bg-cream-soft border-l-4 border-gold-base text-xs sm:text-sm font-medium text-ink-base leading-relaxed">
+                    <p id="article-modal-summary" class="m-0"></p>
+                </div>
+
+                <div id="article-modal-content" class="text-xs sm:text-sm leading-relaxed text-ink-base space-y-3.5 border-t border-border-card/50 pt-5">
+                </div>
+            </div>
+
+            <!-- Footer Bar -->
+            <div class="p-4 sm:p-5 bg-cream-soft border-t border-border-card/80 flex flex-wrap items-center justify-between gap-3 text-xs text-ink-muted">
+                <span class="text-[11px] hidden sm:inline">Technology Transfer &amp; Business Development Office &bull; UP Cebu</span>
+                <div class="flex items-center gap-2.5 ml-auto">
+                    <button type="button" id="article-modal-share-btn"
+                        class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-border-card hover:bg-cream-bg text-ink-base font-semibold text-xs transition-colors cursor-pointer">
+                        <svg class="w-3.5 h-3.5 text-gold-base" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z" />
+                        </svg>
+                        <span>Copy Link</span>
+                    </button>
+                    <button type="button" onclick="closeArticleModal()"
+                        class="px-4 py-1.5 rounded-lg bg-maroon-base hover:bg-maroon-hover text-white text-xs font-bold transition-colors cursor-pointer">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Static News Store for index.html preview -->
+    <script>
+    window.TTBDO_NEWS_STORE = [
+        {
+            id: 1,
+            title: "UP Cebu and DOST Regional Office VII Formalize Regional Innovation Hub Partnership",
+            category: "PARTNERSHIP",
+            badge_label: "FEATURED STORY",
+            published_date: "2025-04-15",
+            author: "TTBDO Media Communications",
+            summary: "The University of the Philippines Cebu, through the Technology Transfer and Business Development Office (TTBDO), collaborates with the Department of Science and Technology (DOST-VII) to establish dedicated prototyping and acceleration tracks for faculty and student spin-offs throughout Central Visayas.",
+            content: "<p>The University of the Philippines Cebu, through the Technology Transfer and Business Development Office (TTBDO), collaborates with the Department of Science and Technology (DOST-VII) to establish dedicated prototyping and acceleration tracks for faculty and student spin-offs throughout Central Visayas.</p><p>This initiative leverages modern equipment, research mentorship, and acceleration tracks to empower regional innovators across Cebu and neighboring provinces.</p>",
+            startups_supported: "12 Startups Assisted",
+            meeting_focus: "Innovation Hub & Prototyping Track",
+            coverage_area: "Cebu & Region VII"
+        },
+        {
+            id: 2,
+            title: "2025 Research & Commercialization Grants Open for Faculty Teams",
+            category: "CALL FOR PROPOSALS",
+            badge_label: "GRANT CALL",
+            published_date: "2025-04-08",
+            author: "TTBDO Grants Secretariat",
+            summary: "Faculty and research associates may submit disclosure abstracts for competitive seed validation funding under the Innovation Acceleration Program.",
+            content: "<p>Faculty and research associates may submit disclosure abstracts for competitive seed validation funding under the Innovation Acceleration Program.</p><p>Selected proposals receive direct access to industry mentorship, prototyping laboratories, and legal counseling for technology commercialization.</p>",
+            startups_supported: "Faculty Cohorts",
+            meeting_focus: "Commercialization Grant Calls",
+            coverage_area: "All UP Cebu Campuses"
+        },
+        {
+            id: 3,
+            title: "Five UP Cebu Innovations Secure Official IPOPHL Certificates",
+            category: "PATENT & IP",
+            badge_label: "MILESTONE",
+            published_date: "2025-03-29",
+            author: "TTBDO IP Protection Unit",
+            summary: "Software technologies, utility models, and novel creative designs developed by student and faculty researchers officially awarded IP certificates.",
+            content: "<p>The Intellectual Property Office of the Philippines (IPOPHL) has officially awarded utility model and industrial design protection to research outputs from the Department of Computer Science and School of Management.</p>",
+            startups_supported: "5 Inventions",
+            meeting_focus: "IPOPHL Registration",
+            coverage_area: "National IP Docket"
+        },
+        {
+            id: 4,
+            title: "TTBDO Conducts Hands-On Prior Art Patent Search Workshop",
+            category: "CAPACITY BUILDING",
+            badge_label: "TRAINING",
+            published_date: "2025-03-18",
+            author: "TTBDO Training Committee",
+            summary: "Faculty and research assistants attended an intensive session on navigating international patent databases and properly disclosing inventions.",
+            content: "<p>Over 45 regional educators and laboratory coordinators completed the intensive two-day patent landscape workshop hosted at the UP Cebu Performing Arts Hall.</p>",
+            startups_supported: "45+ Innovators",
+            meeting_focus: "Prior-Art & Patent Landscapes",
+            coverage_area: "Central Visayas HEIs"
+        }
+    ];
+    </script>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>

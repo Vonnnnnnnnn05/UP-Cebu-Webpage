@@ -8,11 +8,11 @@
         content="Technology Transfer and Business Development Office - University of the Philippines Cebu">
     <title>UP Cebu TTBDO</title>
 
-    <!-- Google Fonts -->
+    <!-- Google Fonts: UP Authorized Typefaces (Arsenal, Source Serif 4, Libre Baskerville, Source Sans 3, Style Script, MonteCarlo) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Arsenal:ital,wght@0,400;0,700;1,400;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=MonteCarlo&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,700&family=Style+Script&display=swap"
         rel="stylesheet">
 
     <!-- Tailwind CSS v4 Play CDN -->
@@ -49,9 +49,20 @@
             --color-ink-subtle: #4B4640;
             --color-border-card: #DDD2C2;
 
-            /* Official Typography: Optima for Headings, Palatino for Official, Helvetica/Avenir for Digital */
-            --font-serif: "Optima", "Palatino Linotype", "Palatino", "Book Antiqua", Georgia, serif;
-            --font-sans: "Helvetica Neue", Helvetica, "Avenir Next", Avenir, "DM Sans", Arial, sans-serif;
+            /* UP Authorized Typeface System:
+               - Titles & Headings: Arsenal / Libertinus Sans
+               - Official Body Text: Source Serif 4 / Libre Baskerville
+               - Unofficial Body Text & Materials: Source Sans 3 / Open Sans / Roboto
+               - Unofficial Headings & Materials: Style Script / MonteCarlo
+               - Official Logotype: Padayon / Arsenal
+            */
+            --font-heading: "Arsenal", "Libertinus Sans", sans-serif;
+            --font-title: "Arsenal", "Libertinus Sans", sans-serif;
+            --font-serif: "Arsenal", "Libertinus Sans", sans-serif;
+            --font-sans: "Source Sans 3", "Open Sans", Roboto, sans-serif;
+            --font-official-serif: "Source Serif 4", "Libre Baskerville", Georgia, serif;
+            --font-script: "Style Script", "MonteCarlo", cursive;
+            --font-logotype: "Padayon", "Arsenal", sans-serif;
         }
 
         html {
@@ -65,6 +76,23 @@
             background-color: var(--color-cream-bg);
             color: var(--color-ink-base);
             overflow-x: clip;
+        }
+
+        /* UP Authorized Typography Hierarchy */
+        h1, h2, h3, h4, h5, h6, .font-heading, .font-title, .font-serif {
+            font-family: var(--font-heading);
+        }
+
+        .font-official-body, .official-body, .font-source-serif, .font-libre-baskerville {
+            font-family: var(--font-official-serif) !important;
+        }
+
+        .font-script, .font-style-script, .font-montecarlo {
+            font-family: var(--font-script) !important;
+        }
+
+        .font-logotype, .official-logotype {
+            font-family: var(--font-logotype) !important;
         }
 
         .brand-mark-ring::after {
@@ -868,8 +896,8 @@
                                 <span class="text-[11px] text-ink-muted">April 15, 2025</span>
                             </div>
 
-                            <h3
-                                class="font-serif text-xl sm:text-2xl font-bold text-maroon-base leading-snug group-hover:text-green-base transition-colors mb-3">
+                            <h3 onclick="openArticleModal(1)"
+                                class="font-serif text-xl sm:text-2xl font-bold text-maroon-base leading-snug group-hover:text-green-base transition-colors mb-3 cursor-pointer">
                                 UP Cebu and DOST Regional Office VII Formalize Regional Innovation Hub Partnership
                             </h3>
 
@@ -879,30 +907,30 @@
 
                             <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 p-3.5 bg-cream-soft rounded-xl border border-border-card text-center mb-6">
                                 <div>
-                                    <span class="block text-base sm:text-lg font-bold text-maroon-base">₱5.2M</span>
-                                    <span class="text-[10px] text-ink-muted uppercase font-semibold">Prototyping Fund</span>
+                                    <span class="block text-base sm:text-lg font-bold text-maroon-base">12</span>
+                                    <span class="text-[10px] text-ink-muted uppercase font-semibold">Startups Assisted</span>
                                 </div>
                                 <div>
-                                    <span class="block text-base sm:text-lg font-bold text-maroon-base">12</span>
-                                    <span class="text-[10px] text-ink-muted uppercase font-semibold">Startups Supported</span>
+                                    <span class="block text-base sm:text-lg font-bold text-maroon-base">Innovation Hub</span>
+                                    <span class="text-[10px] text-ink-muted uppercase font-semibold">Meeting Focus</span>
                                 </div>
                                 <div class="col-span-2 sm:col-span-1">
-                                    <span class="block text-base sm:text-lg font-bold text-maroon-base">Regional</span>
-                                    <span class="text-[10px] text-ink-muted uppercase font-semibold">Cebu &amp; Region VII</span>
+                                    <span class="block text-base sm:text-lg font-bold text-maroon-base">Central Visayas</span>
+                                    <span class="text-[10px] text-ink-muted uppercase font-semibold">Partner / Region</span>
                                 </div>
                             </div>
                         </div>
 
                         <div class="px-6 sm:px-8 pb-6 sm:pb-8 pt-2 border-t border-border-card/60 flex items-center justify-between">
                             <span class="text-[11px] font-medium text-ink-muted">By TTBDO Media Communications</span>
-                            <a href="#contact"
-                                class="inline-flex items-center gap-1.5 text-xs font-bold text-maroon-base hover:text-green-base transition-colors group/link">
-                                <span>Read Full Report</span>
+                            <button type="button" onclick="openArticleModal(1)"
+                                class="inline-flex items-center gap-1.5 text-xs font-bold text-maroon-base hover:text-green-base transition-colors group/link cursor-pointer">
+                                <span>View Article</span>
                                 <svg class="w-3.5 h-3.5 text-gold-base transition-transform group-hover/link:translate-x-1"
                                     fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
                                 </svg>
-                            </a>
+                            </button>
                         </div>
                     </article>
 
@@ -910,56 +938,83 @@
                     <div class="lg:col-span-5 flex flex-col gap-4">
                         <!-- News Card 1 -->
                         <article
-                            class="bg-white border border-border-card rounded-xl p-5 shadow-xs hover:border-maroon-base/40 hover:-translate-y-0.5 transition-all duration-200 reveal-on-scroll stagger-2">
-                            <div class="flex items-center justify-between gap-2 mb-2">
-                                <span
-                                    class="inline-block bg-gold-light text-gold-deep text-[9.5px] font-bold px-2 py-0.5 rounded tracking-wider uppercase">
-                                    CALL FOR PROPOSALS
-                                </span>
-                                <span class="text-[10.5px] text-ink-muted">APR 08, 2025</span>
+                            onclick="openArticleModal(2)"
+                            class="bg-white border border-border-card rounded-xl p-5 shadow-xs hover:border-maroon-base/40 hover:-translate-y-0.5 transition-all duration-200 reveal-on-scroll stagger-2 cursor-pointer group/item flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between gap-2 mb-2">
+                                    <span
+                                        class="inline-block bg-gold-light text-gold-deep text-[9.5px] font-bold px-2 py-0.5 rounded tracking-wider uppercase">
+                                        CALL FOR PROPOSALS
+                                    </span>
+                                    <span class="text-[10.5px] text-ink-muted">APR 08, 2025</span>
+                                </div>
+                                <h4 class="font-serif text-[15px] font-bold text-maroon-base leading-snug group-hover/item:text-green-base transition-colors mb-1.5">
+                                    2025 Research &amp; Commercialization Grants Open for Faculty Teams
+                                </h4>
+                                <p class="text-[11.5px] text-ink-muted leading-relaxed line-clamp-2 mb-3">
+                                    UP Cebu TTBDO is now accepting applications for seed commercialization grants aimed at validating proof-of-concept for laboratory inventions.
+                                </p>
                             </div>
-                            <h4 class="font-serif text-[15px] font-bold text-maroon-base leading-snug hover:text-green-base transition-colors mb-1.5">
-                                <a href="#contact">2025 Research &amp; Commercialization Grants Open for Faculty Teams</a>
-                            </h4>
-                            <p class="text-[11.5px] text-ink-muted leading-relaxed line-clamp-2">
-                                UP Cebu TTBDO is now accepting applications for seed commercialization grants aimed at validating proof-of-concept for laboratory inventions.
-                            </p>
+                            <div class="flex items-center justify-between pt-2.5 border-t border-border-card/40 text-[11px] font-bold text-maroon-base group-hover/item:text-green-base transition-colors">
+                                <span>View Article</span>
+                                <svg class="w-3.5 h-3.5 text-gold-base transition-transform group-hover/item:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                                </svg>
+                            </div>
                         </article>
 
                         <!-- News Card 2 -->
                         <article
-                            class="bg-white border border-border-card rounded-xl p-5 shadow-xs hover:border-maroon-base/40 hover:-translate-y-0.5 transition-all duration-200 reveal-on-scroll stagger-3">
-                            <div class="flex items-center justify-between gap-2 mb-2">
-                                <span
-                                    class="inline-block bg-green-base/10 text-green-base text-[9.5px] font-bold px-2 py-0.5 rounded tracking-wider uppercase">
-                                    IP REGISTRATIONS
-                                </span>
-                                <span class="text-[10.5px] text-ink-muted">MAR 29, 2025</span>
+                            onclick="openArticleModal(3)"
+                            class="bg-white border border-border-card rounded-xl p-5 shadow-xs hover:border-maroon-base/40 hover:-translate-y-0.5 transition-all duration-200 reveal-on-scroll stagger-3 cursor-pointer group/item flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between gap-2 mb-2">
+                                    <span
+                                        class="inline-block bg-green-base/10 text-green-base text-[9.5px] font-bold px-2 py-0.5 rounded tracking-wider uppercase">
+                                        IP REGISTRATIONS
+                                    </span>
+                                    <span class="text-[10.5px] text-ink-muted">MAR 29, 2025</span>
+                                </div>
+                                <h4 class="font-serif text-[15px] font-bold text-maroon-base leading-snug group-hover/item:text-green-base transition-colors mb-1.5">
+                                    Five UP Cebu Innovations Secure Official IPOPHL Certificates
+                                </h4>
+                                <p class="text-[11.5px] text-ink-muted leading-relaxed line-clamp-2 mb-3">
+                                    Software technologies, utility models, and novel creative designs developed by student and faculty researchers officially awarded IP certificates.
+                                </p>
                             </div>
-                            <h4 class="font-serif text-[15px] font-bold text-maroon-base leading-snug hover:text-green-base transition-colors mb-1.5">
-                                <a href="#contact">Five UP Cebu Innovations Secure Official IPOPHL Certificates</a>
-                            </h4>
-                            <p class="text-[11.5px] text-ink-muted leading-relaxed line-clamp-2">
-                                Software technologies, utility models, and novel creative designs developed by student and faculty researchers officially awarded IP certificates.
-                            </p>
+                            <div class="flex items-center justify-between pt-2.5 border-t border-border-card/40 text-[11px] font-bold text-maroon-base group-hover/item:text-green-base transition-colors">
+                                <span>View Article</span>
+                                <svg class="w-3.5 h-3.5 text-gold-base transition-transform group-hover/item:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                                </svg>
+                            </div>
                         </article>
 
                         <!-- News Card 3 -->
                         <article
-                            class="bg-white border border-border-card rounded-xl p-5 shadow-xs hover:border-maroon-base/40 hover:-translate-y-0.5 transition-all duration-200 reveal-on-scroll stagger-4">
-                            <div class="flex items-center justify-between gap-2 mb-2">
-                                <span
-                                    class="inline-block bg-maroon-base/10 text-maroon-base text-[9.5px] font-bold px-2 py-0.5 rounded tracking-wider uppercase">
-                                    CAPACITY BUILDING
-                                </span>
-                                <span class="text-[10.5px] text-ink-muted">MAR 18, 2025</span>
+                            onclick="openArticleModal(4)"
+                            class="bg-white border border-border-card rounded-xl p-5 shadow-xs hover:border-maroon-base/40 hover:-translate-y-0.5 transition-all duration-200 reveal-on-scroll stagger-4 cursor-pointer group/item flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between gap-2 mb-2">
+                                    <span
+                                        class="inline-block bg-maroon-base/10 text-maroon-base text-[9.5px] font-bold px-2 py-0.5 rounded tracking-wider uppercase">
+                                        CAPACITY BUILDING
+                                    </span>
+                                    <span class="text-[10.5px] text-ink-muted">MAR 18, 2025</span>
+                                </div>
+                                <h4 class="font-serif text-[15px] font-bold text-maroon-base leading-snug group-hover/item:text-green-base transition-colors mb-1.5">
+                                    TTBDO Conducts Hands-On Prior Art Patent Search Workshop
+                                </h4>
+                                <p class="text-[11.5px] text-ink-muted leading-relaxed line-clamp-2 mb-3">
+                                    Faculty and research assistants attended an intensive session on navigating international patent databases and properly disclosing inventions.
+                                </p>
                             </div>
-                            <h4 class="font-serif text-[15px] font-bold text-maroon-base leading-snug hover:text-green-base transition-colors mb-1.5">
-                                <a href="#contact">TTBDO Conducts Hands-On Prior Art Patent Search Workshop</a>
-                            </h4>
-                            <p class="text-[11.5px] text-ink-muted leading-relaxed line-clamp-2">
-                                Faculty and research assistants attended an intensive session on navigating international patent databases and properly disclosing inventions.
-                            </p>
+                            <div class="flex items-center justify-between pt-2.5 border-t border-border-card/40 text-[11px] font-bold text-maroon-base group-hover/item:text-green-base transition-colors">
+                                <span>View Article</span>
+                                <svg class="w-3.5 h-3.5 text-gold-base transition-transform group-hover/item:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                                </svg>
+                            </div>
                         </article>
                     </div>
                 </div>
@@ -2024,7 +2079,145 @@
                 </div>
             </div>
         </div>
+    <!-- =========================================================
+         ARTICLE VIEWER MODAL (Popup Article Reader)
+    ========================================================== -->
+    <div id="article-modal" class="fixed inset-0 z-[110] bg-black/65 backdrop-blur-sm flex items-center justify-center p-3 sm:p-6 opacity-0 pointer-events-none transition-all duration-300" role="dialog" aria-modal="true" aria-labelledby="article-modal-title">
+        <div class="article-dialog-card w-full max-w-3xl bg-white rounded-2xl sm:rounded-3xl shadow-2xl border border-border-card overflow-hidden flex flex-col max-h-[90vh] transform scale-95 transition-all duration-300">
+            <!-- Header Bar -->
+            <div class="p-4 sm:p-5 border-b border-border-card/80 bg-cream-soft flex items-center justify-between gap-4">
+                <div class="flex flex-wrap items-center gap-2">
+                    <span id="article-modal-badge" class="bg-maroon-base text-white text-[10px] font-bold tracking-wider uppercase px-2.5 py-0.5 rounded-full">
+                        FEATURED STORY
+                    </span>
+                    <span id="article-modal-category" class="bg-green-base/10 text-green-base text-[10px] font-bold tracking-wider uppercase px-2.5 py-0.5 rounded-full">
+                        PARTNERSHIP
+                    </span>
+                    <span id="article-modal-date" class="text-[11px] text-ink-muted">
+                        April 15, 2025
+                    </span>
+                </div>
+                <button id="article-modal-close" type="button" aria-label="Close article viewer"
+                    class="p-1.5 rounded-lg text-ink-muted hover:text-maroon-base hover:bg-black/5 transition-colors cursor-pointer shrink-0">
+                    <kbd class="hidden sm:inline-block text-[10px] font-mono px-1.5 py-0.5 rounded bg-white border border-border-card text-ink-muted shadow-2xs mr-1">ESC</kbd>
+                    <svg class="w-5 h-5 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Scrollable Article Body -->
+            <div class="p-6 sm:p-8 overflow-y-auto space-y-6">
+                <div>
+                    <h2 id="article-modal-title" class="font-serif text-2xl sm:text-3xl font-bold text-maroon-base leading-snug tracking-tight">
+                        Article Title
+                    </h2>
+                    <div class="flex items-center gap-2 mt-2.5 text-xs text-ink-muted">
+                        <span class="inline-block w-2 h-2 rounded-full bg-gold-base"></span>
+                        <span>By <strong id="article-modal-author" class="font-semibold text-ink-base">TTBDO Media Communications</strong></span>
+                    </div>
+                </div>
+
+                <div id="article-modal-metrics" class="grid grid-cols-1 sm:grid-cols-3 gap-3 p-3.5 bg-cream-soft rounded-xl border border-border-card text-center hidden">
+                    <div id="article-metric-startups-container" class="hidden">
+                        <span id="article-modal-startups" class="block text-base sm:text-lg font-bold text-maroon-base"></span>
+                        <span class="text-[10px] text-ink-muted uppercase font-semibold">Startups Assisted</span>
+                    </div>
+                    <div id="article-metric-meeting-container" class="hidden">
+                        <span id="article-modal-meeting" class="block text-base sm:text-lg font-bold text-maroon-base"></span>
+                        <span class="text-[10px] text-ink-muted uppercase font-semibold">Meeting Focus</span>
+                    </div>
+                    <div id="article-metric-region-container" class="hidden">
+                        <span id="article-modal-region" class="block text-base sm:text-lg font-bold text-maroon-base"></span>
+                        <span class="text-[10px] text-ink-muted uppercase font-semibold">Partner / Region</span>
+                    </div>
+                </div>
+
+                <div class="p-4 sm:p-5 rounded-xl bg-cream-soft border-l-4 border-gold-base text-xs sm:text-sm font-medium text-ink-base leading-relaxed">
+                    <p id="article-modal-summary" class="m-0"></p>
+                </div>
+
+                <div id="article-modal-content" class="text-xs sm:text-sm leading-relaxed text-ink-base space-y-3.5 border-t border-border-card/50 pt-5">
+                </div>
+            </div>
+
+            <!-- Footer Bar -->
+            <div class="p-4 sm:p-5 bg-cream-soft border-t border-border-card/80 flex flex-wrap items-center justify-between gap-3 text-xs text-ink-muted">
+                <span class="text-[11px] hidden sm:inline">Technology Transfer &amp; Business Development Office &bull; UP Cebu</span>
+                <div class="flex items-center gap-2.5 ml-auto">
+                    <button type="button" id="article-modal-share-btn"
+                        class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-border-card hover:bg-cream-bg text-ink-base font-semibold text-xs transition-colors cursor-pointer">
+                        <svg class="w-3.5 h-3.5 text-gold-base" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z" />
+                        </svg>
+                        <span>Copy Link</span>
+                    </button>
+                    <button type="button" onclick="closeArticleModal()"
+                        class="px-4 py-1.5 rounded-lg bg-maroon-base hover:bg-maroon-hover text-white text-xs font-bold transition-colors cursor-pointer">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <!-- Static News Store for index.html preview -->
+    <script>
+    window.TTBDO_NEWS_STORE = [
+        {
+            id: 1,
+            title: "UP Cebu and DOST Regional Office VII Formalize Regional Innovation Hub Partnership",
+            category: "PARTNERSHIP",
+            badge_label: "FEATURED STORY",
+            published_date: "2025-04-15",
+            author: "TTBDO Media Communications",
+            summary: "The University of the Philippines Cebu, through the Technology Transfer and Business Development Office (TTBDO), collaborates with the Department of Science and Technology (DOST-VII) to establish dedicated prototyping and acceleration tracks for faculty and student spin-offs throughout Central Visayas.",
+            content: "<p>The University of the Philippines Cebu, through the Technology Transfer and Business Development Office (TTBDO), collaborates with the Department of Science and Technology (DOST-VII) to establish dedicated prototyping and acceleration tracks for faculty and student spin-offs throughout Central Visayas.</p><p>This initiative leverages modern equipment, research mentorship, and acceleration tracks to empower regional innovators across Cebu and neighboring provinces.</p>",
+            startups_supported: "12 Startups Assisted",
+            meeting_focus: "Innovation Hub & Prototyping Track",
+            coverage_area: "Cebu & Region VII"
+        },
+        {
+            id: 2,
+            title: "2025 Research & Commercialization Grants Open for Faculty Teams",
+            category: "CALL FOR PROPOSALS",
+            badge_label: "GRANT CALL",
+            published_date: "2025-04-08",
+            author: "TTBDO Grants Secretariat",
+            summary: "Faculty and research associates may submit disclosure abstracts for competitive seed validation funding under the Innovation Acceleration Program.",
+            content: "<p>Faculty and research associates may submit disclosure abstracts for competitive seed validation funding under the Innovation Acceleration Program.</p><p>Selected proposals receive direct access to industry mentorship, prototyping laboratories, and legal counseling for technology commercialization.</p>",
+            startups_supported: "Faculty Cohorts",
+            meeting_focus: "Commercialization Grant Calls",
+            coverage_area: "All UP Cebu Campuses"
+        },
+        {
+            id: 3,
+            title: "Five UP Cebu Innovations Secure Official IPOPHL Certificates",
+            category: "PATENT & IP",
+            badge_label: "MILESTONE",
+            published_date: "2025-03-29",
+            author: "TTBDO IP Protection Unit",
+            summary: "Software technologies, utility models, and novel creative designs developed by student and faculty researchers officially awarded IP certificates.",
+            content: "<p>The Intellectual Property Office of the Philippines (IPOPHL) has officially awarded utility model and industrial design protection to research outputs from the Department of Computer Science and School of Management.</p>",
+            startups_supported: "5 Inventions",
+            meeting_focus: "IPOPHL Registration",
+            coverage_area: "National IP Docket"
+        },
+        {
+            id: 4,
+            title: "TTBDO Conducts Hands-On Prior Art Patent Search Workshop",
+            category: "CAPACITY BUILDING",
+            badge_label: "TRAINING",
+            published_date: "2025-03-18",
+            author: "TTBDO Training Committee",
+            summary: "Faculty and research assistants attended an intensive session on navigating international patent databases and properly disclosing inventions.",
+            content: "<p>Over 45 regional educators and laboratory coordinators completed the intensive two-day patent landscape workshop hosted at the UP Cebu Performing Arts Hall.</p>",
+            startups_supported: "45+ Innovators",
+            meeting_focus: "Prior-Art & Patent Landscapes",
+            coverage_area: "Central Visayas HEIs"
+        }
+    ];
+    </script>
 
     <!-- JavaScript -->
     <script src="script.js"></script>
