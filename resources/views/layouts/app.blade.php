@@ -175,6 +175,11 @@
             font-family: var(--font-sans) !important;
         }
 
+        /* Ensure crisp white text on buttons and dark elements */
+        .text-white, a.text-white, a.text-white span, button.text-white {
+            color: #ffffff !important;
+        }
+
         .brand-mark-ring::after {
             content: "";
             position: absolute;

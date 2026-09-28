@@ -222,6 +222,11 @@ h1, h2, h3, h4, h5, h6, .font-heading, .font-title, .font-serif {
   font-family: var(--font-logotype) !important;
 }
 
+/* Ensure crisp white text on buttons and dark elements */
+.text-white, a.text-white, a.text-white span, button.text-white {
+  color: #ffffff !important;
+}
+
 /* Custom brand insignia rings */
 .brand-mark-ring::after {
   content: "";

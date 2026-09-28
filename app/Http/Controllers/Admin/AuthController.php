@@ -75,6 +75,6 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('admin.login')->with('success_message', 'You have been safely signed out.');
+        return redirect()->route('home')->with('success_message', 'You have been safely signed out.');
     }
 }

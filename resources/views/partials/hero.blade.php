@@ -29,11 +29,11 @@
             </span>
         </div>
 
-        <!-- Headline: White + Gold #D4A017 -->
+        <!-- Headline: Clean Unified White -->
         <h1
             class="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-bold leading-[1.06] tracking-tight my-2.5 sm:my-3 text-white drop-shadow-xs">
             Your Idea,<br>
-            <span class="text-gold-base">Our Dedication.</span>
+            <span class="text-white">Our Dedication.</span>
         </h1>
 
         <p
