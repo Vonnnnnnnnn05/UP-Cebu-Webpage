@@ -6,6 +6,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Admin Portal') | UP Cebu TTBDO</title>
 
+    <!-- Favicon (Default Laravel Favicon) -->
+    <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
+    <link rel="alternate icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+
     <!-- Google Fonts: UP Authorized Typefaces -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -55,8 +59,10 @@
             --color-green-dark: #002B15;
             --color-gold-base: #D4A017;
             --color-gold-light: #F4E7C0;
+            --color-gold-deep: #8E5E0B;
             --color-cream-bg: #F3EBDD;
             --color-cream-soft: #FBF8F2;
+            --color-border-card: #DDD2C2;
             --color-ink-base: #26231F;
             --color-ink-muted: #5A554D;
             --font-heading: "Arsenal", "Libertinus Sans", sans-serif;
@@ -104,10 +110,25 @@
                     </a>
 
                     @auth('admin')
-                    <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-maroon-base/80 border border-gold-base/30 text-sm">
-                        <span class="w-2.5 h-2.5 rounded-full bg-green-400"></span>
-                        <span class="font-bold text-white">{{ Auth::guard('admin')->user()->full_name }}</span>
-                        <span class="text-xs text-gold-light uppercase tracking-wider hidden sm:inline">({{ Auth::guard('admin')->user()->role }})</span>
+                    @php
+                        $userRole = Auth::guard('admin')->user()->role;
+                        $roleBadge = match($userRole) {
+                            'director' => 'bg-gold-base text-maroon-dark font-black border border-gold-light',
+                            'admin' => 'bg-maroon-light text-white font-bold border border-gold-base/50',
+                            default => 'bg-emerald-700 text-white font-bold border border-emerald-400/40',
+                        };
+                        $roleTitle = match($userRole) {
+                            'director' => 'Director (Reviewer & Feedback)',
+                            'admin' => 'Administrator (Edit & Approvals)',
+                            default => 'Staff (Operations & Content)',
+                        };
+                    @endphp
+                    <div class="flex items-center gap-2 px-3 py-1 rounded-lg bg-maroon-base/90 border border-gold-base/30 text-sm" title="{{ $roleTitle }}">
+                        <span class="w-2.5 h-2.5 rounded-full {{ $userRole === 'director' ? 'bg-gold-base animate-pulse' : ($userRole === 'admin' ? 'bg-amber-400' : 'bg-emerald-400') }}"></span>
+                        <span class="font-bold text-white text-xs sm:text-sm">{{ Auth::guard('admin')->user()->full_name }}</span>
+                        <span class="text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full {{ $roleBadge }}">
+                            {{ strtoupper($userRole) }}
+                        </span>
                     </div>
 
                     <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" class="inline">

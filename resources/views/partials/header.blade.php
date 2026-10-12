@@ -1,4 +1,4 @@
-<header class="bg-maroon-dark text-white border-b-2 border-gold-base sticky top-0 z-50 transition-all duration-300">
+<header class="bg-maroon-dark text-white border-b-2 border-gold-base sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 sm:h-20 lg:h-[100px] flex items-center gap-3 sm:gap-4 lg:gap-6">
 
         <!-- Logo / Brand -->
@@ -180,10 +180,6 @@
                         Logout
                     </button>
                 </form>
-                @else
-                <a class="nav-link whitespace-nowrap shrink-0 hover:text-gold-base" href="{{ route('admin.login') }}">
-                    Login
-                </a>
                 @endif
             </nav>
 
@@ -286,16 +282,6 @@
                     </svg>
                 </button>
             </form>
-        </div>
-        @else
-        <div class="mt-2 pt-2 border-t border-white/15">
-            <a class="mobile-nav-link flex items-center justify-between py-2.5 px-3 rounded-md text-sm whitespace-nowrap"
-                href="{{ route('admin.login') }}">
-                <span>Login</span>
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5 7.5 7.5-7.5 7.5" />
-                </svg>
-            </a>
         </div>
         @endif
     </div>

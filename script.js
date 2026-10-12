@@ -152,6 +152,9 @@ function updateScrollSpy() {
 const progressBar = document.getElementById("scroll-progress-bar");
 const backToTopBtn = document.getElementById("back-to-top-btn");
 
+let lastScrollTop = 0;
+const scrollDeltaThreshold = 8; // Ignore minor finger twitches
+
 function updateScrollUI() {
     const scrollTop = window.scrollY || document.documentElement.scrollTop;
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -162,14 +165,39 @@ function updateScrollUI() {
         progressBar.style.width = `${scrollPercent}%`;
     }
 
-    // Header elevation depth on scroll
+    // Smart navbar: hide on scroll down, reveal on scroll up
     if (headerEl) {
-        if (scrollTop > 20) {
-            headerEl.classList.add("is-scrolled");
+        if (scrollTop <= 50) {
+            // At top of page: always show header
+            headerEl.classList.remove("header-hidden");
+            if (scrollTop > 20) {
+                headerEl.classList.add("is-scrolled");
+            } else {
+                headerEl.classList.remove("is-scrolled");
+            }
         } else {
-            headerEl.classList.remove("is-scrolled");
+            // Further down the page
+            headerEl.classList.add("is-scrolled");
+
+            // Avoid rubber-band scroll bounce at the bottom
+            const isAtBottom = (scrollTop + window.innerHeight) >= (document.documentElement.scrollHeight - 10);
+
+            if (scrollTop > lastScrollTop + scrollDeltaThreshold && !isAtBottom) {
+                // Scrolling DOWN -> Hide navbar
+                if (!headerEl.classList.contains("header-hidden")) {
+                    headerEl.classList.add("header-hidden");
+                    if (typeof closeMobileMenu === "function") {
+                        closeMobileMenu();
+                    }
+                }
+            } else if (scrollTop < lastScrollTop - scrollDeltaThreshold) {
+                // Scrolling UP -> Reveal navbar
+                headerEl.classList.remove("header-hidden");
+            }
         }
     }
+
+    lastScrollTop = Math.max(0, scrollTop);
 
     // Back-to-top button appearance
     if (backToTopBtn) {
@@ -844,3 +872,74 @@ if (articleModalShareBtn) {
         }
     });
 }
+
+/* ============================================================
+   ACTIVITY REGISTRATION & BOOKING MODAL
+============================================================ */
+const bookingModal = document.getElementById("booking-modal");
+const bookingModalClose = document.getElementById("booking-modal-close");
+
+function openBookingModal(defaultCategory = null) {
+    if (!bookingModal) return;
+
+    if (defaultCategory) {
+        const catSelect = bookingModal.querySelector('select[name="inquiry_type"]');
+        if (catSelect) {
+            catSelect.value = defaultCategory;
+        }
+    }
+
+    bookingModal.classList.add("is-open");
+    bookingModal.classList.remove("opacity-0", "pointer-events-none");
+    const dialogCard = bookingModal.querySelector(".booking-dialog-card");
+    if (dialogCard) {
+        dialogCard.classList.remove("scale-95");
+        dialogCard.classList.add("scale-100");
+    }
+    document.body.style.overflow = "hidden";
+
+    const firstInput = bookingModal.querySelector('input[name="full_name"]');
+    if (firstInput) {
+        setTimeout(() => firstInput.focus(), 150);
+    }
+}
+
+function closeBookingModal() {
+    if (!bookingModal) return;
+    bookingModal.classList.remove("is-open");
+    bookingModal.classList.add("opacity-0", "pointer-events-none");
+    const dialogCard = bookingModal.querySelector(".booking-dialog-card");
+    if (dialogCard) {
+        dialogCard.classList.remove("scale-100");
+        dialogCard.classList.add("scale-95");
+    }
+    document.body.style.overflow = "";
+}
+
+window.openBookingModal = openBookingModal;
+window.closeBookingModal = closeBookingModal;
+
+if (bookingModalClose) {
+    bookingModalClose.addEventListener("click", closeBookingModal);
+}
+
+if (bookingModal) {
+    bookingModal.addEventListener("click", (e) => {
+        if (e.target === bookingModal) {
+            closeBookingModal();
+        }
+    });
+}
+
+document.querySelectorAll(".open-booking-modal-trigger, #open-booking-modal-btn").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        openBookingModal();
+    });
+});
+
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && bookingModal && bookingModal.classList.contains("is-open")) {
+        closeBookingModal();
+    }
+});

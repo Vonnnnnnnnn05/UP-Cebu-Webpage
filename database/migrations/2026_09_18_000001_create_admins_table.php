@@ -14,7 +14,7 @@ return new class extends Migration
             $table->string('email', 100)->unique();
             $table->string('password');
             $table->string('full_name', 100);
-            $table->string('role', 20)->default('editor'); // superadmin, editor
+            $table->string('role', 20)->default('staff'); // admin, staff, director
             $table->dateTime('last_login')->nullable();
             $table->rememberToken();
             $table->timestamps();

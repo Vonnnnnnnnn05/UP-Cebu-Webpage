@@ -122,16 +122,22 @@ html {
 .stagger-5 { transition-delay: 0.52s; }
 .stagger-6 { transition-delay: 0.62s; }
 
-/* Sticky Header Scroll Enhancement */
+/* Sticky Header Elevation & Auto-Hide on Scroll */
 header {
   position: sticky !important;
   top: 0 !important;
   z-index: 50 !important;
-  transition: box-shadow 0.4s ease, background-color 0.4s ease;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, background-color 0.35s ease !important;
+  will-change: transform;
 }
 
 header.is-scrolled {
   box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.28);
+}
+
+header.header-hidden {
+  transform: translateY(-100%) !important;
+  pointer-events: none !important;
 }
 
 /* Floating Back to Top Button */
@@ -178,6 +184,20 @@ header.is-scrolled {
 
 #back-to-top-btn:active {
   transform: translateY(0) scale(0.95);
+}
+
+@media (max-width: 640px) {
+  #back-to-top-btn {
+    bottom: 1rem;
+    right: 0.75rem;
+    width: 2.25rem;
+    height: 2.25rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.22);
+  }
+  #back-to-top-btn svg {
+    width: 1.1rem;
+    height: 1.1rem;
+  }
 }
 
 /* Respect user's motion preference */
@@ -450,6 +470,33 @@ mark.search-highlight {
 }
 
 #article-modal.is-open .article-dialog-card {
+  opacity: 1 !important;
+  transform: translateY(0) scale(1) !important;
+}
+
+/* Activity Registration & Booking Modal Animations */
+#booking-modal {
+  visibility: hidden;
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#booking-modal.is-open {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
+#booking-modal .booking-dialog-card {
+  opacity: 0;
+  transform: translateY(-20px) scale(0.96);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.4s ease;
+  will-change: transform, opacity;
+}
+
+#booking-modal.is-open .booking-dialog-card {
   opacity: 1 !important;
   transform: translateY(0) scale(1) !important;
 }

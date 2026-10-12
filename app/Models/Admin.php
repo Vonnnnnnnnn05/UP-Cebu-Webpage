@@ -33,8 +33,55 @@ class Admin extends Authenticatable
         ];
     }
 
-    public function isSuperAdmin(): bool
+    public function isAdmin(): bool
     {
-        return $this->role === 'superadmin';
+        return $this->role === 'admin';
+    }
+
+    public function isAdminRole(): bool
+    {
+        return $this->role === 'admin';
+    }
+
+    public function isDirector(): bool
+    {
+        return $this->role === 'director';
+    }
+
+    public function isStaff(): bool
+    {
+        return $this->role === 'staff';
+    }
+
+    /**
+     * Staff and Admin have authority to create and edit activities and content.
+     */
+    public function canEdit(): bool
+    {
+        return in_array($this->role, ['staff', 'admin'], true);
+    }
+
+    /**
+     * Director and Admin can provide quality review and feedback comments.
+     */
+    public function canReview(): bool
+    {
+        return in_array($this->role, ['director', 'admin'], true);
+    }
+
+    /**
+     * Only Admin has authority to approve official inquiries and manage system governance.
+     */
+    public function canApprove(): bool
+    {
+        return $this->role === 'admin';
+    }
+
+    /**
+     * Only Admin has authority to delete activities or content.
+     */
+    public function canDelete(): bool
+    {
+        return $this->role === 'admin';
     }
 }

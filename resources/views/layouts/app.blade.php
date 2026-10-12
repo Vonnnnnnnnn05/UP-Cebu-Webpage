@@ -8,6 +8,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'UP Cebu TTBDO')</title>
 
+    <!-- Favicon (Default Laravel Favicon) -->
+    <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
+    <link rel="alternate icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+
     <!-- Google Fonts: UP Authorized Typefaces (Arsenal, Source Serif 4, Libre Baskerville, Source Sans 3, Style Script, MonteCarlo) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -365,16 +369,22 @@
         .stagger-5 { transition-delay: 0.52s; }
         .stagger-6 { transition-delay: 0.62s; }
 
-        /* Sticky Header Elevation on Scroll */
+        /* Sticky Header Elevation & Auto-Hide on Scroll */
         header {
             position: sticky !important;
             top: 0 !important;
             z-index: 50 !important;
-            transition: box-shadow 0.4s ease, background-color 0.4s ease;
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, background-color 0.35s ease !important;
+            will-change: transform;
         }
 
         header.is-scrolled {
             box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.28);
+        }
+
+        header.header-hidden {
+            transform: translateY(-100%) !important;
+            pointer-events: none !important;
         }
 
         /* Floating Back to Top Button */
@@ -421,6 +431,20 @@
 
         #back-to-top-btn:active {
             transform: translateY(0) scale(0.95);
+        }
+
+        @media (max-width: 640px) {
+            #back-to-top-btn {
+                bottom: 1rem;
+                right: 0.75rem;
+                width: 2.25rem;
+                height: 2.25rem;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.22);
+            }
+            #back-to-top-btn svg {
+                width: 1.1rem;
+                height: 1.1rem;
+            }
         }
 
         /* Animated Search Modal Styles */
@@ -474,6 +498,32 @@
         }
 
         #article-modal.is-open .article-dialog-card {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        #booking-modal {
+            visibility: hidden;
+            transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                        visibility 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        #booking-modal.is-open {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        #booking-modal .booking-dialog-card {
+            opacity: 0;
+            transform: translateY(-20px) scale(0.96);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                        opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                        box-shadow 0.4s ease;
+            will-change: transform, opacity;
+        }
+
+        #booking-modal.is-open .booking-dialog-card {
             opacity: 1;
             transform: translateY(0) scale(1);
         }
@@ -533,6 +583,9 @@
 
     <!-- Article Viewer Modal -->
     @include('partials.article-modal')
+
+    <!-- Activity Registration & Inquiry Modal -->
+    @include('partials.booking-modal')
 
     <!-- Main Application Scripts -->
     <script src="{{ asset('script.js') }}"></script>

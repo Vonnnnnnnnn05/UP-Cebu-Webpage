@@ -6,6 +6,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>TTBDO Admin Portal | UP Cebu</title>
 
+    <!-- Favicon (Default Laravel Favicon) -->
+    <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
+    <link rel="alternate icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+
     <!-- Google Fonts: UP Authorized Typefaces -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -145,7 +149,7 @@
                             </svg>
                         </div>
                         <input type="text" id="identity" name="identity" required autofocus
-                            value="{{ old('identity', 'superadmin@gmail.com') }}"
+                            value="{{ old('identity', 'admin@gmail.com') }}"
                             placeholder="admin or user@up.edu.ph"
                             class="w-full pl-10 pr-3.5 py-2.5 bg-cream-soft border border-border-card rounded-xl text-xs sm:text-sm text-ink-base focus:bg-white focus:border-maroon-base focus:outline-none transition-colors" />
                     </div>
@@ -195,10 +199,30 @@
         </div>
     </div>
 
-    <!-- Quick Credentials Hint -->
-    <div class="mt-6 text-center text-xs text-ink-muted">
-        <span>Default Admin: <strong class="text-maroon-base">superadmin@gmail.com</strong> / password: <strong class="text-maroon-base">password</strong></span>
+    <!-- Quick Credentials Hint & Role Autofill -->
+    <div class="mt-6 text-center text-xs text-ink-muted max-w-md w-full">
+        <span class="block mb-2 font-bold uppercase tracking-wider text-[10.5px] text-ink-base">Quick Login by Role:</span>
+        <div class="flex items-center justify-center gap-2 flex-wrap">
+            <button type="button" onclick="fillCreds('director@gmail.com', 'password')"
+                class="px-3 py-1.5 rounded-xl bg-white border border-border-card hover:border-gold-base text-xs font-bold text-ink-base transition-all shadow-2xs cursor-pointer">
+                Director <span class="text-gold-deep text-[10px] block font-semibold">(Reviewer / Comments)</span>
+            </button>
+            <button type="button" onclick="fillCreds('admin@gmail.com', 'password')"
+                class="px-3 py-1.5 rounded-xl bg-white border border-border-card hover:border-maroon-base text-xs font-bold text-ink-base transition-all shadow-2xs cursor-pointer">
+                Admin <span class="text-maroon-base text-[10px] block font-semibold">(Approver / Edit)</span>
+            </button>
+            <button type="button" onclick="fillCreds('staff@gmail.com', 'password')"
+                class="px-3 py-1.5 rounded-xl bg-white border border-border-card hover:border-emerald-600 text-xs font-bold text-ink-base transition-all shadow-2xs cursor-pointer">
+                Staff <span class="text-emerald-700 text-[10px] block font-semibold">(Full Access / Operations)</span>
+            </button>
+        </div>
     </div>
 
+    <script>
+    function fillCreds(email, pass) {
+        document.getElementById('identity').value = email;
+        document.getElementById('password').value = pass;
+    }
+    </script>
 </body>
 </html>

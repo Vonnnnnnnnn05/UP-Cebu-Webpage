@@ -15,8 +15,8 @@ class InquiryController extends Controller
             'full_name' => 'required|string|max:100',
             'email' => 'required|email|max:100',
             'contact_number' => 'nullable|string|max:30',
-            'affiliation' => 'required|string|in:student,faculty,researcher,msme,industry_partner,general_public',
-            'inquiry_type' => 'required|string|in:ip_protection,business_incubation,simp_mentorship,licensing,msme_support,press_media,general',
+            'affiliation' => 'required|string|max:150',
+            'inquiry_type' => 'required|string|max:100',
             'subject' => 'required|string|max:200',
             'message' => 'required|string|max:5000',
         ]);

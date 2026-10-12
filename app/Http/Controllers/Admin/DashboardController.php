@@ -20,9 +20,16 @@ class DashboardController extends Controller
         $totalInquiries = Inquiry::count();
         $pendingInquiries = Inquiry::pending()->count();
 
+        // Workflow Metrics
+        $pendingEventsCount = Event::where('approval_status', 'pending_approval')->count();
+        $reviewedEventsCount = Event::where('approval_status', 'reviewed')->count();
+        $rejectedEventsCount = Event::where('approval_status', 'rejected')->count();
+        $pendingInquiriesCount = Inquiry::where('status', 'pending')->count();
+        $needsRevisionInquiriesCount = Inquiry::whereIn('status', ['rejected', 'declined'])->count();
+
         $recentInquiries = Inquiry::latest()->take(5)->get();
         $recentNewsList = News::latest('published_date')->take(3)->get(['id', 'title', 'category', 'is_featured', 'published_date']);
-        $upcomingEventsList = Event::where('status', '!=', 'cancelled')->orderBy('event_date', 'asc')->take(3)->get(['id', 'title', 'event_date', 'venue', 'status']);
+        $upcomingEventsList = Event::where('status', '!=', 'cancelled')->orderBy('event_date', 'asc')->take(3)->get(['id', 'title', 'event_date', 'venue', 'status', 'approval_status']);
 
         return view('admin.dashboard', compact(
             'currentAdmin',
@@ -30,6 +37,11 @@ class DashboardController extends Controller
             'totalEvents',
             'totalInquiries',
             'pendingInquiries',
+            'pendingEventsCount',
+            'reviewedEventsCount',
+            'rejectedEventsCount',
+            'pendingInquiriesCount',
+            'needsRevisionInquiriesCount',
             'recentInquiries',
             'recentNewsList',
             'upcomingEventsList'

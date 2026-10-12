@@ -18,6 +18,10 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::post('/inquiries', [InquiryController::class, 'store'])->name('inquiries.store');
 Route::get('/api/search', [HomeController::class, 'search'])->name('api.search');
 Route::get('/news/{slug}', [HomeController::class, 'article'])->name('news.article');
+Route::get('/events/{slug}', [HomeController::class, 'eventDetail'])->name('events.show');
+
+
+Route::redirect('/login', '/admin/login');
 
 /*
 |--------------------------------------------------------------------------
@@ -41,11 +45,19 @@ Route::prefix('admin')->group(function () {
         Route::post('/news/{news}/toggle-featured', [AdminNewsController::class, 'toggleFeatured'])->name('admin.news.toggle-featured');
         Route::resource('news', AdminNewsController::class)->names('admin.news');
 
-        // Events CRUD & Toggle
+        // Events CRUD & Toggle & Daily Details & Approvals
         Route::post('/events/{event}/toggle-featured', [AdminEventController::class, 'toggleFeatured'])->name('admin.events.toggle-featured');
+        Route::post('/events/{event}/approve', [AdminEventController::class, 'approve'])->name('admin.events.approve');
+        Route::post('/events/{event}/review', [AdminEventController::class, 'review'])->name('admin.events.review');
+        Route::post('/events/{event}/details', [AdminEventController::class, 'storeDetail'])->name('admin.events.details.store');
+        Route::put('/events/{event}/details/{detail}', [AdminEventController::class, 'updateDetail'])->name('admin.events.details.update');
+        Route::delete('/events/{event}/details/{detail}', [AdminEventController::class, 'destroyDetail'])->name('admin.events.details.destroy');
         Route::resource('events', AdminEventController::class)->names('admin.events');
 
-        // Inquiries Management
+        // Inquiries Management & Approvals
+        Route::post('/inquiries/{inquiry}/approve', [AdminInquiryController::class, 'approve'])->name('admin.inquiries.approve');
+        Route::post('/inquiries/{inquiry}/decline', [AdminInquiryController::class, 'decline'])->name('admin.inquiries.decline');
+        Route::post('/inquiries/{inquiry}/review', [AdminInquiryController::class, 'review'])->name('admin.inquiries.review');
         Route::resource('inquiries', AdminInquiryController::class)
             ->only(['index', 'show', 'update', 'destroy'])
             ->names('admin.inquiries');

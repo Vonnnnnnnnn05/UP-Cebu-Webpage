@@ -25,7 +25,7 @@ class ExampleTest extends TestCase
         $response = $this->get('/');
         $response->assertStatus(200);
         $response->assertSee('Technology Transfer');
-        $response->assertSee('Login');
+        $response->assertDontSee('Staff Login');
 
         $admin = Admin::first();
         $authResponse = $this->actingAs($admin, 'admin')->get('/');
@@ -63,6 +63,29 @@ class ExampleTest extends TestCase
         ]);
     }
 
+    public function test_inquiry_submission_with_fillable_organization(): void
+    {
+        $payload = [
+            'full_name' => 'Von Esson Vergara',
+            'email' => 'vonessonvergara@sksu.edu.ph',
+            'contact_number' => '09482444339',
+            'affiliation' => 'Sultan Kudarat State University (SKSU)',
+            'inquiry_type' => 'Activity',
+            'subject' => 'Campus Innovation Visit',
+            'message' => 'We would like to visit UP Cebu TTBDO facility with our research team.',
+        ];
+
+        $response = $this->postJson('/inquiries', $payload);
+        $response->assertStatus(200);
+        $response->assertJson(['success' => true]);
+
+        $this->assertDatabaseHas('inquiries', [
+            'email' => 'vonessonvergara@sksu.edu.ph',
+            'affiliation' => 'Sultan Kudarat State University (SKSU)',
+            'inquiry_type' => 'Activity',
+        ]);
+    }
+
     public function test_admin_login_and_dashboard_access(): void
     {
         // 1. Visit login page
@@ -71,13 +94,13 @@ class ExampleTest extends TestCase
 
         // 2. Login with seeded credentials
         $loginResponse = $this->post('/admin/login', [
-            'identity' => 'superadmin@gmail.com',
+            'identity' => 'admin@gmail.com',
             'password' => 'password',
         ]);
         $loginResponse->assertRedirect(route('admin.dashboard'));
 
         // 3. Access admin dashboard as authenticated admin
-        $admin = Admin::where('email', 'superadmin@gmail.com')->first();
+        $admin = Admin::where('email', 'admin@gmail.com')->first();
         $dashboardResponse = $this->actingAs($admin, 'admin')->get('/admin');
         $dashboardResponse->assertStatus(200);
         $dashboardResponse->assertSee('SYSTEM OVERVIEW');
@@ -92,7 +115,7 @@ class ExampleTest extends TestCase
 
     public function test_admin_can_manage_news_crud(): void
     {
-        $admin = Admin::where('email', 'superadmin@gmail.com')->first();
+        $admin = Admin::where('email', 'admin@gmail.com')->first();
 
         // 1. Create News
         $createResponse = $this->actingAs($admin, 'admin')->post('/admin/news', [
@@ -139,7 +162,7 @@ class ExampleTest extends TestCase
 
     public function test_admin_can_manage_events_crud(): void
     {
-        $admin = Admin::where('email', 'superadmin@gmail.com')->first();
+        $admin = Admin::where('email', 'admin@gmail.com')->first();
 
         // 1. Create Event
         $createResponse = $this->actingAs($admin, 'admin')->post('/admin/events', [
@@ -184,7 +207,7 @@ class ExampleTest extends TestCase
 
     public function test_admin_can_update_and_delete_inquiries(): void
     {
-        $admin = Admin::where('email', 'superadmin@gmail.com')->first();
+        $admin = Admin::where('email', 'admin@gmail.com')->first();
         $inquiry = Inquiry::first();
 
         // 1. Update Inquiry Status

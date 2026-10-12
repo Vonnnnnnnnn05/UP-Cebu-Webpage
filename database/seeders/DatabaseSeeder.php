@@ -17,24 +17,34 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // 1. Seed Admins
+        // 1. Seed Roles: Director, Admin, Staff
         Admin::updateOrCreate(
-            ['email' => 'superadmin@gmail.com'],
+            ['email' => 'director@gmail.com'],
             [
-                'username' => 'superadmin',
+                'username' => 'director',
                 'password' => Hash::make('password'),
-                'full_name' => 'TTBDO Super Administrator',
-                'role' => 'superadmin',
+                'full_name' => 'Prof. Elena Santos, Ph.D.',
+                'role' => 'director',
             ]
         );
 
         Admin::updateOrCreate(
-            ['email' => 'editor@gmail.com'],
+            ['email' => 'admin@gmail.com'],
             [
-                'username' => 'editor',
+                'username' => 'admin',
                 'password' => Hash::make('password'),
-                'full_name' => 'TTBDO Content Editor',
-                'role' => 'editor',
+                'full_name' => 'TTBDO Lead Administrator',
+                'role' => 'admin',
+            ]
+        );
+
+        Admin::updateOrCreate(
+            ['email' => 'staff@gmail.com'],
+            [
+                'username' => 'staff',
+                'password' => Hash::make('password'),
+                'full_name' => 'TTBDO Operations Staff',
+                'role' => 'staff',
             ]
         );
 
