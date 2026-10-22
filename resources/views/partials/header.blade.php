@@ -1,16 +1,16 @@
 <header class="bg-maroon-dark text-white border-b-2 border-gold-base sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 sm:h-20 lg:h-[100px] flex items-center gap-3 sm:gap-4 lg:gap-6">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 sm:h-20 lg:h-[100px] flex items-center justify-between gap-2 sm:gap-4 lg:gap-6">
 
         <!-- Logo / Brand -->
-        <a href="#home" class="flex items-center gap-2.5 sm:gap-3.5 group shrink-0">
-            <div class="bg-white rounded-md px-2 py-1 shadow-xs border border-white/40 flex items-center justify-center shrink-0 transition-transform group-hover:scale-105">
-                <img src="{{ asset('assets/ttbdo-full-logo.png') }}" alt="UP Cebu TTBDO Logo" class="h-8 sm:h-9 lg:h-10 w-auto object-contain shrink-0" />
+        <a href="#home" class="flex items-center gap-2 sm:gap-3.5 group min-w-0 shrink">
+            <div class="bg-white rounded-md px-1.5 sm:px-2 py-1 shadow-xs border border-white/40 flex items-center justify-center shrink-0 transition-transform group-hover:scale-105">
+                <img src="{{ asset('assets/ttbdo-full-logo.png') }}" alt="UP Cebu TTBDO Logo" class="h-7 sm:h-9 lg:h-10 w-auto object-contain shrink-0" />
             </div>
 
-            <div class="leading-tight shrink-0 whitespace-nowrap">
-                <span class="block font-serif text-[12px] xs:text-[13px] sm:text-[15px] md:text-[16.5px] lg:text-[18px] xl:text-[19.5px] font-bold text-white leading-[1.15] tracking-tight group-hover:text-gold-base transition-colors">
-                    <span class="block">University of the</span>
-                    <span class="block">Philippines Cebu</span>
+            <div class="leading-tight min-w-0">
+                <span class="block font-serif text-[11px] min-[360px]:text-[12px] sm:text-[15px] md:text-[16.5px] lg:text-[18px] xl:text-[19.5px] font-bold text-white leading-[1.15] tracking-tight group-hover:text-gold-base transition-colors truncate sm:whitespace-normal">
+                    <span class="block truncate">University of the</span>
+                    <span class="block truncate">Philippines Cebu</span>
                 </span>
             </div>
         </a>
@@ -195,10 +195,10 @@
         </div>
 
         <!-- Mobile Controls (Search Button + Hamburger) -->
-        <div class="flex lg:hidden items-center gap-2 ml-auto shrink-0">
+        <div class="flex lg:hidden items-center gap-1.5 sm:gap-2 shrink-0">
             <!-- Mobile Search Icon Button -->
             <button id="mobile-search-toggle-btn" type="button" aria-label="Open search dialog"
-                class="p-2 rounded-md bg-white/10 hover:bg-white/20 text-white transition-colors flex items-center justify-center cursor-pointer">
+                class="p-2 rounded-lg bg-white/10 hover:bg-white/20 active:bg-white/25 text-white transition-colors flex items-center justify-center cursor-pointer shrink-0">
                 <svg class="w-5 h-5 text-gold-base" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                 </svg>
@@ -206,7 +206,7 @@
 
             <!-- Mobile Hamburger Menu Button -->
             <button id="menu-toggle" type="button"
-                class="p-2 rounded-md bg-white/10 hover:bg-white/20 text-white focus:outline-none transition-colors shrink-0"
+                class="p-2 rounded-lg bg-white/10 hover:bg-white/20 active:bg-white/25 text-white focus:outline-none transition-colors shrink-0"
                 aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-menu">
                 <!-- Hamburger open icon -->
                 <svg id="menu-icon-open" class="w-6 h-6 stroke-current" fill="none" viewBox="0 0 24 24" stroke-width="2">

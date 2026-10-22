@@ -10,14 +10,14 @@
         {{-- ── Clean Top Bar (Back to Calendar + Minimal Brand) ── --}}
         <div class="mb-6 flex items-center justify-between gap-4">
             <a href="{{ url('/') }}#events"
-                class="inline-flex items-center gap-2 text-xs font-bold text-ink-muted hover:text-maroon-base transition-colors group">
-                <svg class="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                class="inline-flex items-center gap-2 text-xs font-bold text-ink-muted hover:text-maroon-base transition-colors group min-w-0">
+                <svg class="w-4 h-4 transition-transform group-hover:-translate-x-1 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/>
                 </svg>
-                <span>Back to Activities Calendar</span>
+                <span class="truncate">Back to Activities Calendar</span>
             </a>
 
-            <a href="{{ url('/') }}" class="inline-flex items-center gap-2 text-xs font-bold text-maroon-base hover:text-maroon-hover transition-colors group" title="Return to UP Cebu TTBDO Homepage">
+            <a href="{{ url('/') }}" class="inline-flex items-center gap-2 text-xs font-bold text-maroon-base hover:text-maroon-hover transition-colors group shrink-0" title="Return to UP Cebu TTBDO Homepage">
                 <img src="{{ asset('assets/ttbdo-full-logo.png') }}" alt="UP Cebu TTBDO Logo" class="h-6 w-auto object-contain transition-transform group-hover:scale-105" />
                 <span class="hidden sm:inline font-serif font-bold text-ink-base group-hover:text-maroon-base transition-colors">UP Cebu TTBDO</span>
             </a>
@@ -163,10 +163,10 @@
         @endif
 
         {{-- ── Bottom Navigation ── --}}
-        <div class="pt-4 border-t border-border-card flex items-center justify-between">
+        <div class="pt-4 border-t border-border-card flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
             <a href="{{ url('/') }}#events"
-                class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white border border-border-card text-xs font-bold text-ink-base hover:bg-maroon-base hover:text-white hover:border-maroon-base transition-colors shadow-xs">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                class="inline-flex items-center justify-center sm:justify-start gap-2 px-4 py-2.5 sm:py-2 rounded-lg bg-white border border-border-card text-xs font-bold text-ink-base hover:bg-maroon-base hover:text-white hover:border-maroon-base transition-colors shadow-xs w-full sm:w-auto">
+                <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/>
                 </svg>
                 <span>Back to Monthly Calendar</span>
@@ -174,8 +174,8 @@
 
             @if(Auth::guard('admin')->check())
             <a href="{{ route('admin.events.edit', $event->id) }}"
-                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gold-light border border-gold-base/40 text-gold-deep text-xs font-bold hover:bg-gold-base hover:text-maroon-dark transition-colors">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                class="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-gold-light border border-gold-base/40 text-gold-deep text-xs font-bold hover:bg-gold-base hover:text-maroon-dark transition-colors w-full sm:w-auto">
+                <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"/>
                 </svg>
                 <span>Edit as Admin</span>

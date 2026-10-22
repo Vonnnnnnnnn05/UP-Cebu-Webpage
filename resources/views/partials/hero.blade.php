@@ -1,12 +1,12 @@
 <section id="home"
-    class="relative min-h-[560px] sm:min-h-[500px] md:min-h-[540px] lg:min-h-[580px] xl:min-h-[620px] 2xl:min-h-[660px] overflow-hidden bg-[#7B1113] text-white flex items-end sm:items-center scroll-mt-24 lg:scroll-mt-28">
+    class="relative min-h-[520px] sm:min-h-[500px] md:min-h-[540px] lg:min-h-[580px] xl:min-h-[620px] 2xl:min-h-[660px] overflow-hidden bg-[#7B1113] text-white flex items-center scroll-mt-24 lg:scroll-mt-28">
 
     <style>
         .hero-campus-photo {
             background-image: url('{{ asset('assets/hero-campus.jpg') }}');
             background-size: cover;
             background-repeat: no-repeat;
-            background-position: center 6%;
+            background-position: center 8%;
         }
         @media (min-width: 640px) {
             .hero-campus-photo {
@@ -49,7 +49,7 @@
 
     <!-- Hero Content -->
     <div
-        class="relative z-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-48 pb-12 sm:pt-14 sm:pb-16 md:py-18 w-full reveal-on-scroll">
+        class="relative z-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-10 sm:pt-14 sm:pb-16 md:py-18 w-full reveal-on-scroll">
         <!-- Academic Green UP Cebu TTBDO badge -->
         <div class="mb-3.5">
             <span
@@ -73,8 +73,8 @@
         </p>
 
         <!-- Hero CTA Buttons -->
-        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
-            <a class="inline-flex items-center justify-center gap-2.5 bg-gold-base text-maroon-base border border-gold-base font-bold text-xs sm:text-[13px] px-6 py-3 rounded-md shadow-md hover:bg-maroon-base hover:text-white hover:border-gold-base active:scale-95 transition-all duration-200 group"
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto relative z-30">
+            <a class="inline-flex items-center justify-center gap-2.5 bg-gold-base text-maroon-base border border-gold-base font-bold text-xs sm:text-[13px] px-6 py-3 rounded-lg shadow-md hover:bg-maroon-base hover:text-white hover:border-gold-base active:scale-95 transition-all duration-200 group"
                 href="#programs">
                 <span>Explore Our Programs</span>
                 <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none"
@@ -82,7 +82,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
                 </svg>
             </a>
-            <a class="inline-flex items-center justify-center gap-2 bg-white/15 text-white hover:bg-white/25 border border-white/40 font-semibold text-xs sm:text-[13px] px-5 py-3 rounded-md shadow-xs active:scale-95 transition-all duration-200"
+            <a class="inline-flex items-center justify-center gap-2 bg-white/15 text-white hover:bg-white/25 border border-white/40 font-semibold text-xs sm:text-[13px] px-5 py-3 rounded-lg shadow-xs active:scale-95 transition-all duration-200"
                 href="#events">
                 <span>Upcoming Events</span>
             </a>

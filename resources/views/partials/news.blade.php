@@ -79,14 +79,14 @@
                     @endif
                 </div>
 
-                <div class="px-6 py-4 sm:px-8 sm:py-4 bg-cream-soft border-t border-border-card flex items-center justify-between mt-auto">
-                    <span class="text-[11px] text-ink-muted font-medium">
+                <div class="px-6 py-4 sm:px-8 sm:py-4 bg-cream-soft border-t border-border-card flex items-center justify-between gap-3 mt-auto">
+                    <span class="text-[11px] text-ink-muted font-medium truncate min-w-0">
                         By <strong class="text-ink-base font-semibold">{{ $featuredNews->author }}</strong>
                     </span>
                     <button type="button" onclick="openArticleModal({{ $featuredNews->id }})"
-                        class="inline-flex items-center gap-1.5 text-xs font-bold text-maroon-base hover:text-green-base transition-colors cursor-pointer">
+                        class="inline-flex items-center gap-1.5 text-xs font-bold text-maroon-base hover:text-green-base transition-colors cursor-pointer shrink-0">
                         <span>Read Full Story</span>
-                        <svg class="w-3.5 h-3.5 text-gold-base transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                        <svg class="w-3.5 h-3.5 text-gold-base transition-transform group-hover:translate-x-1 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
                         </svg>
                     </button>
@@ -120,14 +120,14 @@
                         </p>
                     </div>
 
-                    <div class="flex items-center justify-between border-t border-border-card/60 pt-3">
-                        <span class="text-[10.5px] text-ink-muted">
+                    <div class="flex items-center justify-between border-t border-border-card/60 pt-3 gap-2">
+                        <span class="text-[10.5px] text-ink-muted truncate min-w-0">
                             {{ $item->author }}
                         </span>
                         <button type="button" onclick="openArticleModal({{ $item->id }})"
-                            class="inline-flex items-center gap-1 text-[11px] font-bold text-maroon-base hover:text-green-base transition-colors cursor-pointer">
+                            class="inline-flex items-center gap-1 text-[11px] font-bold text-maroon-base hover:text-green-base transition-colors cursor-pointer shrink-0">
                             <span>Read</span>
-                            <svg class="w-3 h-3 text-gold-base" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                            <svg class="w-3 h-3 text-gold-base shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
                             </svg>
                         </button>

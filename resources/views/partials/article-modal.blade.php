@@ -64,18 +64,18 @@
         </div>
 
         <!-- Footer Bar -->
-        <div class="p-4 sm:p-5 bg-cream-soft border-t border-border-card/80 flex flex-wrap items-center justify-between gap-3 text-xs text-ink-muted">
+        <div class="p-3.5 sm:p-5 bg-cream-soft border-t border-border-card/80 flex items-center justify-between gap-3 text-xs text-ink-muted shrink-0">
             <span class="text-[11px] hidden sm:inline">Technology Transfer &amp; Business Development Office &bull; UP Cebu</span>
-            <div class="flex items-center gap-2.5 ml-auto">
+            <div class="flex items-center gap-2 w-full sm:w-auto justify-end">
                 <button type="button" id="article-modal-share-btn"
-                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-border-card hover:bg-cream-bg text-ink-base font-semibold text-xs transition-colors cursor-pointer">
-                    <svg class="w-3.5 h-3.5 text-gold-base" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                    class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-border-card hover:bg-cream-bg text-ink-base font-semibold text-xs transition-colors cursor-pointer">
+                    <svg class="w-3.5 h-3.5 text-gold-base shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z" />
                     </svg>
                     <span>Copy Link</span>
                 </button>
                 <button type="button" onclick="closeArticleModal()"
-                    class="px-4 py-1.5 rounded-lg bg-maroon-base hover:bg-maroon-hover text-white text-xs font-bold transition-colors cursor-pointer">
+                    class="flex-1 sm:flex-initial text-center px-4 py-1.5 rounded-lg bg-maroon-base hover:bg-maroon-hover text-white text-xs font-bold transition-colors cursor-pointer">
                     Close
                 </button>
             </div>

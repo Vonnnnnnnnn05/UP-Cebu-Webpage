@@ -223,18 +223,18 @@
                             default => 'Staff (Operations & Content)',
                         };
                     @endphp
-                    <div class="flex items-center gap-2 px-3 py-1 rounded-lg bg-maroon-base/90 border border-gold-base/30 text-sm" title="{{ $roleTitle }}">
-                        <span class="w-2.5 h-2.5 rounded-full {{ $userRole === 'director' ? 'bg-gold-base animate-pulse' : ($userRole === 'admin' ? 'bg-amber-400' : 'bg-emerald-400') }}"></span>
-                        <span class="font-bold text-white text-xs sm:text-sm">{{ Auth::guard('admin')->user()->full_name }}</span>
-                        <span class="text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full {{ $roleBadge }}">
+                    <div class="flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 rounded-lg bg-maroon-base/90 border border-gold-base/30 text-sm shrink-0 min-w-0" title="{{ $roleTitle }}">
+                        <span class="w-2.5 h-2.5 rounded-full shrink-0 {{ $userRole === 'director' ? 'bg-gold-base animate-pulse' : ($userRole === 'admin' ? 'bg-amber-400' : 'bg-emerald-400') }}"></span>
+                        <span class="font-bold text-white text-xs sm:text-sm truncate max-w-[100px] min-[400px]:max-w-[140px] sm:max-w-none">{{ Auth::guard('admin')->user()->full_name }}</span>
+                        <span class="text-[9.5px] sm:text-[10px] uppercase tracking-wider px-1.5 sm:px-2 py-0.5 rounded-full shrink-0 {{ $roleBadge }}">
                             {{ strtoupper($userRole) }}
                         </span>
                     </div>
 
-                    <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" class="inline">
+                    <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" class="inline shrink-0">
                         @csrf
                         <button type="button" onclick="confirmAdminLogout()"
-                            class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-red-900/60 hover:bg-red-800 text-white text-sm font-bold transition-colors cursor-pointer"
+                            class="inline-flex items-center gap-1.5 px-2.5 sm:px-3.5 py-1.5 rounded-lg bg-red-900/60 hover:bg-red-800 text-white text-sm font-bold transition-colors cursor-pointer shrink-0"
                             title="Sign Out">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
@@ -247,34 +247,34 @@
             </div>
 
             <!-- Sub Navigation Bar -->
-            <nav class="flex items-center gap-1 sm:gap-2 overflow-x-auto py-2 border-t border-white/10 text-sm font-medium scrollbar-none">
+            <nav class="flex items-center gap-1 sm:gap-2 overflow-x-auto py-1.5 sm:py-2 border-t border-white/10 text-xs sm:text-sm font-medium scrollbar-none" style="-webkit-overflow-scrolling: touch;">
                 <a href="{{ route('admin.dashboard') }}"
-                    class="px-3.5 py-2 rounded-lg transition-colors flex items-center gap-2 whitespace-nowrap {{ request()->routeIs('admin.dashboard') ? 'bg-gold-base text-maroon-dark font-bold' : 'text-cream-bg/85 hover:bg-white/10 hover:text-white' }}">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                    class="px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-lg transition-colors flex items-center gap-1.5 sm:gap-2 whitespace-nowrap shrink-0 {{ request()->routeIs('admin.dashboard') ? 'bg-gold-base text-maroon-dark font-bold' : 'text-cream-bg/85 hover:bg-white/10 hover:text-white' }}">
+                    <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25Z" />
                     </svg>
                     <span>Dashboard</span>
                 </a>
 
                 <a href="{{ route('admin.news.index') }}"
-                    class="px-3.5 py-2 rounded-lg transition-colors flex items-center gap-2 whitespace-nowrap {{ request()->routeIs('admin.news.*') ? 'bg-gold-base text-maroon-dark font-bold' : 'text-cream-bg/85 hover:bg-white/10 hover:text-white' }}">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                    class="px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-lg transition-colors flex items-center gap-1.5 sm:gap-2 whitespace-nowrap shrink-0 {{ request()->routeIs('admin.news.*') ? 'bg-gold-base text-maroon-dark font-bold' : 'text-cream-bg/85 hover:bg-white/10 hover:text-white' }}">
+                    <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 0 1-2.25 2.25M16.5 7.5V18a2.25 2.25 0 0 0 2.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 0 0 2.25 2.25h13.5M6 7.5h3v3H6v-3Z" />
                     </svg>
                     <span>News &amp; Research</span>
                 </a>
 
                 <a href="{{ route('admin.events.index') }}"
-                    class="px-3.5 py-2 rounded-lg transition-colors flex items-center gap-2 whitespace-nowrap {{ request()->routeIs('admin.events.*') ? 'bg-gold-base text-maroon-dark font-bold' : 'text-cream-bg/85 hover:bg-white/10 hover:text-white' }}">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                    class="px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-lg transition-colors flex items-center gap-1.5 sm:gap-2 whitespace-nowrap shrink-0 {{ request()->routeIs('admin.events.*') ? 'bg-gold-base text-maroon-dark font-bold' : 'text-cream-bg/85 hover:bg-white/10 hover:text-white' }}">
+                    <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
                     </svg>
                     <span>Events &amp; Summits</span>
                 </a>
 
                 <a href="{{ route('admin.inquiries.index') }}"
-                    class="px-3.5 py-2 rounded-lg transition-colors flex items-center gap-2 whitespace-nowrap {{ request()->routeIs('admin.inquiries.*') ? 'bg-gold-base text-maroon-dark font-bold' : 'text-cream-bg/85 hover:bg-white/10 hover:text-white' }}">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                    class="px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-lg transition-colors flex items-center gap-1.5 sm:gap-2 whitespace-nowrap shrink-0 {{ request()->routeIs('admin.inquiries.*') ? 'bg-gold-base text-maroon-dark font-bold' : 'text-cream-bg/85 hover:bg-white/10 hover:text-white' }}">
+                    <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
                     </svg>
                     <span>Inquiries</span>

@@ -139,7 +139,7 @@
                         By submitting, you agree that your inquiry will be processed under the university’s data privacy policies.
                     </p>
                     <button type="submit"
-                        class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-maroon-base hover:bg-maroon-dark text-white text-xs sm:text-sm font-bold transition-all shadow-md active:scale-95 cursor-pointer shrink-0">
+                        class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-maroon-base hover:bg-maroon-dark text-white text-xs sm:text-sm font-bold transition-all shadow-md active:scale-95 cursor-pointer w-full sm:w-auto shrink-0">
                         <span>Send Message</span>
                         <svg class="w-3.5 h-3.5 text-gold-base" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />

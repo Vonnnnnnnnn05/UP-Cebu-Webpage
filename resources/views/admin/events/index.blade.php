@@ -17,7 +17,7 @@
         </p>
     </div>
     <a href="{{ route('admin.events.create') }}"
-        class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-green-base hover:bg-green-hover text-white text-xs sm:text-sm font-bold shadow-xs transition-all self-start sm:self-auto">
+        class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-green-base hover:bg-green-hover text-white text-xs sm:text-sm font-bold shadow-xs transition-all w-full sm:w-auto shrink-0">
         <svg class="w-4 h-4 text-gold-light" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
         </svg>
@@ -52,51 +52,51 @@
 ══════════════════════════════════════════════════════════ --}}
 <div id="admin-calendar-view">
 
-    {{-- Calendar toolbar --}}
-    <div class="flex items-center justify-between mb-3 gap-2">
-        {{-- Prev --}}
-        <button id="acal-prev" type="button" aria-label="Previous month"
-            class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-white border border-border-card text-xs font-bold text-ink-base
-                   hover:bg-maroon-base hover:text-white hover:border-maroon-base transition-all shadow-xs cursor-pointer">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/>
-            </svg>
-            Prev
-        </button>
-
-        <div class="flex items-center gap-2">
-            <h2 id="acal-label" class="font-serif text-base sm:text-lg font-bold text-maroon-base min-w-[160px] text-center"></h2>
-            <button id="acal-today" type="button"
-                class="hidden sm:inline-flex items-center px-3 py-1 rounded-lg bg-cream-soft border border-border-card text-[11px] font-bold text-ink-muted
-                       hover:bg-maroon-base hover:text-white hover:border-maroon-base transition-all cursor-pointer">
-                Today
+    {{-- Calendar toolbar: Responsive card with Month navigation and Status filters --}}
+    <div class="bg-white border border-border-card rounded-2xl p-2.5 sm:p-3 shadow-xs mb-3 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-2.5">
+        {{-- Month navigation row: Prev, Label, Next, Today (Grouped together so Next is never cut off!) --}}
+        <div class="flex items-center justify-between sm:justify-start gap-1.5 w-full md:w-auto">
+            <button id="acal-prev" type="button" aria-label="Previous month"
+                class="inline-flex items-center justify-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-lg bg-cream-soft border border-border-card text-xs font-bold text-ink-base
+                       hover:bg-maroon-base hover:text-white hover:border-maroon-base transition-all shadow-2xs cursor-pointer shrink-0">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/>
+                </svg>
+                <span class="hidden min-[360px]:inline text-[11px]">Prev</span>
             </button>
-        </div>
 
-        {{-- Status filter --}}
-        <div class="flex items-center gap-1.5">
-            <button data-acal-filter="all" type="button"
-                class="acal-filter inline-flex px-2.5 py-1 rounded-full text-[10px] font-bold border cursor-pointer transition-all
-                       bg-maroon-base text-white border-maroon-base">All</button>
-            <button data-acal-filter="upcoming" type="button"
-                class="acal-filter inline-flex px-2.5 py-1 rounded-full text-[10px] font-bold border cursor-pointer transition-all
-                       bg-white text-ink-muted border-border-card hover:bg-green-base hover:text-white hover:border-green-base">Upcoming</button>
-            <button data-acal-filter="completed" type="button"
-                class="acal-filter inline-flex px-2.5 py-1 rounded-full text-[10px] font-bold border cursor-pointer transition-all
-                       bg-white text-ink-muted border-border-card hover:bg-gray-500 hover:text-white hover:border-gray-500">Completed</button>
-            <button data-acal-filter="cancelled" type="button"
-                class="acal-filter inline-flex px-2.5 py-1 rounded-full text-[10px] font-bold border cursor-pointer transition-all
-                       bg-white text-ink-muted border-border-card hover:bg-red-500 hover:text-white hover:border-red-500">Cancelled</button>
+            <h2 id="acal-label" class="font-serif text-sm sm:text-base font-bold text-maroon-base text-center flex-1 sm:flex-initial sm:min-w-[140px] truncate px-1"></h2>
 
-            {{-- Next --}}
             <button id="acal-next" type="button" aria-label="Next month"
-                class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-white border border-border-card text-xs font-bold text-ink-base
-                       hover:bg-maroon-base hover:text-white hover:border-maroon-base transition-all shadow-xs cursor-pointer ml-1">
-                Next
+                class="inline-flex items-center justify-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-lg bg-cream-soft border border-border-card text-xs font-bold text-ink-base
+                       hover:bg-maroon-base hover:text-white hover:border-maroon-base transition-all shadow-2xs cursor-pointer shrink-0">
+                <span class="hidden min-[360px]:inline text-[11px]">Next</span>
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
                 </svg>
             </button>
+
+            <button id="acal-today" type="button"
+                class="px-2.5 py-1.5 rounded-lg bg-cream-soft border border-border-card text-[11px] font-bold text-ink-muted
+                       hover:bg-maroon-base hover:text-white hover:border-maroon-base transition-all shrink-0 cursor-pointer">
+                Today
+            </button>
+        </div>
+
+        {{-- Status filter: 4 evenly spaced columns on mobile, flex on desktop --}}
+        <div class="grid grid-cols-4 sm:flex items-center gap-1.5 pt-2 md:pt-0 border-t md:border-t-0 border-border-card/60 w-full md:w-auto">
+            <button data-acal-filter="all" type="button"
+                class="acal-filter inline-flex items-center justify-center px-2 py-1.5 rounded-lg text-[10.5px] font-bold border cursor-pointer transition-all
+                       bg-maroon-base text-white border-maroon-base">All</button>
+            <button data-acal-filter="upcoming" type="button"
+                class="acal-filter inline-flex items-center justify-center px-2 py-1.5 rounded-lg text-[10.5px] font-bold border cursor-pointer transition-all
+                       bg-white text-ink-muted border-border-card hover:bg-green-base hover:text-white hover:border-green-base">Upcoming</button>
+            <button data-acal-filter="completed" type="button"
+                class="acal-filter inline-flex items-center justify-center px-2 py-1.5 rounded-lg text-[10.5px] font-bold border cursor-pointer transition-all
+                       bg-white text-ink-muted border-border-card hover:bg-gray-500 hover:text-white hover:border-gray-500">Completed</button>
+            <button data-acal-filter="cancelled" type="button"
+                class="acal-filter inline-flex items-center justify-center px-2 py-1.5 rounded-lg text-[10.5px] font-bold border cursor-pointer transition-all
+                       bg-white text-ink-muted border-border-card hover:bg-red-500 hover:text-white hover:border-red-500">Cancelled</button>
         </div>
     </div>
 
@@ -105,19 +105,19 @@
         {{-- Day-of-week headers --}}
         <div class="grid grid-cols-7 border-b border-border-card bg-cream-soft">
             @foreach(['Sun','Mon','Tue','Wed','Thu','Fri','Sat'] as $dow)
-            <div class="py-2 text-center text-[10px] font-bold uppercase tracking-wider text-ink-muted">{{ $dow }}</div>
+            <div class="py-2 text-center text-[9px] min-[360px]:text-[10px] font-bold uppercase tracking-wider text-ink-muted">{{ $dow }}</div>
             @endforeach
         </div>
         <div id="acal-grid" class="grid grid-cols-7"></div>
     </div>
 
     {{-- Legend --}}
-    <div class="mt-3 flex flex-wrap items-center gap-3 text-[10px] font-semibold text-ink-muted">
+    <div class="mt-3 flex flex-wrap items-center gap-2.5 sm:gap-3 text-[10px] font-semibold text-ink-muted">
         <span class="flex items-center gap-1"><span class="inline-block w-2.5 h-2.5 rounded bg-green-base/20 border border-green-base/40"></span>Upcoming</span>
         <span class="flex items-center gap-1"><span class="inline-block w-2.5 h-2.5 rounded bg-gray-100 border border-gray-300"></span>Completed</span>
         <span class="flex items-center gap-1"><span class="inline-block w-2.5 h-2.5 rounded bg-red-100 border border-red-300"></span>Cancelled</span>
         <span class="flex items-center gap-1"><span class="inline-block w-2.5 h-2.5 rounded-full bg-maroon-base"></span>Today</span>
-        <span class="ml-auto text-[10px] text-ink-muted italic">Click an event to edit or delete</span>
+        <span class="w-full sm:w-auto sm:ml-auto text-[10px] text-ink-muted italic">Click an event or date cell to view actions</span>
     </div>
 </div>
 
@@ -300,10 +300,10 @@
      EVENT QUICK-VIEW POPUP  (calendar)
 ══════════════════════════════════════════════════════════ --}}
 <div id="acal-popup"
-    class="hidden fixed inset-0 z-[300] flex items-center justify-center p-4"
+    class="hidden fixed inset-0 z-[300] flex items-center justify-center p-3 sm:p-4"
     role="dialog" aria-modal="true" aria-label="Event Actions">
     <div class="absolute inset-0 bg-black/40 backdrop-blur-xs" id="acal-popup-backdrop"></div>
-    <div class="relative bg-white rounded-2xl shadow-2xl w-full max-w-sm p-6 z-10">
+    <div class="relative bg-white rounded-2xl shadow-2xl w-full max-w-sm p-5 sm:p-6 z-10 max-h-[90vh] overflow-y-auto">
         <button id="acal-popup-close" type="button" aria-label="Close"
             class="absolute top-3 right-3 p-1.5 rounded-lg hover:bg-cream-soft transition-colors cursor-pointer">
             <svg class="w-4 h-4 text-ink-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
@@ -444,10 +444,12 @@
     }
 
     const STATUS_CLASSES = {
-        upcoming:  { pill: 'bg-green-base/10 text-green-base border-green-base/30 hover:bg-green-base hover:text-white',  badge: 'bg-green-100 text-green-800' },
-        completed: { pill: 'bg-gray-100 text-gray-500 border-gray-200 hover:bg-gray-500 hover:text-white',                badge: 'bg-gray-100 text-gray-600'  },
-        cancelled: { pill: 'bg-red-50 text-red-500 border-red-200 hover:bg-red-500 hover:text-white',                     badge: 'bg-red-100 text-red-800'    },
+        upcoming:  { pill: 'bg-green-base/10 text-green-base border-green-base/30 hover:bg-green-base hover:text-white',  badge: 'bg-green-100 text-green-800', dot: 'bg-emerald-600' },
+        completed: { pill: 'bg-gray-100 text-gray-500 border-gray-200 hover:bg-gray-500 hover:text-white',                badge: 'bg-gray-100 text-gray-600', dot: 'bg-gray-400' },
+        cancelled: { pill: 'bg-red-50 text-red-500 border-red-200 hover:bg-red-500 hover:text-white',                     badge: 'bg-red-100 text-red-800', dot: 'bg-red-500' },
     };
+
+    const escapeHtml = str => String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
     // ── Render ────────────────────────────────────────────────────────────────
     function render() {
@@ -461,7 +463,7 @@
         // Leading blanks
         for (let i = 0; i < firstDay; i++) {
             const b = document.createElement('div');
-            b.className = 'min-h-[70px] border-b border-r border-border-card/40 bg-cream-soft/30';
+            b.className = 'min-h-[52px] sm:min-h-[72px] border-b border-r border-border-card/40 bg-cream-soft/30';
             grid.appendChild(b);
         }
 
@@ -473,32 +475,88 @@
 
             const cell = document.createElement('div');
             cell.className = [
-                'min-h-[70px] p-1 border-b flex flex-col gap-0.5 transition-colors',
+                'min-h-[52px] sm:min-h-[72px] p-1 border-b flex flex-col gap-0.5 transition-colors relative',
                 isLast ? '' : 'border-r',
                 'border-border-card/40',
                 isToday ? 'bg-maroon-base/[0.06]' : 'bg-white hover:bg-cream-soft/50',
+                evs.length > 0 ? 'cursor-pointer hover:bg-cream-soft/80' : '',
             ].join(' ');
 
-            // Day number
+            // Header of the day cell: day number + mobile count badge
+            const topRow = document.createElement('div');
+            topRow.className = 'flex items-center justify-between w-full leading-none';
+
             const dn = document.createElement('span');
             dn.textContent = d;
             dn.className = [
-                'text-[11px] font-bold w-5 h-5 flex items-center justify-center rounded-full shrink-0 self-start',
-                isToday ? 'bg-maroon-base text-white' : 'text-ink-muted',
+                'text-[10px] sm:text-[11px] font-bold w-4 h-4 sm:w-5 sm:h-5 flex items-center justify-center rounded-full shrink-0',
+                isToday ? 'bg-maroon-base text-white shadow-xs' : 'text-ink-muted',
             ].join(' ');
-            cell.appendChild(dn);
+            topRow.appendChild(dn);
 
-            // Event pills
-            evs.forEach(ev => {
-                const sc  = STATUS_CLASSES[ev.status] || STATUS_CLASSES.completed;
-                const btn = document.createElement('button');
-                btn.type  = 'button';
-                btn.className = `w-full text-left border rounded px-1 py-0.5 text-[9px] font-bold leading-tight truncate transition-colors cursor-pointer ${sc.pill}`;
-                btn.textContent = ev.title;
-                if (ev.is_featured) btn.textContent = '★ ' + ev.title;
-                btn.addEventListener('click', () => openPopup(ev));
-                cell.appendChild(btn);
-            });
+            if (evs.length > 0) {
+                const countBadge = document.createElement('span');
+                countBadge.className = 'sm:hidden text-[7.5px] font-bold text-maroon-base bg-maroon-base/10 px-1 py-0.2 rounded-full border border-maroon-base/20 leading-none';
+                countBadge.textContent = evs.length;
+                countBadge.title = `${evs.length} activities`;
+                topRow.appendChild(countBadge);
+            }
+            cell.appendChild(topRow);
+
+            if (evs.length > 0) {
+                // Tapping anywhere on the date cell opens details
+                cell.addEventListener('click', (e) => {
+                    if (e.target.closest('.acal-desktop-event-btn')) return;
+                    if (evs.length === 1) {
+                        openPopup(evs[0]);
+                    } else {
+                        openDayListPopup(dateStr, evs);
+                    }
+                });
+
+                // --- MOBILE PRESENTATION (sm:hidden) ---
+                const mobContainer = document.createElement('div');
+                mobContainer.className = 'sm:hidden flex flex-col gap-0.5 w-full mt-0.5 overflow-hidden';
+
+                const maxMobile = 2;
+                evs.slice(0, maxMobile).forEach(ev => {
+                    const sc = STATUS_CLASSES[ev.status] || STATUS_CLASSES.completed;
+                    const mobPill = document.createElement('div');
+                    mobPill.className = `flex items-center gap-0.5 w-full min-w-0 px-1 py-0.5 rounded text-[8px] font-bold ${sc.pill} leading-none overflow-hidden`;
+                    mobPill.innerHTML = `
+                        <span class="w-1.5 h-1.5 rounded-full shrink-0 ${sc.dot || 'bg-maroon-base'}"></span>
+                        <span class="truncate min-w-0 flex-1 leading-none">${escapeHtml(ev.title)}</span>
+                    `;
+                    mobContainer.appendChild(mobPill);
+                });
+
+                if (evs.length > maxMobile) {
+                    const more = document.createElement('span');
+                    more.className = 'text-[7.5px] font-semibold text-ink-muted text-center leading-none';
+                    more.textContent = `+${evs.length - maxMobile} more`;
+                    mobContainer.appendChild(more);
+                }
+                cell.appendChild(mobContainer);
+
+                // --- DESKTOP PRESENTATION (hidden sm:flex) ---
+                const dskContainer = document.createElement('div');
+                dskContainer.className = 'hidden sm:flex flex-col gap-0.5 w-full mt-0.5';
+
+                evs.forEach(ev => {
+                    const sc  = STATUS_CLASSES[ev.status] || STATUS_CLASSES.completed;
+                    const btn = document.createElement('button');
+                    btn.type  = 'button';
+                    btn.className = `acal-desktop-event-btn w-full text-left border rounded px-1.5 py-0.5 text-[9px] font-bold leading-tight truncate transition-colors cursor-pointer ${sc.pill}`;
+                    btn.textContent = ev.title;
+                    if (ev.is_featured) btn.textContent = '★ ' + ev.title;
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        openPopup(ev);
+                    });
+                    dskContainer.appendChild(btn);
+                });
+                cell.appendChild(dskContainer);
+            }
 
             grid.appendChild(cell);
         }
@@ -509,10 +567,69 @@
         if (rem !== 0) {
             for (let i = 0; i < 7 - rem; i++) {
                 const b = document.createElement('div');
-                b.className = 'min-h-[70px] border-b border-r border-border-card/40 bg-cream-soft/30 last:border-r-0';
+                b.className = 'min-h-[52px] sm:min-h-[72px] border-b border-r border-border-card/40 bg-cream-soft/30 last:border-r-0';
                 grid.appendChild(b);
             }
         }
+    }
+
+    // ── Day Summary Modal (when a date with multiple activities is tapped on mobile) ────
+    function openDayListPopup(dateStr, evs) {
+        const dateObj = dateStr ? new Date(dateStr + 'T00:00:00') : null;
+        const dateLbl = dateObj
+            ? dateObj.toLocaleDateString('en-US', { weekday:'long', year:'numeric', month:'long', day:'numeric' })
+            : dateStr;
+
+        popBody.innerHTML = `
+            <div class="flex items-center justify-between pb-2 border-b border-border-card/60">
+                <div>
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-green-base block">SCHEDULED ACTIVITIES</span>
+                    <h3 class="font-serif text-base font-bold text-maroon-base">${escapeHtml(dateLbl)}</h3>
+                </div>
+                <span class="text-xs font-bold text-ink-muted bg-cream-soft px-2 py-0.5 rounded-full border border-border-card">
+                    ${evs.length} Activities
+                </span>
+            </div>
+            <div class="space-y-2 mt-2 max-h-[55vh] overflow-y-auto">
+                ${evs.map((ev, idx) => {
+                    const sc = STATUS_CLASSES[ev.status] || STATUS_CLASSES.completed;
+                    return `
+                        <div class="p-3 bg-cream-soft rounded-xl border border-border-card/70 hover:border-maroon-base/40 transition-colors cursor-pointer group"
+                             data-day-event-idx="${idx}">
+                            <div class="flex items-center justify-between gap-1 mb-1">
+                                <span class="text-[9px] font-bold uppercase tracking-wider px-2 py-0.2 rounded-full bg-maroon-base/10 text-maroon-base">${escapeHtml(ev.category || 'Activity')}</span>
+                                <span class="text-[9px] font-bold uppercase tracking-wider px-2 py-0.2 rounded-full ${sc.badge}">${escapeHtml((ev.status || '').toUpperCase())}</span>
+                            </div>
+                            <h4 class="font-serif text-sm font-bold text-maroon-base group-hover:text-maroon-hover transition-colors leading-snug">
+                                ${ev.is_featured ? '★ ' : ''}${escapeHtml(ev.title)}
+                            </h4>
+                            ${ev.venue ? `<p class="text-[10.5px] text-ink-muted mt-0.5 flex items-center gap-1"><svg class="w-3 h-3 text-maroon-base inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/></svg>${escapeHtml(ev.venue)}</p>` : ''}
+                            <div class="mt-2 pt-1.5 border-t border-border-card/40 flex items-center justify-between text-[10.5px] font-bold text-maroon-base">
+                                <span>Tap to View Actions &amp; Details</span>
+                                <span class="text-gold-deep">&rarr;</span>
+                            </div>
+                        </div>
+                    `;
+                }).join('')}
+            </div>
+        `;
+
+        popBody.querySelectorAll('[data-day-event-idx]').forEach(item => {
+            item.addEventListener('click', function () {
+                const idx = Number(this.dataset.dayEventIdx);
+                if (evs[idx]) openPopup(evs[idx]);
+            });
+        });
+
+        popActs.innerHTML = `
+            <button type="button" onclick="document.getElementById('acal-popup-close').click()"
+                class="w-full py-2 rounded-xl bg-cream-soft border border-border-card text-xs font-bold text-ink-base hover:bg-maroon-base hover:text-white transition-colors cursor-pointer">
+                Close
+            </button>
+        `;
+
+        popup.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
     }
 
     // ── Popup ─────────────────────────────────────────────────────────────────

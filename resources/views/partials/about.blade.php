@@ -124,13 +124,13 @@
 
         <!-- Institutional Office Card -->
         <div id="about-office"
-            class="group mt-10 bg-cream-soft border border-border-card hover:border-gold-base/70 hover:shadow-md transition-all duration-300 rounded-xl p-6 sm:p-7 flex flex-col md:flex-row items-center justify-between gap-6 reveal-on-scroll scroll-mt-28">
-            <div class="flex items-center gap-4">
+            class="group mt-10 bg-cream-soft border border-border-card hover:border-gold-base/70 hover:shadow-md transition-all duration-300 rounded-xl p-6 sm:p-7 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 reveal-on-scroll scroll-mt-28">
+            <div class="flex items-center gap-4 min-w-0">
                 <div
                     class="w-12 h-12 rounded-xl bg-white border border-border-card flex items-center justify-center p-2 shrink-0 shadow-xs transition-transform duration-300 group-hover:scale-105">
                     <img src="{{ asset('assets/ttbdo-full-logo.png') }}" alt="UP Cebu TTBDO Emblem" class="w-full h-full object-contain" />
                 </div>
-                <div>
+                <div class="min-w-0">
                     <h4 class="font-serif text-[15px] font-bold text-maroon-base group-hover:text-maroon-hover transition-colors">Technology Transfer and Business Development Office</h4>
                     <p class="text-[11.5px] text-ink-muted">
                         3rd Floor, Technology Innovation Center • University of the Philippines Cebu
@@ -188,12 +188,12 @@
                 </div>
             </div>
 
-            <div class="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-border-card/60">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-4 border-t border-border-card/60">
                 <span class="text-[11.5px] text-ink-muted font-medium">
                     Need to populate this container with copy or assets?
                 </span>
                 <a href="#contact"
-                    class="inline-flex items-center gap-2 bg-gold-base/15 hover:bg-gold-base/25 text-gold-deep border border-gold-base/40 text-xs font-bold px-4 py-2 rounded-lg transition-colors">
+                    class="inline-flex items-center justify-center gap-2 bg-gold-base/15 hover:bg-gold-base/25 text-gold-deep border border-gold-base/40 text-xs font-bold px-4 py-2 rounded-lg transition-colors w-full sm:w-auto">
                     <span>Submit Container Details</span>
                     <svg class="w-3.5 h-3.5 text-gold-deep" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
                 </a>
