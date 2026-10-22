@@ -236,17 +236,23 @@
                                 Published (Live)
                             </span>
                             @if ($event->director_comments)
-                            <div class="mt-1 text-[10px] text-amber-900 bg-amber-50 border border-amber-200 rounded px-1.5 py-0.5 max-w-[170px] truncate" title="Director Feedback: {{ $event->director_comments }}">
-                                <span class="font-bold">Feedback:</span> {{ $event->director_comments }}
-                            </div>
+                            <button type="button" onclick="openEventReviewById({{ $event->id }})"
+                                class="mt-1 text-[10px] text-amber-900 bg-amber-50 hover:bg-amber-100 border border-amber-300 rounded px-1.5 py-0.5 max-w-[170px] truncate block text-left cursor-pointer transition-colors" title="Director Feedback: {{ $event->director_comments }}">
+                                <span class="font-bold text-maroon-base">Feedback:</span> {{ $event->director_comments }}
+                            </button>
                             @endif
                         </td>
                         <td class="py-4 px-4 sm:px-6 text-right whitespace-nowrap">
                             <div class="flex items-center justify-end gap-1.5">
                                 @if (Auth::guard('admin')->user()?->canReview())
-                                <button type="button" onclick="openEventReviewModal({{ json_encode($event) }})"
-                                    class="px-2.5 py-1.5 rounded-lg bg-purple-700 hover:bg-purple-800 text-white text-xs font-bold transition-all shadow-xs cursor-pointer" title="Director Review & Feedback">
+                                <button type="button" onclick="openEventReviewById({{ $event->id }})"
+                                    class="px-2.5 py-1.5 rounded-lg bg-maroon-base hover:bg-maroon-hover text-white text-xs font-bold transition-all shadow-xs cursor-pointer border border-maroon-dark/20" title="Director Review & Feedback">
                                     Feedback
+                                </button>
+                                @elseif ($event->director_comments)
+                                <button type="button" onclick="openEventReviewById({{ $event->id }})"
+                                    class="px-2.5 py-1.5 rounded-lg bg-gold-light/80 hover:bg-gold-light text-maroon-base text-xs font-bold transition-all border border-gold-base/50 cursor-pointer" title="View Director Feedback">
+                                    View Feedback
                                 </button>
                                 @endif
 
@@ -316,7 +322,7 @@
     <div class="bg-white rounded-2xl shadow-2xl border border-border-card w-full max-w-lg overflow-hidden">
         <div class="p-5 border-b border-border-card bg-cream-soft flex items-center justify-between">
             <div class="flex items-center gap-2">
-                <span class="w-2.5 h-2.5 rounded-full bg-purple-600"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-gold-base"></span>
                 <h3 class="font-serif text-lg font-bold text-maroon-base">
                     Director Review &amp; Feedback
                 </h3>
@@ -335,12 +341,21 @@
                 <p id="ev-modal-schedule" class="text-[11px] text-ink-muted mt-0.5"></p>
             </div>
 
-            <div id="ev-modal-comments-box" class="p-3 bg-amber-50 border border-amber-200 rounded-xl hidden">
-                <span class="text-[10px] font-bold uppercase text-amber-900 block">Existing Director Feedback:</span>
-                <p id="ev-modal-comments-text" class="text-ink-base text-xs mt-1 whitespace-pre-wrap"></p>
+            <div id="ev-modal-comments-box" class="p-3.5 bg-amber-50 border border-amber-300 rounded-xl hidden">
+                <div class="flex items-center justify-between gap-2 mb-1">
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-amber-900 flex items-center gap-1.5">
+                        <svg class="w-3.5 h-3.5 text-gold-deep" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 0 1 .865-.501 48.172 48.172 0 0 0 3.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" />
+                        </svg>
+                        Director Quality Review Feedback:
+                    </span>
+                    <span id="ev-modal-comments-meta" class="text-[10px] text-ink-muted font-medium"></span>
+                </div>
+                <p id="ev-modal-comments-text" class="text-ink-base text-xs leading-relaxed whitespace-pre-wrap pl-5"></p>
             </div>
 
-            <form id="ev-review-form" method="POST" action="" class="space-y-3 pt-2 border-t border-border-card">
+            <!-- Reviewer Form (Director/Admin only) -->
+            <form id="ev-review-form" method="POST" action="" class="space-y-3 pt-2 border-t border-border-card {{ Auth::guard('admin')->user()?->canReview() ? '' : 'hidden' }}">
                 @csrf
                 <div>
                     <label class="block text-xs font-bold text-ink-base mb-1">
@@ -357,12 +372,27 @@
                     </button>
                     <div class="flex items-center gap-2">
                         <button type="submit"
-                            class="px-4 py-2 rounded-xl bg-purple-700 hover:bg-purple-800 text-white font-bold text-xs transition-all shadow-xs cursor-pointer">
+                            class="px-4 py-2 rounded-xl bg-maroon-base hover:bg-maroon-hover text-white font-bold text-xs transition-all shadow-xs cursor-pointer border border-gold-base/30">
                             Save Quality Feedback
                         </button>
                     </div>
                 </div>
             </form>
+
+            @if (!Auth::guard('admin')->user()?->canReview())
+            <div id="ev-staff-action-box" class="flex items-center justify-between pt-3 border-t border-border-card">
+                <button type="button" onclick="closeEventReviewModal()" class="px-4 py-2 rounded-lg border border-border-card text-ink-muted hover:bg-cream-soft font-semibold text-xs cursor-pointer">
+                    Close
+                </button>
+                <a id="ev-staff-edit-btn" href="#"
+                    class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-maroon-base hover:bg-maroon-dark text-white font-bold text-xs transition-all shadow-xs">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Z"/>
+                    </svg>
+                    <span>Edit Activity to Address Notes</span>
+                </a>
+            </div>
+            @endif
         </div>
     </div>
 </div>
@@ -496,7 +526,7 @@
 
         const appStatusBadge = {
             approved: '<span class="text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-green-100 text-green-800 border border-green-300">Live (Approved)</span>',
-            reviewed: '<span class="text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-purple-100 text-purple-800 border border-purple-300">Director Reviewed</span>',
+            reviewed: '<span class="text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-gold-light text-maroon-dark border border-gold-base/40 font-bold">Director Reviewed</span>',
             rejected: '<span class="text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-red-100 text-red-800 border border-red-300">Needs Revision</span>',
             pending_approval: '<span class="text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 border border-amber-300">Pending Approval</span>'
         }[ev.approval_status || 'approved'] || '<span class="text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 border border-amber-300">Pending Approval</span>';
@@ -530,7 +560,10 @@
             </div>
             ${ev.director_comments ? `
             <div class="p-2.5 rounded-xl bg-amber-50 border border-amber-300 text-xs mt-2">
-                <span class="text-[10px] font-bold uppercase tracking-wider text-amber-900 block">Director Feedback:</span>
+                <div class="flex items-center justify-between gap-2">
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-amber-900 block">Director Feedback:</span>
+                    ${ev.reviewed_by_name ? `<span class="text-[9.5px] text-ink-muted font-medium">${ev.reviewed_by_name}${ev.reviewed_at ? ' • ' + ev.reviewed_at : ''}</span>` : ''}
+                </div>
                 <p class="text-ink-base text-[11px] mt-0.5 leading-relaxed">${ev.director_comments}</p>
             </div>` : ''}
             ${ev.summary ? `<p class="text-[11px] text-ink-muted mt-2 leading-relaxed line-clamp-2">${ev.summary}</p>` : ''}
@@ -547,9 +580,13 @@
             </a>` : ''}
             ${CAN_REVIEW ? `
             <button type="button" data-review-event
-               class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-purple-700 text-white text-xs font-bold hover:bg-purple-800 transition-colors cursor-pointer">
+               class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-maroon-base text-white text-xs font-bold hover:bg-maroon-hover transition-colors cursor-pointer border border-maroon-dark/20">
                 <span>Feedback</span>
-            </button>` : ''}
+            </button>` : (ev.director_comments ? `
+            <button type="button" data-review-event
+               class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-gold-light/80 text-maroon-base text-xs font-bold hover:bg-gold-light border border-gold-base/50 transition-colors cursor-pointer">
+                <span>View Feedback</span>
+            </button>` : '')}
             ${ev.enable_view_link ? `
             <a href="${ev.public_url}" target="_blank"
                class="inline-flex items-center gap-1 px-2 py-1.5 rounded-lg bg-gold-light text-gold-deep border border-gold-base/30 text-xs font-bold hover:bg-gold-base hover:text-maroon-dark transition-colors">
@@ -562,14 +599,12 @@
             </button>` : ''}
         `;
 
-        if (CAN_REVIEW) {
-            const revBtn = popActs.querySelector('[data-review-event]');
-            if (revBtn) {
-                revBtn.addEventListener('click', function () {
-                    closePopup();
-                    window.openEventReviewModal(ev);
-                });
-            }
+        const revBtn = popActs.querySelector('[data-review-event]');
+        if (revBtn) {
+            revBtn.addEventListener('click', function () {
+                closePopup();
+                window.openEventReviewModal(ev);
+            });
         }
 
         // Delete handler
@@ -613,6 +648,13 @@
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closePopup(); });
 
     // ── Global Review Modal functions ──────────────────────────────────────────
+    window.openEventReviewById = function (id) {
+        const ev = ALL_EVENTS.find(e => e.id === Number(id));
+        if (ev) {
+            window.openEventReviewModal(ev);
+        }
+    };
+
     window.openEventReviewModal = function (ev) {
         const modal = document.getElementById('event-review-modal');
         if (!modal) return;
@@ -622,16 +664,30 @@
 
         const commentsBox = document.getElementById('ev-modal-comments-box');
         const commentsText = document.getElementById('ev-modal-comments-text');
-        if (ev.director_comments) {
+        const commentsMeta = document.getElementById('ev-modal-comments-meta');
+        if (ev.director_comments && ev.director_comments.trim() !== '') {
             commentsText.textContent = ev.director_comments;
+            if (commentsMeta) {
+                commentsMeta.textContent = (ev.reviewed_by_name ? `From ${ev.reviewed_by_name}` : 'Recorded') + (ev.reviewed_at ? ` on ${ev.reviewed_at}` : '');
+            }
             commentsBox.classList.remove('hidden');
         } else {
             commentsBox.classList.add('hidden');
         }
 
         const form = document.getElementById('ev-review-form');
-        form.action = ev.review_url || `/admin/events/${ev.id}/review`;
-        document.getElementById('ev-review-comments-input').value = ev.director_comments || '';
+        const input = document.getElementById('ev-review-comments-input');
+        if (input) {
+            input.value = ev.director_comments || '';
+        }
+        if (form) {
+            form.action = ev.review_url || `/admin/events/${ev.id}/review`;
+        }
+
+        const editBtn = document.getElementById('ev-staff-edit-btn');
+        if (editBtn) {
+            editBtn.href = ev.edit_url || `/admin/events/${ev.id}/edit`;
+        }
 
         modal.classList.remove('hidden');
         document.body.style.overflow = 'hidden';
@@ -714,6 +770,16 @@
 
     // ── Init ──────────────────────────────────────────────────────────────────
     render();
+
+    // Auto open feedback review modal if highlighted from notification
+    const urlParams = new URLSearchParams(window.location.search);
+    const highlightEventId = urlParams.get('highlight_event');
+    const openFeedback = urlParams.get('open_feedback');
+    if (highlightEventId && openFeedback) {
+        setTimeout(() => {
+            window.openEventReviewById(Number(highlightEventId));
+        }, 150);
+    }
 
     // Legacy confirmDelete (used by the list table)
     window.confirmDelete = function (e, type) {

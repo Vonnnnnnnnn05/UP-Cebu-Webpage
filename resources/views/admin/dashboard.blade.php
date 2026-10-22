@@ -35,6 +35,44 @@
     </div>
 </div>
 
+<!-- In-System Feedback Alert (Strictly In-Portal, No External Email) -->
+@if (($unread_notifications_count ?? 0) > 0)
+<div class="mb-8 p-5 bg-gradient-to-r from-amber-500/10 via-amber-50 to-gold-light/30 border-2 border-gold-base rounded-2xl shadow-xs flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+    <div class="flex items-start gap-3.5">
+        <div class="w-10 h-10 rounded-xl bg-gold-base text-maroon-dark font-black flex items-center justify-center shrink-0 shadow-xs">
+            <svg class="w-5 h-5 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
+            </svg>
+        </div>
+        <div>
+            <div class="flex items-center gap-2">
+                <span class="text-[10.5px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-gold-base text-maroon-dark">
+                    Action Required
+                </span>
+                <span class="text-xs font-bold text-amber-900">
+                    {{ $unread_notifications_count }} Unread Quality Review Feedback {{ $unread_notifications_count === 1 ? 'Notice' : 'Notices' }}
+                </span>
+            </div>
+            <h2 class="font-serif text-lg font-bold text-maroon-base mt-1">
+                You have review feedback waiting in the system
+            </h2>
+            <p class="text-xs text-ink-muted mt-0.5">
+                The Director or Administrators left quality notes / suggestions for you to inspect and address on published events or inquiries.
+            </p>
+        </div>
+    </div>
+    <div class="flex flex-wrap items-center gap-2.5 shrink-0">
+        <a href="{{ route('admin.notifications.index', ['filter' => 'unread']) }}"
+            class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-maroon-base hover:bg-maroon-hover text-white text-xs font-bold transition-all shadow-xs">
+            <span>View All Feedback ({{ $unread_notifications_count }})</span>
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+            </svg>
+        </a>
+    </div>
+</div>
+@endif
+
 <!-- Workflow Role Banner -->
 @if ($currentAdmin->isDirector())
 <div class="mb-8 p-5 bg-gradient-to-r from-maroon-dark via-maroon-base to-maroon-dark text-white rounded-2xl shadow-sm border-2 border-gold-base/40 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">

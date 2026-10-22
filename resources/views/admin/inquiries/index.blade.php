@@ -104,15 +104,22 @@
                             {{ $badgeLabel }}
                         </span>
                     </td>
-                    <td class="py-4 px-4 max-w-[200px]">
+                    <td class="py-4 px-4 max-w-[220px]">
                         @if ($inq->director_comments)
-                            <div class="text-[10.5px] text-amber-900 bg-amber-50 border border-amber-200 rounded px-2 py-1 line-clamp-2" title="Director Feedback: {{ $inq->director_comments }}">
-                                <span class="font-bold block text-[9.5px] uppercase text-maroon-base">Director Note:</span>
+                            <div class="text-[10.5px] text-amber-900 bg-amber-50 border border-amber-200 rounded px-2 py-1 mb-1 line-clamp-2" title="Director Feedback: {{ $inq->director_comments }}">
+                                <span class="font-bold block text-[9.5px] uppercase text-maroon-base">
+                                    Director Note{{ $inq->reviewer ? ' (' . $inq->reviewer->full_name . ')' : '' }}:
+                                </span>
                                 {{ $inq->director_comments }}
                             </div>
-                        @elseif ($inq->admin_notes)
-                            <span class="text-[11px] text-ink-muted line-clamp-2 italic">{{ $inq->admin_notes }}</span>
-                        @else
+                        @endif
+                        @if ($inq->admin_notes)
+                            <div class="text-[10.5px] text-ink-muted bg-cream-soft border border-border-card/60 rounded px-2 py-1 line-clamp-2" title="Staff/Admin Note: {{ $inq->admin_notes }}">
+                                <span class="font-bold block text-[9.5px] uppercase text-ink-base">Staff/Admin Note:</span>
+                                {{ $inq->admin_notes }}
+                            </div>
+                        @endif
+                        @if (!$inq->director_comments && !$inq->admin_notes)
                             <span class="text-[10px] text-ink-muted/50 italic">No notes yet</span>
                         @endif
                     </td>
@@ -122,7 +129,7 @@
                     </td>
                     <td class="py-4 px-4 sm:px-6 text-right whitespace-nowrap">
                         <div class="flex items-center justify-end gap-2">
-                            <button type="button" onclick="openInquiryModal({{ json_encode($inq) }})"
+                            <button type="button" onclick="openInquiryById({{ $inq->id }})"
                                 class="px-3 py-1.5 rounded-lg bg-cream-soft hover:bg-gold-base/20 text-maroon-base font-bold text-xs transition-colors cursor-pointer">
                                 View Inquiry
                             </button>
@@ -208,13 +215,26 @@
 
             <!-- Existing Director Feedback Display -->
             <div id="modal-director-feedback-box" class="p-3.5 rounded-xl bg-amber-50 border border-amber-300 text-xs hidden">
-                <div class="flex items-center gap-1.5 text-amber-900 font-bold uppercase tracking-wider text-[10.5px] mb-1">
-                    <svg class="w-4 h-4 text-gold-deep" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 0 1 .865-.501 48.172 48.172 0 0 0 3.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" />
-                    </svg>
-                    <span>Director Review Feedback / Required Revisions:</span>
+                <div class="flex items-center justify-between gap-2 mb-1">
+                    <div class="flex items-center gap-1.5 text-amber-900 font-bold uppercase tracking-wider text-[10.5px]">
+                        <svg class="w-4 h-4 text-gold-deep" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 0 1 .865-.501 48.172 48.172 0 0 0 3.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" />
+                        </svg>
+                        <span>Director Review Feedback / Required Revisions:</span>
+                    </div>
+                    <span id="modal-director-feedback-meta" class="text-[10px] text-ink-muted font-medium"></span>
                 </div>
                 <p id="modal-director-feedback-text" class="text-ink-base leading-relaxed pl-5 whitespace-pre-wrap"></p>
+            </div>
+
+            <!-- Approval / Handler Information Display -->
+            <div id="modal-approval-meta-box" class="p-3 rounded-xl bg-green-50 border border-green-200 text-xs hidden">
+                <div class="flex items-center gap-1.5 text-green-900 font-bold uppercase tracking-wider text-[10.5px]">
+                    <svg class="w-3.5 h-3.5 text-green-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    </svg>
+                    <span id="modal-approval-meta-text">Officially Approved</span>
+                </div>
             </div>
 
             <!-- DIRECTOR REVIEW FORM (For Director or Admin) -->
@@ -242,7 +262,7 @@
                             Request Revision / Flag Issue
                         </button>
                         <button type="submit" name="review_decision" value="reviewed"
-                            class="px-4 py-1.5 rounded-lg bg-purple-700 hover:bg-purple-800 text-white text-xs font-bold transition-all shadow-2xs cursor-pointer">
+                            class="px-4 py-1.5 rounded-lg bg-maroon-base hover:bg-maroon-hover text-white text-xs font-bold transition-all shadow-2xs cursor-pointer border border-gold-base/30">
                             Mark as Reviewed
                         </button>
                     </div>
@@ -299,7 +319,20 @@
 </div>
 
 <script>
+const INQUIRIES_DATA = @json($inquiriesList->items());
+const SELECTED_INQUIRY = @json($selectedInquiry);
+
 let currentInquiryId = null;
+
+function openInquiryById(id) {
+    let inq = INQUIRIES_DATA.find(item => item.id === Number(id));
+    if (!inq && SELECTED_INQUIRY && SELECTED_INQUIRY.id === Number(id)) {
+        inq = SELECTED_INQUIRY;
+    }
+    if (inq) {
+        openInquiryModal(inq);
+    }
+}
 
 function openInquiryModal(inq) {
     currentInquiryId = inq.id;
@@ -320,14 +353,41 @@ function openInquiryModal(inq) {
     document.getElementById('modal-status-select').value = currentStatus;
     document.getElementById('modal-notes').value = inq.admin_notes || '';
 
-    // Director feedback display
+    // Director feedback display with reviewer role info
     const feedbackBox = document.getElementById('modal-director-feedback-box');
     const feedbackText = document.getElementById('modal-director-feedback-text');
+    const feedbackMeta = document.getElementById('modal-director-feedback-meta');
     if (inq.director_comments && inq.director_comments.trim() !== '') {
         feedbackText.textContent = inq.director_comments;
+        if (feedbackMeta) {
+            let meta = '';
+            if (inq.reviewer && inq.reviewer.full_name) {
+                meta += 'By ' + inq.reviewer.full_name;
+            }
+            if (inq.reviewed_at) {
+                const rDate = new Date(inq.reviewed_at);
+                meta += (meta ? ' • ' : '') + (!isNaN(rDate.getTime()) ? rDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : inq.reviewed_at);
+            }
+            feedbackMeta.textContent = meta;
+        }
         feedbackBox.classList.remove('hidden');
     } else {
         feedbackBox.classList.add('hidden');
+    }
+
+    // Approval / Handler display with approver role info
+    const approvalBox = document.getElementById('modal-approval-meta-box');
+    const approvalText = document.getElementById('modal-approval-meta-text');
+    if (inq.status === 'approved' && inq.approver) {
+        let appMeta = 'Approved by ' + inq.approver.full_name;
+        if (inq.approved_at) {
+            const aDate = new Date(inq.approved_at);
+            appMeta += ' on ' + (!isNaN(aDate.getTime()) ? aDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : inq.approved_at);
+        }
+        approvalText.textContent = appMeta;
+        approvalBox.classList.remove('hidden');
+    } else {
+        approvalBox.classList.add('hidden');
     }
 
     const directorInput = document.getElementById('director-comment-input');
@@ -350,6 +410,18 @@ function openInquiryModal(inq) {
 function closeInquiryModal() {
     document.getElementById('inquiry-detail-modal').classList.add('hidden');
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+    if (SELECTED_INQUIRY) {
+        openInquiryModal(SELECTED_INQUIRY);
+    } else {
+        const urlParams = new URLSearchParams(window.location.search);
+        const highlightInq = urlParams.get('highlight_inquiry');
+        if (highlightInq) {
+            openInquiryById(Number(highlightInq));
+        }
+    }
+});
 
 function confirmDelete(e) {
     e.preventDefault();

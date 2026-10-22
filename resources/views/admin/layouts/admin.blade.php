@@ -110,6 +110,106 @@
                     </a>
 
                     @auth('admin')
+                    <!-- In-System Feedback Notifications Bell & Dropdown -->
+                    <div class="relative" id="notifications-dropdown-container">
+                        <button type="button" id="notif-bell-btn" onclick="toggleNotificationsDropdown()"
+                            class="relative p-2 rounded-xl text-white/90 hover:text-white hover:bg-white/10 transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-gold-base/50"
+                            title="Feedback & System Notifications" aria-label="Notifications" aria-expanded="false">
+                            <svg class="w-5 h-5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
+                            </svg>
+
+                            <!-- Unread Badge Indicator -->
+                            <span id="notif-badge" class="{{ ($unread_notifications_count ?? 0) > 0 ? '' : 'hidden' }} absolute -top-0.5 -right-0.5 px-1.5 py-0.2 text-[10px] font-black leading-none rounded-full bg-gold-base text-maroon-dark border-2 border-maroon-dark shadow-sm">
+                                {{ ($unread_notifications_count ?? 0) > 99 ? '99+' : ($unread_notifications_count ?? 0) }}
+                            </span>
+                        </button>
+
+                        <!-- Notification Dropdown Panel -->
+                        <div id="notifications-dropdown"
+                            class="hidden absolute right-0 mt-2 w-80 sm:w-96 bg-white text-ink-base rounded-2xl shadow-2xl border border-border-card z-50 overflow-hidden transform opacity-0 scale-95 transition-all duration-200 origin-top-right">
+                            
+                            <!-- Dropdown Header -->
+                            <div class="p-3.5 sm:p-4 border-b border-border-card bg-cream-soft flex items-center justify-between">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-gold-base"></span>
+                                    <span class="font-serif text-sm sm:text-base font-bold text-maroon-base">
+                                        System Notifications
+                                    </span>
+                                    <span id="dropdown-unread-pill" class="{{ ($unread_notifications_count ?? 0) > 0 ? '' : 'hidden' }} text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-gold-base/20 text-gold-deep">
+                                        {{ $unread_notifications_count ?? 0 }} new
+                                    </span>
+                                </div>
+
+                                <button type="button" onclick="markAllNotificationsAsRead()"
+                                    class="text-[11px] font-bold text-maroon-base hover:text-maroon-hover hover:underline cursor-pointer">
+                                    Mark all read
+                                </button>
+                            </div>
+
+                            <!-- Notification Items List -->
+                            <div id="notif-dropdown-list" class="max-h-80 overflow-y-auto divide-y divide-border-card/60 text-xs scrollbar-thin">
+                                @if(isset($recent_notifications) && $recent_notifications->count() > 0)
+                                    @foreach($recent_notifications as $notif)
+                                        @php
+                                            $notifData = is_array($notif->data) ? $notif->data : (json_decode($notif->data, true) ?? []);
+                                            $isItemUnread = $notif->read_at === null;
+                                            $notifItemType = $notifData['item_type'] ?? 'general';
+                                            $notifActionUrl = $notifData['action_url'] ?? route('admin.notifications.index');
+                                        @endphp
+                                        <div id="notif-item-{{ $notif->id }}"
+                                            class="p-3.5 transition-colors {{ $isItemUnread ? 'bg-amber-50/60 border-l-4 border-l-gold-base' : 'bg-white hover:bg-cream-soft/50' }} flex items-start justify-between gap-3">
+                                            <a href="{{ $notifActionUrl }}" onclick="markNotificationAsRead('{{ $notif->id }}', false)" class="flex-1 block group">
+                                                <div class="flex items-center gap-1.5 mb-1">
+                                                    <span class="w-2 h-2 rounded-full {{ $isItemUnread ? 'bg-gold-base animate-ping' : 'bg-stone-300' }}"></span>
+                                                    <span class="font-bold text-ink-base group-hover:text-maroon-base transition-colors line-clamp-1">
+                                                        {{ $notifData['title'] ?? 'Review Feedback' }}
+                                                    </span>
+                                                </div>
+                                                <p class="text-[11.5px] text-ink-muted line-clamp-2 italic pl-3.5 bg-cream-soft/50 rounded py-1 px-1.5 border-l-2 border-amber-300">
+                                                    "{{ $notifData['message'] ?? 'View feedback details...' }}"
+                                                </p>
+                                                <div class="flex items-center justify-between text-[10px] text-ink-muted mt-1.5 pl-3.5">
+                                                    <span>From: <strong class="text-ink-base">{{ $notifData['reviewer_name'] ?? 'Director' }}</strong></span>
+                                                    <span>{{ $notif->created_at?->diffForHumans() }}</span>
+                                                </div>
+                                            </a>
+
+                                            @if($isItemUnread)
+                                            <button type="button" onclick="markNotificationAsRead('{{ $notif->id }}', true)"
+                                                class="p-1 rounded-md text-ink-muted hover:text-emerald-700 hover:bg-emerald-50 transition-colors shrink-0 cursor-pointer"
+                                                title="Mark as read">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                                                </svg>
+                                            </button>
+                                            @endif
+                                        </div>
+                                    @endforeach
+                                @else
+                                    <div class="p-8 text-center text-ink-muted">
+                                        <svg class="w-8 h-8 mx-auto text-stone-300 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
+                                        </svg>
+                                        <p class="font-bold text-xs text-ink-base">All Caught Up!</p>
+                                        <p class="text-[11px] text-ink-muted mt-0.5">No new feedback notifications.</p>
+                                    </div>
+                                @endif
+                            </div>
+
+                            <!-- Dropdown Footer -->
+                            <div class="p-2.5 bg-cream-soft border-t border-border-card text-center">
+                                <a href="{{ route('admin.notifications.index') }}"
+                                    class="inline-flex items-center justify-center gap-1.5 text-xs font-bold text-maroon-base hover:text-maroon-hover transition-colors py-1 px-3 w-full rounded-lg hover:bg-black/5">
+                                    <span>View Notifications Center</span>
+                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
                     @php
                         $userRole = Auth::guard('admin')->user()->role;
                         $roleBadge = match($userRole) {
@@ -223,6 +323,147 @@
                 document.getElementById('logout-form').submit();
             }
         });
+    }
+
+    // Notifications Dropdown & Live Handling
+    function toggleNotificationsDropdown() {
+        const dropdown = document.getElementById('notifications-dropdown');
+        const bellBtn = document.getElementById('notif-bell-btn');
+        if (!dropdown) return;
+
+        const isHidden = dropdown.classList.contains('hidden');
+        if (isHidden) {
+            dropdown.classList.remove('hidden');
+            requestAnimationFrame(() => {
+                dropdown.classList.remove('opacity-0', 'scale-95');
+                dropdown.classList.add('opacity-100', 'scale-100');
+            });
+            if (bellBtn) bellBtn.setAttribute('aria-expanded', 'true');
+        } else {
+            closeNotificationsDropdown();
+        }
+    }
+
+    function closeNotificationsDropdown() {
+        const dropdown = document.getElementById('notifications-dropdown');
+        const bellBtn = document.getElementById('notif-bell-btn');
+        if (!dropdown || dropdown.classList.contains('hidden')) return;
+
+        dropdown.classList.remove('opacity-100', 'scale-100');
+        dropdown.classList.add('opacity-0', 'scale-95');
+        setTimeout(() => {
+            dropdown.classList.add('hidden');
+        }, 150);
+        if (bellBtn) bellBtn.setAttribute('aria-expanded', 'false');
+    }
+
+    document.addEventListener('click', (e) => {
+        const container = document.getElementById('notifications-dropdown-container');
+        if (container && !container.contains(e.target)) {
+            closeNotificationsDropdown();
+        }
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeNotificationsDropdown();
+        }
+    });
+
+    function updateNotificationCounters(count) {
+        const badge = document.getElementById('notif-badge');
+        const navBadge = document.getElementById('nav-notif-badge');
+        const pill = document.getElementById('dropdown-unread-pill');
+
+        if (badge) {
+            if (count > 0) {
+                badge.textContent = count > 99 ? '99+' : count;
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+        }
+        if (navBadge) {
+            if (count > 0) {
+                navBadge.textContent = count;
+                navBadge.classList.remove('hidden');
+            } else {
+                navBadge.classList.add('hidden');
+            }
+        }
+        if (pill) {
+            if (count > 0) {
+                pill.textContent = count + ' new';
+                pill.classList.remove('hidden');
+            } else {
+                pill.classList.add('hidden');
+            }
+        }
+    }
+
+    async function markNotificationAsRead(id, preventRedirect = false) {
+        try {
+            const token = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
+            const res = await fetch(`/admin/notifications/${id}/read`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'X-CSRF-TOKEN': token || ''
+                }
+            });
+            if (res.ok) {
+                const data = await res.json();
+                updateNotificationCounters(data.count);
+                const item = document.getElementById(`notif-item-${id}`);
+                if (item) {
+                    item.classList.remove('bg-amber-50/60', 'border-l-4', 'border-l-gold-base');
+                    item.classList.add('bg-white');
+                    const dot = item.querySelector('.bg-gold-base.animate-ping');
+                    if (dot) {
+                        dot.classList.remove('bg-gold-base', 'animate-ping');
+                        dot.classList.add('bg-stone-300');
+                    }
+                    const btn = item.querySelector('button[title="Mark as read"]');
+                    if (btn) btn.remove();
+                }
+            }
+        } catch (e) {
+            console.error('Error marking notification read:', e);
+        }
+    }
+
+    async function markAllNotificationsAsRead() {
+        try {
+            const token = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
+            const res = await fetch('/admin/notifications/mark-all-read', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'X-CSRF-TOKEN': token || ''
+                }
+            });
+            if (res.ok) {
+                updateNotificationCounters(0);
+                const list = document.getElementById('notif-dropdown-list');
+                if (list) {
+                    list.querySelectorAll('[id^="notif-item-"]').forEach(item => {
+                        item.classList.remove('bg-amber-50/60', 'border-l-4', 'border-l-gold-base');
+                        item.classList.add('bg-white');
+                        const dot = item.querySelector('.bg-gold-base.animate-ping');
+                        if (dot) {
+                            dot.classList.remove('bg-gold-base', 'animate-ping');
+                            dot.classList.add('bg-stone-300');
+                        }
+                        const btn = item.querySelector('button[title="Mark as read"]');
+                        if (btn) btn.remove();
+                    });
+                }
+            }
+        } catch (e) {
+            console.error('Error marking all notifications read:', e);
+        }
     }
 
     document.addEventListener('DOMContentLoaded', () => {

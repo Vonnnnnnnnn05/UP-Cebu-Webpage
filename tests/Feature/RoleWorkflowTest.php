@@ -394,5 +394,49 @@ class RoleWorkflowTest extends TestCase
         $response->assertRedirect();
         Mail::assertNothingSent();
     }
+
+    public function test_staff_can_view_director_feedback_and_notes_on_events_and_inquiries(): void
+    {
+        // 1. Event with director comments
+        $event = Event::create([
+            'title'             => 'IP Commercialization Summit',
+            'slug'              => 'ip-commercialization-summit',
+            'category'          => 'Summit',
+            'status'            => 'upcoming',
+            'approval_status'   => 'approved',
+            'event_date'        => '2026-11-20',
+            'venue'             => 'Auditorium Hall',
+            'director_comments' => 'Please coordinate audio-visual crew ahead of time.',
+            'reviewed_by'       => $this->director->id,
+            'reviewed_at'       => now(),
+        ]);
+
+        $this->actingAs($this->staff, 'admin');
+
+        $eventPage = $this->get(route('admin.events.index'));
+        $eventPage->assertStatus(200);
+        $eventPage->assertSee('Please coordinate audio-visual crew ahead of time.');
+        $eventPage->assertSee('View Feedback');
+
+        // 2. Inquiry with director comments and staff/admin notes
+        $inquiry = Inquiry::create([
+            'full_name'         => 'Test Inquirer',
+            'affiliation'       => 'Test Org',
+            'email'             => 'inquirer@test.ph',
+            'subject'           => 'Technology Transfer Inquiry',
+            'message'           => 'Proposal message.',
+            'status'            => 'reviewed',
+            'director_comments' => 'Director recommends faculty meeting.',
+            'admin_notes'       => 'Staff has drafted response.',
+            'reviewed_by'       => $this->director->id,
+            'reviewed_at'       => now(),
+        ]);
+
+        $inquiryPage = $this->get(route('admin.inquiries.index'));
+        $inquiryPage->assertStatus(200);
+        $inquiryPage->assertSee('Director recommends faculty meeting.');
+        $inquiryPage->assertSee('Staff has drafted response.');
+        $inquiryPage->assertSee($this->director->full_name);
+    }
 }
 

@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Mail\InquiryApprovedMail;
 use App\Mail\InquiryDeclinedMail;
+use App\Models\Admin;
 use App\Models\Inquiry;
+use App\Notifications\FeedbackNotification;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -79,9 +81,60 @@ class InquiryController extends Controller
 
         // If Director submits review comments
         if ($request->filled('director_comments') && $currentUser && $currentUser->canReview()) {
-            $validated['director_comments'] = $request->input('director_comments');
+            $newFeedback = trim($request->input('director_comments', ''));
+            $validated['director_comments'] = $newFeedback ?: null;
             $validated['reviewed_by']       = $currentUser->id;
             $validated['reviewed_at']       = now();
+
+            if (!empty($newFeedback) && $newFeedback !== $inquiry->director_comments) {
+                $recipients = Admin::where('id', '!=', $currentUser->id)
+                    ->whereIn('role', ['staff', 'admin'])
+                    ->get();
+
+                $subjectTitle = $inquiry->subject ?: ('Inquiry from ' . $inquiry->full_name);
+
+                $notificationData = [
+                    'title'         => 'Director Feedback on Inquiry: ' . $subjectTitle,
+                    'message'       => $newFeedback,
+                    'reviewer_name' => $currentUser->full_name,
+                    'reviewer_role' => $currentUser->role,
+                    'item_type'     => 'inquiry',
+                    'item_id'       => $inquiry->id,
+                    'item_title'    => $subjectTitle,
+                    'action_url'    => route('admin.inquiries.index', ['highlight_inquiry' => $inquiry->id, 'open_feedback' => 1]),
+                    'type_label'    => 'Inquiry Feedback',
+                ];
+
+                foreach ($recipients as $recipient) {
+                    $recipient->notify(new FeedbackNotification($notificationData));
+                }
+            }
+        }
+
+        // If staff or admin updates internal notes
+        $newNotes = trim($request->input('admin_notes', ''));
+        if (!empty($newNotes) && $newNotes !== $inquiry->admin_notes && $currentUser) {
+            $recipients = Admin::where('id', '!=', $currentUser->id)
+                ->whereIn('role', ['director', 'admin'])
+                ->get();
+
+            $subjectTitle = $inquiry->subject ?: ('Inquiry from ' . $inquiry->full_name);
+
+            $notificationData = [
+                'title'         => 'Staff Notes on Inquiry: ' . $subjectTitle,
+                'message'       => $newNotes,
+                'reviewer_name' => $currentUser->full_name,
+                'reviewer_role' => $currentUser->role,
+                'item_type'     => 'inquiry',
+                'item_id'       => $inquiry->id,
+                'item_title'    => $subjectTitle,
+                'action_url'    => route('admin.inquiries.index', ['highlight_inquiry' => $inquiry->id]),
+                'type_label'    => 'Staff Note',
+            ];
+
+            foreach ($recipients as $recipient) {
+                $recipient->notify(new FeedbackNotification($notificationData));
+            }
         }
 
         // If status is approved
@@ -119,12 +172,39 @@ class InquiryController extends Controller
             'review_decision'   => 'required|string|in:reviewed,rejected,in_review',
         ]);
 
+        $feedbackComments = trim($request->input('director_comments', ''));
+
         $inquiry->update([
-            'director_comments' => $request->input('director_comments'),
+            'director_comments' => $feedbackComments ?: null,
             'status'            => $request->input('review_decision'),
             'reviewed_by'       => $currentUser->id,
             'reviewed_at'       => now(),
         ]);
+
+        if (!empty($feedbackComments)) {
+            // Strictly in-system notification (No email)
+            $recipients = Admin::where('id', '!=', $currentUser->id)
+                ->whereIn('role', ['staff', 'admin'])
+                ->get();
+
+            $subjectTitle = $inquiry->subject ?: ('Inquiry from ' . $inquiry->full_name);
+
+            $notificationData = [
+                'title'         => 'Director Feedback on Inquiry: ' . $subjectTitle,
+                'message'       => $feedbackComments,
+                'reviewer_name' => $currentUser->full_name,
+                'reviewer_role' => $currentUser->role,
+                'item_type'     => 'inquiry',
+                'item_id'       => $inquiry->id,
+                'item_title'    => $subjectTitle,
+                'action_url'    => route('admin.inquiries.index', ['highlight_inquiry' => $inquiry->id, 'open_feedback' => 1]),
+                'type_label'    => 'Inquiry Feedback',
+            ];
+
+            foreach ($recipients as $recipient) {
+                $recipient->notify(new FeedbackNotification($notificationData));
+            }
+        }
 
         return redirect()->back()->with('success_message', 'Director review and comments recorded successfully.');
     }

@@ -150,7 +150,7 @@
                 $appStatus = old('approval_status', $event->approval_status ?? 'approved');
                 $appBadge = match($appStatus) {
                     'approved' => 'bg-green-100 text-green-800 border-green-300',
-                    'reviewed' => 'bg-purple-100 text-purple-800 border-purple-300',
+                    'reviewed' => 'bg-gold-light text-maroon-dark border-gold-base/50 font-bold',
                     'rejected' => 'bg-red-100 text-red-800 border-red-300',
                     default    => 'bg-amber-100 text-amber-800 border-amber-300',
                 };

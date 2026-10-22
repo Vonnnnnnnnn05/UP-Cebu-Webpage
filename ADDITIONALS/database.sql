@@ -137,15 +137,25 @@ CREATE TABLE IF NOT EXISTS `events` (
     `category` VARCHAR(50) NOT NULL DEFAULT 'Workshop', -- Summit, Legal Clinic, Mentorship, Workshop
     `badge_label` VARCHAR(50) NULL DEFAULT 'UPCOMING',
     `event_date` DATE NOT NULL,
+    `end_date` DATE NULL,
     `start_time` VARCHAR(20) NOT NULL DEFAULT '09:00 AM',
     `end_time` VARCHAR(20) NOT NULL DEFAULT '05:00 PM',
     `venue` VARCHAR(150) NOT NULL DEFAULT 'UP Cebu Campus',
     `venue_type` ENUM('in-person', 'virtual', 'hybrid') NOT NULL DEFAULT 'in-person',
     `summary` TEXT NOT NULL,
+    `image_url` VARCHAR(255) NULL,
     `description` LONGTEXT NULL,
     `registration_url` VARCHAR(255) NULL DEFAULT '#contact',
     `is_featured` TINYINT(1) NOT NULL DEFAULT 0,
     `status` ENUM('upcoming', 'completed', 'cancelled') NOT NULL DEFAULT 'upcoming',
+    `approval_status` VARCHAR(30) NOT NULL DEFAULT 'approved',
+    `director_comments` TEXT NULL,
+    `reviewed_by` BIGINT UNSIGNED NULL,
+    `approved_by` BIGINT UNSIGNED NULL,
+    `reviewed_at` TIMESTAMP NULL,
+    `approved_at` TIMESTAMP NULL,
+    `news_id` BIGINT UNSIGNED NULL,
+    `enable_view_link` TINYINT(1) NOT NULL DEFAULT 0,
     `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     INDEX `idx_event_date` (`event_date`),
@@ -211,12 +221,17 @@ CREATE TABLE IF NOT EXISTS `inquiries` (
     `full_name` VARCHAR(100) NOT NULL,
     `email` VARCHAR(100) NOT NULL,
     `contact_number` VARCHAR(30) NULL,
-    `affiliation` ENUM('student', 'faculty', 'researcher', 'msme', 'industry_partner', 'general_public') NOT NULL DEFAULT 'general_public',
-    `inquiry_type` ENUM('ip_protection', 'business_incubation', 'simp_mentorship', 'licensing', 'msme_support', 'press_media', 'general') NOT NULL DEFAULT 'general',
+    `affiliation` VARCHAR(100) NOT NULL DEFAULT 'general_public',
+    `inquiry_type` VARCHAR(100) NOT NULL DEFAULT 'general',
     `subject` VARCHAR(200) NOT NULL,
     `message` TEXT NOT NULL,
-    `status` ENUM('pending', 'in_review', 'resolved', 'archived') NOT NULL DEFAULT 'pending',
+    `status` VARCHAR(30) NOT NULL DEFAULT 'pending',
     `admin_notes` TEXT NULL,
+    `director_comments` TEXT NULL,
+    `reviewed_by` BIGINT UNSIGNED NULL,
+    `approved_by` BIGINT UNSIGNED NULL,
+    `reviewed_at` TIMESTAMP NULL,
+    `approved_at` TIMESTAMP NULL,
     `ip_address` VARCHAR(45) NULL,
     `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -268,3 +283,19 @@ INSERT INTO `site_settings` (`setting_key`, `setting_value`, `setting_group`, `d
 ('office_hours', 'Monday - Friday: 8:00 AM - 5:00 PM', 'general', 'Official office operating hours'),
 ('motto', 'Nurtured to Create • Inspired to Innovate • Destined to Serve', 'general', 'UP Cebu Official Motto')
 ON DUPLICATE KEY UPDATE `setting_value`=VALUES(`setting_value`);
+
+-- ------------------------------------------------------------------------------
+-- 6. Table: notifications (In-System Staff Feedback & Activity Reviews)
+-- ------------------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS `notifications` (
+    `id` CHAR(36) PRIMARY KEY,
+    `type` VARCHAR(255) NOT NULL,
+    `notifiable_type` VARCHAR(255) NOT NULL,
+    `notifiable_id` BIGINT UNSIGNED NOT NULL,
+    `data` TEXT NOT NULL,
+    `read_at` TIMESTAMP NULL,
+    `created_at` TIMESTAMP NULL,
+    `updated_at` TIMESTAMP NULL,
+    INDEX `idx_notifiable` (`notifiable_type`, `notifiable_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+

@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\EventController as AdminEventController;
 use App\Http\Controllers\Admin\InquiryController as AdminInquiryController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
+use App\Http\Controllers\Admin\NotificationController as AdminNotificationController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InquiryController;
 use Illuminate\Support\Facades\Route;
@@ -61,5 +62,14 @@ Route::prefix('admin')->group(function () {
         Route::resource('inquiries', AdminInquiryController::class)
             ->only(['index', 'show', 'update', 'destroy'])
             ->names('admin.inquiries');
+
+        // System Feedback Notifications (Strictly In-System, No Email)
+        Route::get('/notifications', [AdminNotificationController::class, 'index'])->name('admin.notifications.index');
+        Route::get('/notifications/unread-count', [AdminNotificationController::class, 'unreadCount'])->name('admin.notifications.unread-count');
+        Route::post('/notifications/mark-all-read', [AdminNotificationController::class, 'markAllAsRead'])->name('admin.notifications.mark-all-read');
+        Route::delete('/notifications/clear-read', [AdminNotificationController::class, 'clearRead'])->name('admin.notifications.clear-read');
+        Route::post('/notifications/{id}/read', [AdminNotificationController::class, 'markAsRead'])->name('admin.notifications.read');
+        Route::post('/notifications/{id}/unread', [AdminNotificationController::class, 'markAsUnread'])->name('admin.notifications.unread');
+        Route::delete('/notifications/{id}', [AdminNotificationController::class, 'destroy'])->name('admin.notifications.destroy');
     });
 });

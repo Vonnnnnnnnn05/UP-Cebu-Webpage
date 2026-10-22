@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin;
 use App\Models\Event;
 use App\Models\EventLog;
 use App\Models\News;
+use App\Notifications\FeedbackNotification;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -86,7 +88,9 @@ class EventController extends Controller
                     'approval_status'      => $e->approval_status ?? 'approved',
                     'director_comments'    => $e->director_comments,
                     'reviewed_by_name'     => $e->reviewer?->full_name,
+                    'reviewed_at'          => $e->reviewed_at ? $e->reviewed_at->format('M d, Y h:i A') : null,
                     'approved_by_name'     => $e->approver?->full_name,
+                    'approved_at'          => $e->approved_at ? $e->approved_at->format('M d, Y h:i A') : null,
                     'is_featured'          => (bool) $e->is_featured,
                     'enable_view_link'     => (bool) $e->enable_view_link,
                     'logs_count'           => (int) $e->logs_count,
@@ -274,7 +278,31 @@ class EventController extends Controller
 
         // Admin or Staff can clear or update director comments once addressed
         if ($request->has('director_comments')) {
-            $validated['director_comments'] = $request->input('director_comments');
+            $newComments = trim($request->input('director_comments', ''));
+            $validated['director_comments'] = $newComments ?: null;
+
+            $currentUser = Auth::guard('admin')->user();
+            if ($currentUser && !empty($newComments) && $newComments !== $event->director_comments) {
+                $recipients = Admin::where('id', '!=', $currentUser->id)
+                    ->whereIn('role', ['staff', 'admin'])
+                    ->get();
+
+                $notificationData = [
+                    'title'         => 'Feedback Updated on Event: ' . ($request->input('title') ?? $event->title),
+                    'message'       => $newComments,
+                    'reviewer_name' => $currentUser->full_name,
+                    'reviewer_role' => $currentUser->role,
+                    'item_type'     => 'event',
+                    'item_id'       => $event->id,
+                    'item_title'    => $request->input('title') ?? $event->title,
+                    'action_url'    => route('admin.events.index', ['highlight_event' => $event->id, 'open_feedback' => 1]),
+                    'type_label'    => 'Event Feedback',
+                ];
+
+                foreach ($recipients as $recipient) {
+                    $recipient->notify(new FeedbackNotification($notificationData));
+                }
+            }
         }
 
         if ($event->title !== $validated['title']) {
@@ -309,11 +337,37 @@ class EventController extends Controller
             'director_comments' => 'nullable|string|max:5000',
         ]);
 
+        $feedbackComments = trim($request->input('director_comments', ''));
+
         $event->update([
-            'director_comments' => $request->input('director_comments'),
+            'director_comments' => $feedbackComments ?: null,
             'reviewed_by'       => $currentUser->id,
             'reviewed_at'       => now(),
         ]);
+
+        if (!empty($feedbackComments)) {
+            // Strictly in-system notification (No email)
+            // Recipients: All staff members, plus other admins
+            $recipients = Admin::where('id', '!=', $currentUser->id)
+                ->whereIn('role', ['staff', 'admin'])
+                ->get();
+
+            $notificationData = [
+                'title'         => 'Director Feedback on Event: ' . $event->title,
+                'message'       => $feedbackComments,
+                'reviewer_name' => $currentUser->full_name,
+                'reviewer_role' => $currentUser->role,
+                'item_type'     => 'event',
+                'item_id'       => $event->id,
+                'item_title'    => $event->title,
+                'action_url'    => route('admin.events.index', ['highlight_event' => $event->id, 'open_feedback' => 1]),
+                'type_label'    => 'Event Feedback',
+            ];
+
+            foreach ($recipients as $recipient) {
+                $recipient->notify(new FeedbackNotification($notificationData));
+            }
+        }
 
         return redirect()->back()->with('success_message', 'Director quality feedback and suggestions recorded successfully.');
     }
