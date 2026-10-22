@@ -32,51 +32,60 @@
             <!-- Featured Article (Span 7) -->
             <article
                 class="lg:col-span-7 bg-white border border-border-card rounded-2xl overflow-hidden shadow-xs hover:shadow-md transition-all flex flex-col justify-between reveal-on-scroll stagger-1 group">
-                <div class="p-6 sm:p-8">
-                    <div class="flex flex-wrap items-center gap-2.5 mb-4">
-                        <span class="bg-maroon-base text-white text-[10px] font-bold tracking-wider uppercase px-2.5 py-0.5 rounded-full">
-                            {{ $featuredNews->badge_label ?? 'FEATURED STORY' }}
-                        </span>
-                        <span class="bg-green-base/10 text-green-base text-[10px] font-bold tracking-wider uppercase px-2.5 py-0.5 rounded-full">
-                            {{ $featuredNews->category }}
-                        </span>
-                        <span class="text-[11px] text-ink-muted">
-                            {{ $featuredNews->published_date ? $featuredNews->published_date->format('F j, Y') : '' }}
-                        </span>
-                    </div>
-
-                    <h3 class="font-serif text-xl sm:text-2xl font-bold text-maroon-base leading-snug group-hover:text-maroon-hover transition-colors mb-3">
-                        <a href="javascript:void(0)" onclick="openArticleModal({{ $featuredNews->id }})" class="hover:underline">
-                            {{ $featuredNews->title }}
-                        </a>
-                    </h3>
-
-                    <p class="text-xs sm:text-[13px] leading-relaxed text-ink-base mb-6">
-                        {{ $featuredNews->summary }}
-                    </p>
-
-                    @if ($featuredNews->startups_supported || $featuredNews->meeting_focus || $featuredNews->coverage_area)
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 p-3.5 bg-cream-soft rounded-xl border border-border-card text-center mb-6">
-                        @if($featuredNews->startups_supported)
-                        <div>
-                            <span class="block text-base sm:text-lg font-bold text-maroon-base">{{ $featuredNews->startups_supported }}</span>
-                            <span class="text-[10px] text-ink-muted uppercase font-semibold">Startups Assisted</span>
-                        </div>
-                        @endif
-                        @if($featuredNews->meeting_focus)
-                        <div>
-                            <span class="block text-base sm:text-lg font-bold text-maroon-base">{{ $featuredNews->meeting_focus }}</span>
-                            <span class="text-[10px] text-ink-muted uppercase font-semibold">Meeting Focus</span>
-                        </div>
-                        @endif
-                        @if($featuredNews->coverage_area)
-                        <div>
-                            <span class="block text-base sm:text-lg font-bold text-maroon-base">{{ $featuredNews->coverage_area }}</span>
-                            <span class="text-[10px] text-ink-muted uppercase font-semibold">Partner / Region</span>
-                        </div>
-                        @endif
+                <div>
+                    @if ($featuredNews->image_url)
+                    <div class="relative w-full h-48 sm:h-64 overflow-hidden bg-cream-soft border-b border-border-card">
+                        <img src="{{ asset($featuredNews->image_url) }}" alt="{{ $featuredNews->title }}"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                     </div>
                     @endif
+
+                    <div class="p-6 sm:p-8">
+                        <div class="flex flex-wrap items-center gap-2.5 mb-4">
+                            <span class="bg-maroon-base text-white text-[10px] font-bold tracking-wider uppercase px-2.5 py-0.5 rounded-full">
+                                {{ $featuredNews->badge_label ?? 'FEATURED STORY' }}
+                            </span>
+                            <span class="bg-green-base/10 text-green-base text-[10px] font-bold tracking-wider uppercase px-2.5 py-0.5 rounded-full">
+                                {{ $featuredNews->category }}
+                            </span>
+                            <span class="text-[11px] text-ink-muted">
+                                {{ $featuredNews->published_date ? $featuredNews->published_date->format('F j, Y') : '' }}
+                            </span>
+                        </div>
+
+                        <h3 class="font-serif text-xl sm:text-2xl font-bold text-maroon-base leading-snug group-hover:text-maroon-hover transition-colors mb-3">
+                            <a href="javascript:void(0)" onclick="openArticleModal({{ $featuredNews->id }})" class="hover:underline">
+                                {{ $featuredNews->title }}
+                            </a>
+                        </h3>
+
+                        <p class="text-xs sm:text-[13px] leading-relaxed text-ink-base mb-6">
+                            {{ $featuredNews->summary }}
+                        </p>
+
+                        @if ($featuredNews->startups_supported || $featuredNews->meeting_focus || $featuredNews->coverage_area)
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 p-3.5 bg-cream-soft rounded-xl border border-border-card text-center mb-6">
+                            @if($featuredNews->startups_supported)
+                            <div>
+                                <span class="block text-base sm:text-lg font-bold text-maroon-base">{{ $featuredNews->startups_supported }}</span>
+                                <span class="text-[10px] text-ink-muted uppercase font-semibold">Startups Assisted</span>
+                            </div>
+                            @endif
+                            @if($featuredNews->meeting_focus)
+                            <div>
+                                <span class="block text-base sm:text-lg font-bold text-maroon-base">{{ $featuredNews->meeting_focus }}</span>
+                                <span class="text-[10px] text-ink-muted uppercase font-semibold">Meeting Focus</span>
+                            </div>
+                            @endif
+                            @if($featuredNews->coverage_area)
+                            <div>
+                                <span class="block text-base sm:text-lg font-bold text-maroon-base">{{ $featuredNews->coverage_area }}</span>
+                                <span class="text-[10px] text-ink-muted uppercase font-semibold">Partner / Region</span>
+                            </div>
+                            @endif
+                        </div>
+                        @endif
+                    </div>
                 </div>
 
                 <div class="px-6 py-4 sm:px-8 sm:py-4 bg-cream-soft border-t border-border-card flex items-center justify-between gap-3 mt-auto">
@@ -98,7 +107,7 @@
             <div class="lg:col-span-5 flex flex-col gap-4">
                 @forelse ($recentNews as $index => $item)
                 <article
-                    class="bg-white border border-border-card rounded-xl p-5 sm:p-6 shadow-xs hover:shadow-md transition-all flex flex-col justify-between reveal-on-scroll stagger-{{ $index + 2 }} group">
+                    class="bg-white border border-border-card rounded-xl p-4 sm:p-5 shadow-xs hover:shadow-md transition-all flex flex-col justify-between reveal-on-scroll stagger-{{ $index + 2 }} group">
                     <div>
                         <div class="flex items-center justify-between gap-2 mb-2.5">
                             <span class="bg-green-base/10 text-green-base text-[9.5px] font-bold tracking-wider uppercase px-2 py-0.5 rounded-full">
@@ -109,15 +118,23 @@
                             </span>
                         </div>
 
-                        <h4 class="font-serif text-base font-bold text-maroon-base leading-snug group-hover:text-maroon-hover transition-colors mb-2">
-                            <a href="javascript:void(0)" onclick="openArticleModal({{ $item->id }})" class="hover:underline">
-                                {{ $item->title }}
-                            </a>
-                        </h4>
-
-                        <p class="text-[11.5px] leading-relaxed text-ink-muted line-clamp-2 mb-4">
-                            {{ $item->summary }}
-                        </p>
+                        <div class="flex items-start gap-3 sm:gap-4 mb-3">
+                            <div class="flex-1 min-w-0">
+                                <h4 class="font-serif text-sm sm:text-base font-bold text-maroon-base leading-snug group-hover:text-maroon-hover transition-colors mb-1.5">
+                                    <a href="javascript:void(0)" onclick="openArticleModal({{ $item->id }})" class="hover:underline">
+                                        {{ $item->title }}
+                                    </a>
+                                </h4>
+                                <p class="text-[11.5px] leading-relaxed text-ink-muted line-clamp-2">
+                                    {{ $item->summary }}
+                                </p>
+                            </div>
+                            @if ($item->image_url)
+                            <div class="shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden border border-border-card bg-cream-soft">
+                                <img src="{{ asset($item->image_url) }}" alt="{{ $item->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            </div>
+                            @endif
+                        </div>
                     </div>
 
                     <div class="flex items-center justify-between border-t border-border-card/60 pt-3 gap-2">

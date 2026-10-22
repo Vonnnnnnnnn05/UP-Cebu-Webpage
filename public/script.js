@@ -727,6 +727,8 @@ const articleModalRegion = document.getElementById("article-modal-region");
 const articleMetricStartupsContainer = document.getElementById("article-metric-startups-container");
 const articleMetricMeetingContainer = document.getElementById("article-metric-meeting-container");
 const articleMetricRegionContainer = document.getElementById("article-metric-region-container");
+const articleModalImageContainer = document.getElementById("article-modal-image-container");
+const articleModalImage = document.getElementById("article-modal-image");
 const articleModalShareBtn = document.getElementById("article-modal-share-btn");
 
 let currentActiveArticle = null;
@@ -743,6 +745,20 @@ function openArticleModal(articleIdOrData) {
 
     if (!article) return;
     currentActiveArticle = article;
+
+    // Cover Image
+    if (articleModalImage && articleModalImageContainer) {
+        const rawImg = article.image_asset || article.image_url;
+        if (rawImg && typeof rawImg === "string" && rawImg.trim()) {
+            const trimmed = rawImg.trim();
+            const imgSrc = (trimmed.startsWith("http") || trimmed.startsWith("/")) ? trimmed : "/" + trimmed;
+            articleModalImage.src = imgSrc;
+            articleModalImageContainer.classList.remove("hidden");
+        } else {
+            articleModalImage.src = "";
+            articleModalImageContainer.classList.add("hidden");
+        }
+    }
 
     if (articleModalTitle) articleModalTitle.textContent = article.title || "";
     if (articleModalBadge) {

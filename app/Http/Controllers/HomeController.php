@@ -34,7 +34,12 @@ class HomeController extends Controller
         // All news for client-side modal reader
         $allNewsModalData = News::published()
             ->latest('published_date')
-            ->get(['id', 'title', 'slug', 'category', 'badge_label', 'published_date', 'author', 'summary', 'content', 'startups_supported', 'meeting_focus', 'coverage_area']);
+            ->get(['id', 'title', 'slug', 'category', 'badge_label', 'published_date', 'author', 'summary', 'content', 'startups_supported', 'meeting_focus', 'coverage_area', 'image_url'])
+            ->map(function ($item) {
+                $data = $item->toArray();
+                $data['image_asset'] = $item->image_url ? asset($item->image_url) : null;
+                return $data;
+            });
 
         // All non-cancelled, approved events with eager-loaded relations
         $calendarEventsRaw = Event::where('status', '!=', 'cancelled')

@@ -160,6 +160,54 @@ class ExampleTest extends TestCase
         $this->assertDatabaseMissing('news', ['id' => $news->id]);
     }
 
+    public function test_admin_can_upload_and_manage_news_cover_image(): void
+    {
+        \Illuminate\Support\Facades\Storage::fake('public');
+        $admin = Admin::where('email', 'admin@gmail.com')->first();
+
+        $image = \Illuminate\Http\UploadedFile::fake()->image('news_headline.jpg', 800, 600);
+
+        // 1. Create News with Uploaded Cover Image
+        $createResponse = $this->actingAs($admin, 'admin')->post('/admin/news', [
+            'title' => 'Innovative Tech Transfer Story with Image',
+            'category' => 'PARTNERSHIP',
+            'badge_label' => 'NEW',
+            'published_date' => '2026-10-22',
+            'author' => 'TTBDO Media',
+            'summary' => 'A story with a custom uploaded photo.',
+            'content' => '<p>Article body with photo.</p>',
+            'image' => $image,
+            'is_featured' => 1,
+            'is_published' => 1,
+        ]);
+        $createResponse->assertRedirect(route('admin.news.index'));
+
+        $news = News::where('title', 'Innovative Tech Transfer Story with Image')->first();
+        $this->assertNotNull($news);
+        $this->assertStringContainsString('storage/news/covers/', $news->image_url);
+
+        $path = str_replace('storage/', '', $news->image_url);
+        \Illuminate\Support\Facades\Storage::disk('public')->assertExists($path);
+
+        // 2. Public page renders the custom image
+        $homeResponse = $this->get('/');
+        $homeResponse->assertStatus(200);
+        $homeResponse->assertSee($news->image_url);
+
+        // 3. Update News and Remove Image
+        $updateResponse = $this->actingAs($admin, 'admin')->put("/admin/news/{$news->id}", [
+            'title' => 'Innovative Tech Transfer Story with Image',
+            'category' => 'PARTNERSHIP',
+            'published_date' => '2026-10-22',
+            'author' => 'TTBDO Media',
+            'summary' => 'A story with a custom uploaded photo.',
+            'remove_image' => 1,
+            'is_published' => 1,
+        ]);
+        $updateResponse->assertRedirect(route('admin.news.index'));
+        $this->assertEquals('assets/hero-campus.jpg', $news->fresh()->image_url);
+    }
+
     public function test_admin_can_manage_events_crud(): void
     {
         $admin = Admin::where('email', 'admin@gmail.com')->first();

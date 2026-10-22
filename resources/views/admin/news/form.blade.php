@@ -35,6 +35,7 @@
 @endif
 
 <form action="{{ $isEdit ? route('admin.news.update', $news->id) : route('admin.news.store') }}" method="POST"
+    enctype="multipart/form-data"
     class="bg-white border border-border-card rounded-2xl p-6 sm:p-8 shadow-xs space-y-6">
     @csrf
     @if ($isEdit)
@@ -97,6 +98,39 @@
                 value="{{ old('author', $news->author ?? 'TTBDO Media Communications') }}"
                 placeholder="e.g. TTBDO Media Communications"
                 class="w-full px-3.5 py-2.5 bg-cream-soft border border-border-card rounded-xl text-xs sm:text-sm text-ink-base focus:bg-white focus:border-maroon-base focus:outline-none transition-colors" />
+        </div>
+    </div>
+
+    <!-- Row: Article Cover / Featured Photo Upload -->
+    <div class="p-4 sm:p-5 rounded-xl bg-cream-soft border border-border-card">
+        <label class="block text-xs font-bold uppercase tracking-wider text-ink-base mb-1.5">
+            Article Cover / Featured Photo <span class="text-ink-muted text-[10px] lowercase font-normal">(optional)</span>
+        </label>
+        <div class="flex flex-col sm:flex-row items-start gap-4 p-3.5 bg-white border border-border-card rounded-xl">
+            @if (!empty($news->image_url))
+            <div class="relative group shrink-0">
+                <img src="{{ asset($news->image_url) }}" alt="Current Article Cover" class="w-28 h-20 sm:w-32 sm:h-24 object-cover rounded-lg border border-border-card shadow-2xs">
+                @if ($news->image_url !== 'assets/hero-campus.jpg')
+                <label class="mt-1.5 flex items-center gap-1.5 text-[11px] text-red-600 cursor-pointer font-medium hover:underline">
+                    <input type="checkbox" name="remove_image" value="1" class="rounded border-border-card text-red-600 focus:ring-red-500 h-3.5 w-3.5">
+                    <span>Remove / Reset cover</span>
+                </label>
+                @endif
+            </div>
+            @endif
+            <div class="flex-1 w-full space-y-2">
+                <input type="file" name="image" id="news_image" accept="image/*"
+                    onchange="previewNewsImage(event)"
+                    class="w-full text-xs text-ink-muted file:mr-3 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-cream-soft file:text-maroon-base hover:file:bg-gold-light hover:file:text-gold-deep cursor-pointer" />
+                <p class="text-[10.5px] text-ink-muted leading-tight">
+                    Upload a high-resolution landscape cover photo for card previews and modal reader. Formats: JPG, PNG, WEBP, GIF up to 5MB.
+                </p>
+                <!-- Live preview container -->
+                <div id="image-preview-wrapper" class="hidden items-center gap-3 pt-1">
+                    <img id="image-preview" src="#" alt="Upload Preview" class="w-24 h-16 object-cover rounded-lg border border-maroon-base shadow-xs">
+                    <span id="image-filename" class="text-xs text-ink-base font-semibold truncate max-w-xs"></span>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -175,4 +209,28 @@
         </button>
     </div>
 </form>
+
+<script>
+function previewNewsImage(event) {
+    const input = event.target;
+    const previewWrapper = document.getElementById('image-preview-wrapper');
+    const previewImg = document.getElementById('image-preview');
+    const fileNameSpan = document.getElementById('image-filename');
+
+    if (input.files && input.files[0]) {
+        const file = input.files[0];
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            previewImg.src = e.target.result;
+            fileNameSpan.textContent = file.name + ' (' + (file.size / 1024).toFixed(0) + ' KB)';
+            previewWrapper.classList.remove('hidden');
+            previewWrapper.classList.add('flex');
+        };
+        reader.readAsDataURL(file);
+    } else {
+        previewWrapper.classList.add('hidden');
+        previewWrapper.classList.remove('flex');
+    }
+}
+</script>
 @endsection

@@ -125,15 +125,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
                                 </svg>
                             </a>
-                            <a href="#about-vision" class="dropdown-link-item flex items-center justify-between px-3 py-2 rounded-lg text-white group/item">
-                                <div class="flex flex-col">
-                                    <span class="dropdown-item-title text-xs font-semibold text-white transition-colors">Vision &amp; Mission</span>
-                                    <span class="dropdown-item-desc text-[10px] text-cream-bg/70 transition-colors">Core Purpose &amp; Aspirations</span>
-                                </div>
-                                <svg class="dropdown-item-arrow w-3.5 h-3.5 opacity-0 -translate-x-1 transition-all duration-200 text-gold-base shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                                </svg>
-                            </a>
+
                             <a href="#about-pillars" class="dropdown-link-item flex items-center justify-between px-3 py-2 rounded-lg text-white group/item">
                                 <div class="flex flex-col">
                                     <span class="dropdown-item-title text-xs font-semibold text-white transition-colors">Four Strategic Pillars</span>

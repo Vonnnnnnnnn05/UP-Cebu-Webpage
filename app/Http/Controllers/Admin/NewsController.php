@@ -60,7 +60,11 @@ class NewsController extends Controller
             'startups_supported' => 'nullable|string|max:50',
             'meeting_focus' => 'nullable|string|max:100',
             'coverage_area' => 'nullable|string|max:100',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,webp,gif|max:5120',
             'image_url' => 'nullable|string|max:255',
+        ], [
+            'image.image' => 'The uploaded file must be a valid image.',
+            'image.max' => 'The image size may not exceed 5MB.',
         ]);
 
         $validated['is_featured'] = $request->boolean('is_featured');
@@ -71,7 +75,12 @@ class NewsController extends Controller
             News::where('is_featured', true)->update(['is_featured' => false]);
         }
 
-        if (empty($validated['image_url'])) {
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('news/covers', 'public');
+            $validated['image_url'] = 'storage/' . $path;
+        } elseif ($request->filled('image_url')) {
+            $validated['image_url'] = $request->input('image_url');
+        } else {
             $validated['image_url'] = 'assets/hero-campus.jpg';
         }
 
@@ -101,7 +110,12 @@ class NewsController extends Controller
             'startups_supported' => 'nullable|string|max:50',
             'meeting_focus' => 'nullable|string|max:100',
             'coverage_area' => 'nullable|string|max:100',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,webp,gif|max:5120',
             'image_url' => 'nullable|string|max:255',
+            'remove_image' => 'nullable|boolean',
+        ], [
+            'image.image' => 'The uploaded file must be a valid image.',
+            'image.max' => 'The image size may not exceed 5MB.',
         ]);
 
         $validated['is_featured'] = $request->boolean('is_featured');
@@ -113,6 +127,17 @@ class NewsController extends Controller
 
         if ($validated['is_featured']) {
             News::where('id', '!=', $news->id)->where('is_featured', true)->update(['is_featured' => false]);
+        }
+
+        if ($request->boolean('remove_image')) {
+            $validated['image_url'] = 'assets/hero-campus.jpg';
+        } elseif ($request->hasFile('image')) {
+            $path = $request->file('image')->store('news/covers', 'public');
+            $validated['image_url'] = 'storage/' . $path;
+        } elseif ($request->filled('image_url')) {
+            $validated['image_url'] = $request->input('image_url');
+        } else {
+            unset($validated['image_url']);
         }
 
         $news->update($validated);

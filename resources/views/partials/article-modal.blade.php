@@ -26,6 +26,11 @@
 
         <!-- Scrollable Article Body -->
         <div class="p-6 sm:p-8 overflow-y-auto space-y-6">
+            <!-- Article Cover Image Banner -->
+            <div id="article-modal-image-container" class="w-full max-h-72 sm:max-h-80 overflow-hidden rounded-xl border border-border-card bg-cream-soft hidden">
+                <img id="article-modal-image" src="" alt="Article Cover Image" class="w-full h-full max-h-72 sm:max-h-80 object-cover">
+            </div>
+
             <!-- Article Title & Author -->
             <div>
                 <h2 id="article-modal-title" class="font-serif text-2xl sm:text-3xl font-bold text-maroon-base leading-snug tracking-tight">

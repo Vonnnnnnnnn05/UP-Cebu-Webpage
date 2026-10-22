@@ -69,18 +69,25 @@
                 @forelse ($newsList as $item)
                 <tr class="hover:bg-cream-soft/50 transition-colors">
                     <td class="py-4 px-4 sm:px-6">
-                        <div class="flex items-center gap-2 mb-1">
-                            <span class="bg-green-base/10 text-green-base text-[9.5px] font-bold tracking-wider uppercase px-2 py-0.5 rounded-full">
-                                {{ $item->category }}
-                            </span>
-                            @if ($item->badge_label)
-                            <span class="bg-maroon-base/10 text-maroon-base text-[9px] font-bold px-1.5 py-0.5 rounded">
-                                {{ $item->badge_label }}
-                            </span>
+                        <div class="flex items-start gap-3">
+                            @if ($item->image_url)
+                            <img src="{{ asset($item->image_url) }}" alt="" class="w-12 h-10 object-cover rounded-lg border border-border-card shrink-0 mt-0.5 bg-cream-soft">
                             @endif
+                            <div class="min-w-0 flex-1">
+                                <div class="flex items-center gap-2 mb-1">
+                                    <span class="bg-green-base/10 text-green-base text-[9.5px] font-bold tracking-wider uppercase px-2 py-0.5 rounded-full">
+                                        {{ $item->category }}
+                                    </span>
+                                    @if ($item->badge_label)
+                                    <span class="bg-maroon-base/10 text-maroon-base text-[9px] font-bold px-1.5 py-0.5 rounded">
+                                        {{ $item->badge_label }}
+                                    </span>
+                                    @endif
+                                </div>
+                                <span class="font-bold text-ink-base block text-sm leading-snug">{{ $item->title }}</span>
+                                <p class="text-[11px] text-ink-muted line-clamp-1 mt-0.5">{{ $item->summary }}</p>
+                            </div>
                         </div>
-                        <span class="font-bold text-ink-base block text-sm leading-snug">{{ $item->title }}</span>
-                        <p class="text-[11px] text-ink-muted line-clamp-1 mt-0.5">{{ $item->summary }}</p>
                     </td>
                     <td class="py-4 px-4 text-ink-base whitespace-nowrap">
                         {{ $item->published_date ? $item->published_date->format('M d, Y') : '' }}
